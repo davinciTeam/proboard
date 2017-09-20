@@ -74,7 +74,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profiel</a>
                     </div>
                     <div class="pull-right">
-                      <a href="login/logout" class="btn btn-default btn-flat">Afmelden</a>
+                      <a href="/login/logout" class="btn btn-default btn-flat">Afmelden</a>
                     </div>
                   </li>
                 </ul>

@@ -40,7 +40,7 @@
         }
       ?>
 
-      <form action="login" method="post">
+      <form action="/login/loginAction" method="post">
         <div class="form-group has-feedback">
           <input type="text" class="form-control" name="login_string" id="login_string" autocomplete="off" placeholder="Gebruikersnaam">
           <span class="glyphicon glyphicon-user form-control-feedback"></span>
