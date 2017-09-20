@@ -15,27 +15,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<tbody>
 
 
-
-	<tr>
-    	<td>Stagemarkt</td>
-    	<td>Jan</td>
-    	<td>Slemmer</td>
-    	<td>student 1 , student 2</td>
-  	</tr>
-  	<tr>
-    	<td>Stagemarkt 2</td>
-    	<td>Klaas</td>
-    	<td>nouwen</td>
-    	<td>student 3 , student 4</td>
-  	</tr>
-  	<tr>
-    	<td>Stagemarkt 3</td>
-    	<td>Henk</td>
-    	<td>ruijter</td>
-    	<td>student 5 , student 6 , Student 7 , student 8</td>
-  	</tr>
-
-
+<?php
+    foreach ($test as $project_item){ 
+?>
+    <tr>
+	<td><?php echo $project_item['name'];?></td>
+	<td><?php echo $project_item['klant'];?></td>
+	<td><?php echo $project_item['docent'];?></td>
+	<td>student 1 , student 2</td>
+	</tr>
+  	
+    <?php
+       }
+    ?>
 
 			</tbody>
 		</table>
