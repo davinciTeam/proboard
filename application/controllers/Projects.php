@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
   class Projects extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
@@ -7,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->model('projects_model');
 		//load auth en check, session
 		$this->load->library('Auth');
-		$this->auth->check(strtolower(get_class($this)));
+		$this->auth->check('1');
 		$this->load->library('session');
 		//Load url_helper
 		$this->load->helper('url_helper');
@@ -43,8 +44,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->projects_model->add_project($save);
 		}
 		//  //render view projects
-		// var_dump($save);
-		// exit;
 		render('projects/add_project' , $data);
 		
 	}

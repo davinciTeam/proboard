@@ -1,3 +1,6 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,15 +14,6 @@
     <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="/dist/css/custom.css">
     <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
-    <link rel="stylesheet" href="/plugins/iCheck/flat/blue.css">
-    <link rel="stylesheet" href="/plugins/morris/morris.css">
-    <link rel="stylesheet" href="/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-    <link rel="stylesheet" href="/plugins/datepicker/datepicker3.css">
-    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker-bs3.css">
-    <link rel="stylesheet" href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker-bs3.css">
-    <link rel="stylesheet" href="/plugins/iCheck/all.css">
-    <link rel="stylesheet" href="/dist/css/easy-autocomplete.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -30,7 +24,7 @@
     <div class="wrapper">
 
       <header class="main-header">
-        <a href="#" class="logo">
+        <a href="/" class="logo">
           <span class="logo-mini"><b><?=APP_SHORT?></b></span>
           <span class="logo-lg"><b><?=APP_NAME?></b></span>
         </a>

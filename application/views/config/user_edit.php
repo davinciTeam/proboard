@@ -49,37 +49,17 @@
 							        <label>E-mail</label>
 							        <input type="text" class="form-control" placeholder="E-mail" value="<?=$line->email?>" name="email">
 							    </div>
-							<?php if($this->session->userdata('profile_id') == 1){ ?>
+							
 							    <div class="form-group col-md-6">
 							        <label>Gebruikersnaam</label>
 							        <input type="text" class="form-control" placeholder="Gebruikersnaam" value="<?=$line->username?>" name="username">
 							    </div>
-							<?php } ?>
+							
 
 							    <div class="form-group col-md-6">
 							        <label>Wachtwoord</label>
 							        <input type="password" class="form-control" placeholder="Wachtwoord" value="*************************" name="password">
 							    </div>
-							<?php if($this->session->userdata('profile_id') == 1){ ?>
-							    <div class="form-group col-md-6">
-							    	<label>Profiel</label>						    	
-									<select class="form-control" name="profile_id" id="profile_id">
-										<?php
-											foreach($profiles as $profile){
-										?>
-												<option <?php if((int)$line->profile_id == (int)$profile->id) { ?> selected <?php } ?> value="<?=$profile->id?>"><?=$profile->name?></option>
-										<?php
-											}
-										?>
-									</select>
-							    </div>
-
-							     
-							<?php } ?>
-
-							
-
-
 	                	</div>
 						
 	                </div>
@@ -87,26 +67,7 @@
 	               </div>
 	              </div>
 	            </div>
-
-
-
-
-		
-
-	
-
 	        </section>
-    	
-
-
-    	<script type="text/javascript">
-			jQuery(document).ready(function(){
-				jQuery('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-		          checkboxClass: 'icheckbox_flat-green',
-		          radioClass: 'icheckbox_flat-green-blue'
-		        });
-			});
-		</script>
 
 
 
@@ -144,22 +105,7 @@
 							        <input type="password" class="form-control" required placeholder="Wachtwoord" value="" name="password">
 							    </div>
 
-							    <div class="form-group col-md-6">
-							    	<label>Profiel</label>						    	
-									<select class="form-control" name="profile_id" id="profile_id">
-										<?php
-											foreach($profiles as $profile){
-										?>
-												<option value="<?=$profile->id?>"><?=$profile->name?></option>
-										<?php
-											}
-										?>
-									</select>
-							    </div>
-
-							     
-
-
+							 
 
 	                	  </div>
 						
