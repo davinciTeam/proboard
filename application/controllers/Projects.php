@@ -35,10 +35,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if ($post['posted'] == 1) {
 			$save = Array(
 				"name" => $this->input->post('name'),
-				"klant" => $this->input->post('klant'),
-				"docent" => $this->input->post('docent'),
+				"client" => $this->input->post('client'),
+				"teacher" => $this->input->post('teacher'),
 				"description" => $this->input->post('description'),
-				"leden" => $this->input->post('leden')
+				"members" => $this->input->post('members')
 			);
 			$this->projects_model->add_project($save);
 		}
