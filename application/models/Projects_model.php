@@ -1,18 +1,20 @@
 <?php
 class Projects_model extends CI_Model {
 
-        public function __construct(){
-                $this->load->database();
-        }
+    public function getProjects(){
+        $this->load->database();
+        //Get database class availeble
+        //get al projects
+        $query = $this->db->get('projects');
+       	return $query->result_array();
+    }
 
-//         public function get_projects($slug = FALSE){
-//         // if ($slug === FALSE){
-//         //         $query = $this->db->get('projects');
-//         //         return $query->result_array();
-//         // }
-//         $this->db->query('SELECT * FROM projects');
+    public function add_project($data){
+        $this->load->database();
+        $this->db->insert('projects',$data);
+        // var_dump($count);
+        // exit;
+    }
 
-//         // $query = $this->db->get_where('projects', array('slug' => $slug));
-//         // return $query->row_array();
-// }
+
 }
