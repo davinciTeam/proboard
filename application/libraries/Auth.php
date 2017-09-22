@@ -1,15 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Auth {
-
+	//DROP TABLE `rights`, `rights_tree`, `profiles`;
 	//ALTER TABLE `users` ADD `last_failed_login` INT(10) NOT NULL AFTER `slogan`, ADD `failed_logins` TINYINT(2) NOT NULL DEFAULT '0' AFTER `last_failed_login`;
+	//ALTER TABLE `users` ADD `admin` INT(1) NOT NULL DEFAULT '1' AFTER `failed_logins`;
+
 	public function __construct()
     {
 		$CI =& get_instance();
 		$CI->load->library('session');
 		$this->_key = $CI->config->item('encryption_key');
 		$_SESSION["error"] = array();
-
     }
    	
    	private $maxAttempts = 10;
@@ -36,38 +37,36 @@ class Auth {
 		$this->f_checksum = sha1($this->_key . $CI->agent->agent_string() . $CI->input->ip_address()  . session_id()  .  strrev($this->_key)) ;
 	}
 
-	public function check($current = NULL)
+	public function check($permision = '0')
 	{
+		$permision = (string)$permision;
+
+		if (!is_string($permision)) redirect($this->_loginuri);
+
 		$CI =& get_instance();
 		$CI->load->helper('url');
-		$CI->load->database();
 		$CI->load->library('user_agent');
-		
 		$this->getChecksum();
 		if (!empty($CI->session->user_id) && $CI->session->user_id > 0) {
+
 			$query = $CI->db->get_where('user_activities', array("user_id" => $_SESSION["user_id"], "checksum" => $this->f_checksum));
 
-			if ($query->num_rows() != 0) {
+			if ($query->num_rows() != 0 && $permision !== '0') {
 
 				array_push($_SESSION["error"], "Er is te lang geen gebruik gemaakt van de software");
 				redirect($this->_loginuri . "?sessionend=1");
 
 			} else {
 
-				$CI->db->select("rights.*, rights_tree.profile_id");
-				$CI->db->order_by("priority");
-				$CI->db->join('rights_tree', 'rights.id = rights_tree.rights_id AND rights_tree.profile_id = ' . $_SESSION["profile_id"], 'inner');
-				$CI->db->like('link', $current);
-				$query = $CI->db->get('rights');
-
-				if ($query->num_rows() == 0) {
+				if ($permision !== $CI->session->permision && $permision !== '0') {
 					header('Location: ' . $this->_loginuri);
-				} else {
+					exit;
+				} else if ($CI->session->permision === '1') {
 					$CI->db->update('user_activities', array( "date_modify" => date('Y-m-d H:i:s')), array("user_id" => $CI->session->user_id));
 				}
-				
+			
 			}
-		} else {
+		} else if ($permision !== '0') {
 			redirect($this->_loginuri);
 		}
 	}
@@ -96,7 +95,6 @@ class Auth {
 
 					array_push($_SESSION["error"], "U kunt maximaal " . $this->maxAttempts . " keer per uur proberen in te loggen.", 					"Restende tijd tot u weer kan proberen in te loggen over " . 	date('i', $user->last_failed_login - time()) . " minuten" );
 					redirect('/login');
-					return false; 
 					exit;
 				}
 			}
@@ -123,7 +121,8 @@ class Auth {
 					"profile_image" =>  !empty($user->profile_image) ? $user->profile_image : '/custom/images/users/default.png',
 					"menu_state" => $user->menu_state,
 					"start_page" => !empty($user->start_page) ? $user->start_page : '/dashboard' ,
-					"email" => $user->email
+					"email" => $user->email,
+					"permision" => !empty($user->admin) ? $user->admin : '0'
 				);
 
 				$CI->session->set_userdata($sessiondata);
@@ -207,5 +206,5 @@ class Auth {
 			$CI->db->update('users', array("password" => $hash), array("id" => $f_id));
 			array_push($_SESSION["error"], "Installatie gelukt. Standaard gebruiker: admin/admin");
 		}
-	}*/	
+	}*/
 }

@@ -2,18 +2,20 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Config extends CI_Controller {
 	public function __construct()
-   {
+   	{
    		parent::__construct();
         $this->load->library('Auth');
-     	$this->auth->check(strtolower(get_class($this)));
+     	$this->auth->check('1');
         $this->load->library('session');
-   }
+   	}
+   	
 	public function index()
 	{
 		header('Location: ' . $this->session->start_page);
 	}
 
-	public function users(){
+	public function users()
+	{
 		$this->load->model("ConfigModel", "config_model");
 		/* Users overview */
 		$users = $this->config_model->getUsers();
@@ -24,15 +26,15 @@ class Config extends CI_Controller {
 		render('config/users_overview', $users_data);
 	}
 
-	public function editUser($f_id = 0){
+	public function editUser($f_id = 0)
+	{
 		$this->load->model("ConfigModel", "config_model");
-		if ($this->input->server('REQUEST_METHOD') == 'POST'){
+		if ($this->input->server('REQUEST_METHOD') == 'POST') {
 			$saveData = array(
 				"name" => $this->input->post('name'),
 				"username" => $this->input->post('username'),
 				"email" => $this->input->post('email'),
-				"password" => $this->input->post('password'),
-				"profile_id" =>$this->input->post('profile_id')
+				"password" => $this->input->post('password')
 			);
 
 			$newId = $f_id > 0 ?  $this->config_model->updateUser($saveData, $this->input->post('id')) : $this->config_model->insertUser($saveData);
@@ -49,13 +51,11 @@ class Config extends CI_Controller {
 
 		$saved = !empty($this->input->get('saved')) ? 1 : 0;
 
-		$profiles = $this->config_model->getProfiles();
 		$user_data = array(
 			"id" => $f_id,
 			"line" => $line,
 			"saved" => $saved,
 			"type" => $pageType,
-			"profiles" => $profiles
 		);
 		render('config/user_edit', $user_data);
 	}
@@ -72,7 +72,7 @@ class Config extends CI_Controller {
 	public function editRights($f_id = 0){
 		$this->load->model("ConfigModel", "config_model");
 		$saved = 0;
-		if ($this->input->server('REQUEST_METHOD') == 'POST'){
+		if ($this->input->server('REQUEST_METHOD') == 'POST') {
 			$this->config_model->clearRights($f_id);
 			if(is_array($this->input->post('right'))){
 				foreach($this->input->post('right') as $key => $value){
@@ -83,7 +83,7 @@ class Config extends CI_Controller {
 					$this->config_model->insertRights($insertData);
 				}
 			} else {
-				if(!empty($this->input->post('right'))){
+				if (!empty($this->input->post('right'))) {
 					$insertData = array(
 						"profile_id" => $f_id,
 						"rights_id" => $this->input->post('right')
