@@ -2,7 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
   class Projects extends CI_Controller {
-	public function __construct(){
+
+	public function __construct()
+	{
 		parent::__construct();
 		//Load projectmodel
 		$this->load->model('projects_model');
@@ -14,15 +16,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->helper('url_helper');
 	}
 	
-	public function index(){
+	public function index()
+	{
 		$this->load->model('projects_model');
-		$query['test'] = $this->projects_model->getProjects();
+		$query['projects'] = $this->projects_model->getProjects();
 		//  //render view projects
-		render('projects/overview' , $query);
-		
+		render('projects/overview', $query);
 	}
 
-	public function add_project(){
+	public function add_project()
+	{
 		$this->load->helper('form');
     	$this->load->library('form_validation');
 		$this->load->model('projects_model');
@@ -41,10 +44,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				"description" => $this->input->post('description'),
 				"members" => $this->input->post('members')
 			);
-			$this->projects_model->add_project($save);
+			$this->projects_model->addProject($save);
 		}
 		//  //render view projects
-		render('projects/add_project' , $data);
+		render('projects/add_project', $data);
 		
 	}
 }

@@ -6,14 +6,14 @@ class Projects_model extends CI_Model {
         //Get database class availeble
         //get al projects
         $query = $this->db->get('projects');
+
        	return $query->result_array();
     }
 
-    public function add_project($data){
+    public function addProject($data)
+    {
         $this->load->database();
-        $this->db->insert('projects',$data);
-        // var_dump($count);
-        // exit;
+        $this->db->insert('projects', $data);
     }
 
 
