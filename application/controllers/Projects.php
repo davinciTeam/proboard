@@ -14,21 +14,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->library('session');
 		//Load url_helper
 		$this->load->helper('url_helper');
+		$this->load->model('projects_model');
 	}
 	
 	public function index()
 	{
-		$this->load->model('projects_model');
 		$query['projects'] = $this->projects_model->getProjects();
 		//  //render view projects
 		render('projects/overview', $query);
+	}
+
+	public function addMembers($slug = null)
+	{
+		$query['project'] = $this->projects_model->getProject($slug);
+		
+		if (empty($query['project'])) {
+			show_404();
+		} 
+
+		render('projects/addMembers', $query);
 	}
 
 	public function add_project()
 	{
 		$this->load->helper('form');
     	$this->load->library('form_validation');
-		$this->load->model('projects_model');
 		$data['data'] = $this->projects_model->getProjects();
 		// get data from form
 
