@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$project->client;?></td>
 					<td><?=$project->teacher;?></td>
 					<td><?php foreach ($project->members as $member) { echo $member->name." "; } ?></td>
-					<td><a href="addMembers/<?=$project->slug ?>">voeg leden toe</a></td>
+					<td><a href="projects/Members/<?=$project->slug ?>">leden beheren</a></td>
 				</tr>
 			  	
 			<?php

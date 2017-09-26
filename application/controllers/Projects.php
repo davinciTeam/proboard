@@ -6,8 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function __construct()
 	{
 		parent::__construct();
-		//Load projectmodel
-		$this->load->model('projects_model');
 		//load auth en check, session
 		$this->load->library('Auth');
 		$this->auth->check('1');
@@ -24,15 +22,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		render('projects/overview', $query);
 	}
 
-	public function addMembers($slug = null)
+	public function Members($slug = null)
 	{
 		$query['project'] = $this->projects_model->getProject($slug);
 		
 		if (empty($query['project'])) {
 			show_404();
 		} 
+		$this->load->helper('form');
 
 		render('projects/addMembers', $query);
+	}
+
+	public function addMembersAction()
+	{
+        $this->projects_model->addMember($this->input->post('slug'), $this->input->post('name'));
+        redirect('projects/Members/'.$this->input->post('slug'));
+	}
+
+	public function deleteMembersAction()
+	{
+		$this->projects_model->deleteMember($this->input->post('slug'), $this->input->post('name'));
+        redirect('projects/Members/'.$this->input->post('slug'));
+	}
+
+	public function editMembersAction()
+	{
+		$this->projects_model->editMember($this->input->post('slug'), $this->input->post('old_member'), $this->input->post('new_member'));
+        redirect('projects/Members/'.$this->input->post('slug'));
 	}
 
 	public function add_project()
