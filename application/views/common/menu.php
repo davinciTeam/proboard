@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <li><a href="/projects">Overzicht</a></li>
             </ul>
             <ul class="treeview-menu">
-              <li><a href="/projects/add_projects">Project toevoegen</a></li>
+              <li><a href="/projects/add_project">Project toevoegen</a></li>
             </ul>
           </li>
           <li class="treeview">

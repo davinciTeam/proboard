@@ -87,25 +87,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->helper('form');
     	$this->load->library('form_validation');
 		$data['data'] = $this->projects_model->getProjects();
-		// get data from form
-
-		$post = Array(
-			"posted" => $this->input->post('posted')
-		);
-		//	Check if form is posted before inserting data 
-		if ($post['posted'] == 1) {
-			$save = Array(
-				"name" => $this->input->post('name'),
-				"client" => $this->input->post('client'),
-				"teacher" => $this->input->post('teacher'),
-				"description" => $this->input->post('description'),
-				"posted" => $this->input->post('posted'),
-				"members" => $this->input->post('members')
-			);
-			$this->projects_model->addProject($save);
-		}
-		//	render view projects
 		render('projects/add_project', $data);
+		
+	}
+
+	public function add_projectAction()
+	{
+	$save = Array(
+			"name" => $this->input->post('name'),
+			"client" => $this->input->post('client'),
+			"teacher" => $this->input->post('teacher'),
+			"description" => $this->input->post('description')
+		);
+	$this->projects_model->addProject($save);
+	redirect('projects/add_Project/');
 		
 	}
 

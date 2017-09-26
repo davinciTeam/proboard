@@ -19,10 +19,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="form-group">
 								<input type="input" name="teacher" value="<?=$project['0']->teacher ?>" required/>
 							</div>
-						<label for="text">Leden</label>
+						<!-- <label for="text">Leden</label>
 							<div class="form-group">
-								<!-- <input type="input" name="members" value="<?=$project['0']->description ?>" required/> -->
-							</div>
+								<input type="input" name="members" value="<?=$project['0']->description ?>" required/>
+							</div> -->
 						<label for="text">Beschrijving</label>
 							<div class="form-group">
 								<input type="text" name="description" required value="<?=$project['0']->description ?>"></textarea>

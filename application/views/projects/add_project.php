@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <div class="container">
 	    	<div class="row">
 	    		<div class="col-md-12">
-				  	<?php echo form_open('projects/add_project'); ?>
+				  	<?php echo form_open('projects/add_projectAction'); ?>
 						<label for="title">Projectnaam</label>
 							<div class="form-group">
 								<input type="input" name="name" required/>
