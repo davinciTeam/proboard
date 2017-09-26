@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <div class="container">
 	    	<div class="row">
 	    		<div class="col-md-12">
-				  	<?php echo form_open('projects/editProject/' . $project['0']->slug); ?>
+				  	<?php echo form_open('projects/editProjectAction'); ?>
 						<label for="title">Projectnaam</label>
 							<div class="form-group">
 								<input type="input" name="name" value="<?=$project['0']->name ?>" required/>
