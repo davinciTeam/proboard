@@ -35,6 +35,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		render('projects/addMembers', $query);
 	}
 
+
+	public function editProject($slug = null)
+	{
+		$this->load->helper('form');
+    	$this->load->library('form_validation');
+		
+		$query['project'] = $this->projects_model->getProject($slug);
+		
+		if (empty($query['project'])) {
+			show_404();
+		} 
+
+		$data = Array(
+				"name" => $this->input->post('name'),
+				"slug" => $this->input->post('slug'),
+				"client" => $this->input->post('client'),
+				"teacher" => $this->input->post('teacher'),
+				"description" => $this->input->post('description')
+			);
+			// render view projects
+			$this->projects_model->editProject($data);
+		render('projects/editProject', $query);
+
+		
+	}
+
 	public function add_project()
 	{
 		$this->load->helper('form');
@@ -45,19 +71,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$post = Array(
 			"posted" => $this->input->post('posted')
 		);
-		//Check if form is posted before inserting data 
+		//	Check if form is posted before inserting data 
 		if ($post['posted'] == 1) {
 			$save = Array(
 				"name" => $this->input->post('name'),
 				"client" => $this->input->post('client'),
 				"teacher" => $this->input->post('teacher'),
 				"description" => $this->input->post('description'),
+				"posted" => $this->input->post('posted'),
 				"members" => $this->input->post('members')
 			);
 			$this->projects_model->addProject($save);
 		}
-		//  //render view projects
+		//	render view projects
 		render('projects/add_project', $data);
 		
 	}
+
+	
 }
