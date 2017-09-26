@@ -37,6 +37,7 @@ class Projects_model extends CI_Model {
         $this->db->insert('projects', $data);
     }
 
+
     public function addMember($slug, $name)
     {
         $project = $this->getProject($slug);
@@ -109,4 +110,14 @@ class Projects_model extends CI_Model {
         return $this->db->select('name')->from('project_members')->where('project_id', $id)->join('members', 'members.id = project_members.member_id', 'inner')->get()->result();
     }
 
+
+    public function editProject($data)
+    {
+        extract($data);
+        $this->db->where('slug', $data['slug']);
+        $this->db->update('projects', array('name' => $name,
+            'client' => $client,
+            'teacher' => $teacher,
+            'description' => $description));        
+    }
 }

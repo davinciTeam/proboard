@@ -14,22 +14,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 
     <ul class="sidebar-menu">
-      <li class="header">Navigatie</li>
+        <li class="header">Navigatie</li>
 
-      <li class="treeview">
-        <a href="#">
-          <span>Users</span> <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="/config/users">Config</a></li>
-        </ul>
-      </li>
-      <li>
-      <a href="/">
-        <span>dashboard</span> 
-      </a>
+          <li class="treeview">
+            <a href="#">
+              <span>Users</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="/config/users">Config</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <span>Projects</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="/projects">Overzicht</a></li>
+            </ul>
+            <ul class="treeview-menu">
+              <li><a href="/projects/add_projects">Project toevoegen</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <span>Members</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="/members">Overzicht</a></li>
+            </ul>
+            <ul class="treeview-menu">
+              <li><a href="/projects/addMembers">Members Toevoegen</a></li>
+            </ul>
+          </li>
+          <li>
+          <a href="/">
+            <span>dashboard</span> 
+          </a>
 
-      </li>          
+          </li>          
     </ul>
   </section>
 </aside>
