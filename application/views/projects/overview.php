@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$project->teacher;?></td>
 					<td><?php foreach ($project->members as $member) { echo $member->name." "; } ?></td>
 					<td><a href="/projects/Members/<?=$project->slug ?>">leden beheren</a></td>
+					<td><a href="/projects/editProject/<?=$project->slug ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 				</tr>
 			  	
 			<?php
