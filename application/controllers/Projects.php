@@ -78,31 +78,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			"description" => $this->input->post('description')
 		);
 		$this->projects_model->editProject($data);
-		redirect('projects/editProject/'.$data['slug']);
+		redirect('projects/');
 
 	}
 
-	public function add_project()
+	public function addProject()
 	{
 		$this->load->helper('form');
     	$this->load->library('form_validation');
 		$data['data'] = $this->projects_model->getProjects();
-		render('projects/add_project', $data);
+		render('projects/addProject', $data);
 		
 	}
 
-	public function add_projectAction()
+	public function addProjectAction()
 	{
-	$save = Array(
+		$save = Array(
 			"name" => $this->input->post('name'),
 			"client" => $this->input->post('client'),
 			"teacher" => $this->input->post('teacher'),
 			"description" => $this->input->post('description')
 		);
-	$this->projects_model->addProject($save);
-	redirect('projects/add_Project/');
+		$this->projects_model->addProject($save);
+		redirect('projects/');
 		
 	}
-
-	
 }

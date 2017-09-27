@@ -25,9 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div> -->
 						<label for="text">Beschrijving</label>
 							<div class="form-group">
-								<input type="text" name="description" required value="<?=$project['0']->description ?>"></textarea>
+								<textarea name="description" required><?=$project['0']->description ?></textarea>
 							</div>
-						<input type="hidden" name="posted" value="1">
 						<input type="hidden" name="slug" value="<?=$project['0']->slug ?>">
 						<input type="submit" name="submit" value="Project Aanpassen" />
 

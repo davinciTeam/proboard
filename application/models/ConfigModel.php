@@ -17,9 +17,8 @@
 		}
 
 		public function deleteUser($f_id){
-			if($f_id > 0){
+			if ($f_id > 0) {
 				$this->db->update('users', array("active" => 0), array("id" => $f_id));
-
 			}
 		}
 

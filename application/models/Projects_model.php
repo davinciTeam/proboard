@@ -113,11 +113,10 @@ class Projects_model extends CI_Model {
 
     public function editProject($data)
     {
-        extract($data);
         $this->db->where('slug', $data['slug']);
-        $this->db->update('projects', array('name' => $name,
-            'client' => $client,
-            'teacher' => $teacher,
-            'description' => $description));        
+        $this->db->update('projects', array('name' => $data['name'],
+            'client' => $data['client'],
+            'teacher' => $data['teacher'],
+            'description' => $data['description']));        
     }
 }

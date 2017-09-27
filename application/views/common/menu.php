@@ -32,10 +32,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <li><a href="/projects">Overzicht</a></li>
             </ul>
             <ul class="treeview-menu">
-              <li><a href="/projects/add_project">Project toevoegen</a></li>
+              <li><a href="/projects/addProject">Project toevoegen</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <!--<li class="treeview">
             <a href="#">
               <span>Members</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <ul class="treeview-menu">
               <li><a href="/projects/addMembers">Members Toevoegen</a></li>
             </ul>
-          </li>
+          </li>-->
           <li>
           <a href="/">
             <span>dashboard</span> 
