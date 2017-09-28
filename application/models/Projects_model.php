@@ -58,9 +58,7 @@ class Projects_model extends CI_Model {
             $result = $this->db->insert('project_members', 
                 array('member_id' => $member['0']->id, 'project_id' => $project['0']->id));
         } else {
-            $this->db->insert('members', array('name' => $name));
-            $result = $this->db->insert('project_members', 
-                array('member_id' => $this->db->insert_id(), 'project_id' => $project['0']->id));
+            $result = false;
         }
 
         return $result;
@@ -89,7 +87,7 @@ class Projects_model extends CI_Model {
     {
         $project = $this->getProject($slug);
         $member = $this->getMember($name);    
-        
+ 
         if (!$project || !$member) {
             return false;
             exit;
