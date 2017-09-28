@@ -11,16 +11,12 @@ class Members_model extends CI_Model {
 
     public function getMembers()
     {
-        //Get database class availeble
-        $this->load->database();
-        //get all members
-        $query = $this->db->get('members');
-        return $query->result();
+        return $this->filter->xssFilter($this->db->get('members')->result());
     }
 
     public function getMember($slug)
     {
-        return $this->db->get_where('members', array('slug' => $slug))->result();
+        return $this->filter->xssFilter($this->db->get_where('members', array('slug' => $slug))->result());
     }
 
     public function addMember($data)

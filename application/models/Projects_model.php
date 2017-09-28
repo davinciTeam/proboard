@@ -19,9 +19,8 @@ class Projects_model extends CI_Model {
             $result->members = $this->getAllMembers($result->id);
         }
 
-       	return $queryResult;
+       	return $this->filter->xssFilter($queryResult);
     }
-
 
     public function getProject($slug)
     {
@@ -29,7 +28,7 @@ class Projects_model extends CI_Model {
         $project['0']->members = $this->getAllMembers($project['0']->id);
         $project['0']->none_members = $this->db->from('members')->get()->result();
 
-        return $project;
+        return $this->filter->xssFilter($project);
     }
 
     public function addProject($data)
@@ -64,24 +63,6 @@ class Projects_model extends CI_Model {
         return $result;
     }
 
-    public function editMember($slug, $oldMember, $newMember)
-    {
-
-        $project = $this->getProject($slug);
-
-        $oldMember = $this->getMember($oldMember);
-        $newMember = $this->getMember($newMember);
-
-        if (!$project || !$oldMember || !$newMember || $this->db->from('project_members')->where('member_id', $newMember['0']->id)->where('project_id', $project['0']->id)->get()->result()) {
-            return false;
-            exit;
-        }
-        
-
-        $result = $this->db->where('member_id', $oldMember['0']->id)->where('project_id', $project['0']->id)->update('project_members', array('member_id' => $newMember['0']->id));
-        
-        return $result;
-    }
 
     public function deleteMember($slug, $name)
     {

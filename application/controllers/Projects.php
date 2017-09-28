@@ -47,11 +47,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         redirect('projects/Members/'.$this->input->post('slug'));
 	}
 
-	public function editMembersAction()
-	{
-		$this->projects_model->editMember($this->input->post('slug'), $this->input->post('old_member'), $this->input->post('new_member'));
-        redirect('projects/Members/'.$this->input->post('slug'));
-    }
 
 	public function editProject($slug = null)
 	{

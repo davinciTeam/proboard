@@ -1,9 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Auth {
-	//DROP TABLE `rights`, `rights_tree`, `profiles`;
-	//ALTER TABLE `users` ADD `last_failed_login` INT(10) NOT NULL AFTER `slogan`, ADD `failed_logins` TINYINT(2) NOT NULL DEFAULT '0' AFTER `last_failed_login`;
-	//ALTER TABLE `users` ADD `admin` INT(1) NOT NULL DEFAULT '1' AFTER `failed_logins`;
 
 	public function __construct()
     {
