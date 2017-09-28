@@ -38,6 +38,7 @@ class Members extends CI_Controller {
 			"ovnumber" => $this->input->post('ovnumber'),
 			"name" => $this->input->post('name'),
 			"insertion" => $this->input->post('insertion'),
+			"active" => $this->input->post('active'),
 			"lastname" => $this->input->post('lastname')
 		);
 		$this->members_model->addMember($save);

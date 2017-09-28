@@ -36,6 +36,7 @@ class Members_model extends CI_Model {
         $this->db->update('members', array('name' => $data['name'],
             'insertion' => $data['insertion'],
             'lastname' => $data['lastname'],
+            'active' => $data['active'],
             'ovnumber' => $data['ovnumber'])
         );        
     }
