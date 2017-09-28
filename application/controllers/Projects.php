@@ -86,6 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->load->helper('form');
     	$this->load->library('form_validation');
+		// $this->load->helper('url_helper');
 		$data['data'] = $this->projects_model->getProjects();
 		render('projects/addProject', $data);
 		
@@ -93,9 +94,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function addProjectAction()
 	{
+
+		$slug = url_title($this->input->post('name'), 'dash', TRUE);
 		$save = Array(
 			"name" => $this->input->post('name'),
 			"client" => $this->input->post('client'),
+			'slug' => $slug,
 			"teacher" => $this->input->post('teacher'),
 			"description" => $this->input->post('description')
 		);
