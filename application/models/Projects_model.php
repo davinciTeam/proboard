@@ -117,6 +117,7 @@ class Projects_model extends CI_Model {
         $this->db->update('projects', array('name' => $data['name'],
             'client' => $data['client'],
             'teacher' => $data['teacher'],
-            'description' => $data['description']));        
+            'description' => $data['description'])
+        );        
     }
 }

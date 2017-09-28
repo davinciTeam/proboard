@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$member->name;?></td>
 					<td><?=$member->insertion;?></td>
 					<td><?=$member->lastname;?></td>
-					<td><a href="/members/editProject/"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+					<td><a href="/members/editMember/<?=$member->slug; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 				</tr>
 			  	
 			<?php
