@@ -27,6 +27,8 @@ class Members_model extends CI_Model {
 
     public function editMember($data)
     {
+
+
         //Set where clause for update query
         $this->db->where('slug', $data['slug']);
         $this->db->update('members', array('name' => $data['name'],
@@ -36,4 +38,16 @@ class Members_model extends CI_Model {
             'ovnumber' => $data['ovnumber'])
         );        
     }
+
+    // function slug_exists($slug)
+    // {
+    //     $string = 1;
+    //     while($this->db->where('slug', $slug)->get('members')->result())
+    //     {
+    //         $slug .= (string)$string;
+    //         $string++;
+    //     }
+    //     return $slug;
+            
+    // }    
 }
