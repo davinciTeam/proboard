@@ -5,8 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <section class="content">
 	    <h1>project-naam: <?=$project['0']->name ?></h1>
 	    <h2>huidige leden</h2>
-	    <pre><?php foreach ($project['0']->members as $member) { echo $member->name ; echo "<form method=\"post\" action=\"/projects/deleteMembersAction\" class=\"inline\">"; 
-	    echo "<input value=\"" .$project['0']->slug ."\" type=\"hidden\" name=\"slug\"><input value=\"" .$member->name ."\" type=\"hidden\" name=\"name\"><button class=\"btn btn-link\" type=\"submit\"><i class=\"glyphicon glyphicon-remove-circle\"></i></button></form>"; } ?></pre>
+	    <pre><?php foreach ($project['0']->members as $member) { echo $member->name ; ?> <form method="post" action="/projects/deleteMembersAction" class="inline"><input type="hidden" name="<?=$name;?>" value="<?=$hash;?>" /><input value="<?=$project['0']->slug?>" type="hidden" name="slug"><input value="<?=$member->name?>" type="hidden" name="name"><button class="btn btn-link" type="submit"><i class="glyphicon glyphicon-remove-circle"></i></button></form><?php  } ?></pre>
 	
 	 	<?php echo form_open('projects/addMembersAction') ?>
 		<label>naam nieuw lid</label>

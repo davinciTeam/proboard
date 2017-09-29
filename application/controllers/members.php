@@ -27,7 +27,7 @@ class Members extends CI_Controller {
 	{
 		$this->load->helper('form');
     	$this->load->library('form_validation');
-		// $this->load->helper('url_helper');
+
 		$data['data'] = $this->members_model->getMembers();
 		render('members/addMembers', $data);
 		

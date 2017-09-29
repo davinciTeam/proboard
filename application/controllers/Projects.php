@@ -24,8 +24,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function Members($slug = null)
 	{
-		$query['project'] = $this->projects_model->getProject($slug);
-		
+		$query = array(
+	        'name' => $this->security->get_csrf_token_name(),
+	        'hash' => $this->security->get_csrf_hash(),
+	        'project' => $this->projects_model->getProject($slug)
+		);
+
 		if (empty($query['project'])) {
 			show_404();
 		} 
