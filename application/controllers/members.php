@@ -19,6 +19,7 @@ class Members extends CI_Controller {
 	
 	public function index()
 	{
+		$this->load->helper('form');
 		$query['members'] = $this->members_model->getMembers();
 		//  //render view projects
 		render('members/overview', $query);
@@ -29,7 +30,7 @@ class Members extends CI_Controller {
 		$this->load->library('Slug');
 		$this->load->helper('form');
     	$this->load->library('form_validation');
-		// $this->load->helper('url_helper');
+
 		$data['data'] = $this->members_model->getMembers();
 		render('members/addMembers', $data);
 		
@@ -74,5 +75,11 @@ class Members extends CI_Controller {
 		$this->members_model->editMember($data);
 		redirect('members/');
 
+	}
+
+	public function import()
+	{
+		$this->members_model->import();
+		redirect('members/');
 	}
 }

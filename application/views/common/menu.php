@@ -15,7 +15,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <ul class="sidebar-menu">
         <li class="header">Navigatie</li>
-
           <li class="treeview">
             <a href="#">
               <span>Users</span> <i class="fa fa-angle-left pull-right"></i>
@@ -30,8 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </a>
             <ul class="treeview-menu">
               <li><a href="/projects">Overzicht</a></li>
-            </ul>
-            <ul class="treeview-menu">
               <li><a href="/projects/addProject">Project toevoegen</a></li>
             </ul>
           </li>
@@ -41,16 +38,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </a>
             <ul class="treeview-menu">
               <li><a href="/members">Overzicht</a></li>
-            </ul>
-            <ul class="treeview-menu">
               <li><a href="/members/addMember">Studenten Aanmaken</a></li>
             </ul>
           </li>
           <li>
-          <a href="/">
-            <span>dashboard</span> 
-          </a>
-
+            <a href="/">
+              <span>dashboard</span> 
+            </a>
           </li>          
     </ul>
   </section>
