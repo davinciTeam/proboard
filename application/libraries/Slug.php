@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Slug {
 
 
-	function slug_exists($slug, $table = 'members')
+	function slug_exists($slug, $table="members")
 	{
 		$CI =& get_instance();
 		$CI->load->database();

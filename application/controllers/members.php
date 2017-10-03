@@ -25,7 +25,7 @@ class Members extends CI_Controller {
 		render('members/overview', $query);
 	}
 
-	public function addMember()
+	public function addMember($table = "members")
 	{
 		$this->load->library('Slug');
 		$this->load->helper('form');
@@ -35,7 +35,7 @@ class Members extends CI_Controller {
 		render('members/addMembers', $data);
 		
 	}
-	public function addMemberAction()
+	public function addMemberAction($table = "members")
 	{
 		$save = Array(
 			"ovnumber" => $this->input->post('ovnumber'),
