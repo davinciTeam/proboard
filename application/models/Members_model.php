@@ -42,8 +42,9 @@ class Members_model extends CI_Model {
     public function import()
     {
         $this->load->helper('url_helper');
+        $this->load->library('Slug');
 
-        $config['upload_path']          =  realpath(APPPATH . '../uploads/');
+        $config['upload_path']          = realpath(APPPATH . '../uploads/');
         $config['file_name']            = 'import.csv';
         $config['allowed_types']        = 'csv';
         $config['max_size']             = 100;
@@ -54,18 +55,24 @@ class Members_model extends CI_Model {
 
         if ($this->upload->do_upload('userfile')) {
             $data = array('upload_data' => $this->upload->data());
-            $file_data = explode(';', preg_replace('/\n/', ';', file_get_contents($data['upload_data']['full_path'], false)));
+            $fileData = explode(';', file_get_contents($data['upload_data']['full_path'], false));
             unlink($data['upload_data']['full_path']);
-            for ($i = 4; $i < count($file_data); $i+=4) {
+            for ($i = 4; $i < count($fileData)-1; $i+=4) {
                 $importData = Array(
-                    "ovnumber" => $file_data[$i],
-                    "name" => $file_data[$i+1],
-                    "insertion" => $file_data[$i+2],
-                    "lastname" => $file_data[$i+3]
+                    "ovnumber" => $fileData[$i],
+                    "name" => $fileData[$i+1],
+                    "slug" => $this->slug->slug_exists($fileData[$i+1]),
+                    "insertion" => $fileData[$i+2],
+                    "lastname" => $fileData[$i+3]
                 );
                 $this->addMember($importData);
             } 
+
+            return true;
         }  
         return false;
     }
 }
+//ALTER TABLE `members` CHANGE `name` `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+//ALTER TABLE `members` CHANGE `insertion` `insertion` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+//ALTER TABLE `members` CHANGE `lastname` `lastname` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;

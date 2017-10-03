@@ -58,6 +58,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php
 			    }
 			?>
+
+				<?php echo form_open_multipart('Members/import');?>
+					
+					<input type="file" name="userfile">
+
+					<button type="submit">importeren</button>
+				</form>	
+
 			</tbody>
 		</table>
     </section>
