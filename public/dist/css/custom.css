@@ -1,3 +1,24 @@
 .white {
 	background-color:white;
 }
+.bar {
+    margin-bottom: 15px;
+}
+
+.import-file{
+    display: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.import-file button{
+    margin-top: 15px;
+}
+
+.bar a{
+    margin-right: 15px;
+}
+
+.addmember .input-group{
+    margin-bottom: 15px;
+}
