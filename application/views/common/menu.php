@@ -45,8 +45,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <a href="/">
               <span>dashboard</span> 
             </a>
-          </li>          
+          </li>
     </ul>
+    <div class="box box-solid box-danger">
+        <div class="box-header">
+            <h3 class="box-title">Error</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            The body of the box
+        </div><!-- /.box-body -->
+    </div><!-- /.box -->
+    <div class="box box-solid box-success">
+      <div class="box-header">
+          <h3 class="box-title">Succes</h3>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+          The body of the box
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+    
   </section>
 </aside>
 

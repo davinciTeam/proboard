@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="wrapper">
 
       <header class="main-header">
+
         <a href="/" class="logo">
           <span class="logo-mini"><b><?=APP_SHORT?></b></span>
           <span class="logo-lg"><b><?=APP_NAME?></b></span>
@@ -77,5 +78,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
             </ul>
           </div>
+
         </nav>
       </header>
