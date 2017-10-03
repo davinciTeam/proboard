@@ -14,6 +14,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="/dist/css/custom.css">
+    <?php if(!$admin) { ?>
+    <link rel="stylesheet" href="/dist/css/notLoggedIn.css">
+    <?php } ?>
     <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!--[if lt IE 9]>
@@ -23,9 +26,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </head>
   <body class="hold-transition skin-blue-light sidebar-mini <?php if($this->session->userdata('menu_state')) { ?> sidebar-collapse <?php } ?>">
     <div class="wrapper">
-
+      <?php if ($admin) { ?>
       <header class="main-header">
-
         <a href="/" class="logo">
           <span class="logo-mini"><b><?=APP_SHORT?></b></span>
           <span class="logo-lg"><b><?=APP_NAME?></b></span>
@@ -81,3 +83,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         </nav>
       </header>
+    <?php } ?>
+    

@@ -21,10 +21,6 @@
 			$CI =& get_instance();
 			$CI->load->library('session');
 			$CI->load->model("ConfigModel", "config_model");
-
-			$CI->load->view('common/header');
-			$CI->load->view('common/menu');
-
 			
 			if (!$data) {
 				$data = [];
@@ -32,6 +28,8 @@
 
 			$data['admin'] = $CI->session->permision === '1'; 
 			
+			$CI->load->view('common/header', $data);
+			$CI->load->view('common/menu', $data);
 			$CI->load->view($view, $data);
 			$CI->load->view('common/footer');
 		}

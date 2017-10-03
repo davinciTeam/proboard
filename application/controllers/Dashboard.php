@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
      		parent::__construct();
         $this->load->library('Auth');
-      	$this->auth->check('1');
+      	$this->auth->check('0');
         $this->load->library('session');
     }
     
