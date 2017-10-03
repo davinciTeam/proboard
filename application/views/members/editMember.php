@@ -28,18 +28,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="form-group">
 								<label>Active</label><br>
 								<label><input type="radio" id="active" name="active" value="1"
-								 <?php 
-								 	$html = "";
-										if ($member['0']->active == 1 ){
-											$html = 'checked';
-										} echo $html;?>>Ja
+								 <?php if ($member['0']->active == 1) echo "checked" ?> /> Ja
 								</label>
 								<label><input type="radio" id="active" name="active" value="0"
-								 <?php
-								 	$html = "";
-										if ($member['0']->active == 0 ){
-											$html = 'checked';
-										} echo $html;?>>Nee
+								 <?php if ($member['0']->active == 0) echo "checked" ?> /> Nee
 								</label>
 							</div>
 							<input type="hidden" name="slug" value="<?=$member['0']->slug ?>">
