@@ -37,15 +37,26 @@ class Members extends CI_Controller {
 	}
 	public function addMemberAction($table = "members")
 	{
-		$save = Array(
-			"ovnumber" => $this->input->post('ovnumber'),
-			"name" => $this->input->post('name'),
-			"slug" => $this->slug->slug_exists(url_title($this->input->post('name'), 'dash', TRUE)),
-			"insertion" => $this->input->post('insertion'),
-			"lastname" => $this->input->post('lastname')
-		);
-		$this->members_model->addMember($save);
-		redirect('members/');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('name', 'Voornaam', 'required');
+		$this->form_validation->set_rules('lastname', 'Achternaam', 'required');
+		$this->form_validation->set_rules('ovnumber', 'Ovnummer', 'required');
+
+		if ($this->form_validation->run()) {
+
+			$save = Array(
+				"ovnumber" => $this->input->post('ovnumber'),
+				"name" => $this->input->post('name'),
+				"slug" => $this->slug->slug_exists(url_title($this->input->post('name'), 'dash', TRUE)),
+				"insertion" => $this->input->post('insertion'),
+				"lastname" => $this->input->post('lastname')
+			);
+			$this->members_model->addMember($save);
+			redirect('members/');
+		} else {
+			redirect('members/addMember');
+		}
 		
 	}
 	public function editMember($slug = null)
@@ -65,17 +76,29 @@ class Members extends CI_Controller {
 
 	public function editMemberAction()
 	{
-		$data = Array(
-			"ovnumber" => $this->input->post('ovnumber'),
-			"name" => $this->input->post('name'),
-			"insertion" => $this->input->post('insertion'),
-			"slug" => $this->input->post('slug'),
-			"active" => $this->input->post('active'),
-			"lastname" => $this->input->post('lastname')
-		);
-		$this->members_model->editMember($data);
-		redirect('members/');
+		$this->load->library('form_validation');
 
+		$this->form_validation->set_rules('name', 'Voornaam', 'required');
+		$this->form_validation->set_rules('lastname', 'Achternaam', 'required');
+		$this->form_validation->set_rules('ovnumber', 'Ovnummer', 'required');
+		$this->form_validation->set_rules('slug', '', 'required');
+
+		if ($this->form_validation->run()) {
+
+			$data = Array(
+				"ovnumber" => $this->input->post('ovnumber'),
+				"name" => $this->input->post('name'),
+				"insertion" => $this->input->post('insertion'),
+				"slug" => $this->input->post('slug'),
+				"active" => $this->input->post('active'),
+				"lastname" => $this->input->post('lastname')
+			);		
+			$this->members_model->editMember($data);
+		} else if ($this->input->post('slug')) {
+			redirect('members/editMember/'.$this->input->post('slug'));
+		}
+		redirect('members/');
+		
 	}
 
 	public function import()

@@ -11,7 +11,7 @@ class Members_model extends CI_Model {
 
     public function getMembers()
     {
-        return $this->filter->xssFilter($this->db->get('members')->result());
+        return $this->filter->xssFilter($this->db->order_by('name')->get('members')->result());
     }
 
     public function getMember($slug)
@@ -27,8 +27,6 @@ class Members_model extends CI_Model {
 
     public function editMember($data)
     {
-
-
         //Set where clause for update query
         $this->db->where('slug', $data['slug']);
         $this->db->update('members', array('name' => $data['name'],
@@ -73,6 +71,3 @@ class Members_model extends CI_Model {
         return false;
     }
 }
-//ALTER TABLE `members` CHANGE `name` `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
-//ALTER TABLE `members` CHANGE `insertion` `insertion` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
-//ALTER TABLE `members` CHANGE `lastname` `lastname` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;

@@ -18,12 +18,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							<label for="text">Tussenvoegsel</label>
 								<div class="input-group">
-									<input type="input" name="insertion" class="form-control" value="<?=$member['0']->insertion ?>" required/>
+									<input type="input" name="insertion" class="form-control" value="<?=$member['0']->insertion ?>" />
 								</div>
 							<label for="text">Achternaam</label>
 								<div class="input-group">
 									<input type="input" name="lastname" class="form-control" value="<?=$member['0']->lastname ?>" required/>
 								</div>
+
 							<div class="form-group">
 								<label>Active</label><br>
 								<label><input type="radio" id="active" name="active" value="1"
@@ -41,9 +42,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										} echo $html;?>>Nee
 								</label>
 							</div>
-							<input type="submit" class="btn btn-blue" name="submit" value="Student Aanpassen" />
 							<input type="hidden" name="slug" value="<?=$member['0']->slug ?>">
-
+							<button type="submit" class="btn btn-blue">Student Aanpassen</button>
 						</form>
 
 					</div>
