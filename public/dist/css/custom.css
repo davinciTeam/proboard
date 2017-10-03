@@ -1,3 +1,7 @@
+[hidden] {
+  display: none !important;
+}
+
 .white {
 	background-color:white !important;
 }

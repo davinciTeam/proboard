@@ -25,24 +25,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input type="input" name="lastname" class="form-control" value="<?=$member['0']->lastname ?>" required/>
 								</div>
 
-							<?php 
-							//Check status for Active
-							if ($member['0']->active == 0){
-								$status = "Nee";
-							}elseif ($member['0']->active == 1){
-								$status = "Ja";
-							}else{
-								$status = "Oops something went wrong";
-							}
-							?>
-
 							<div class="form-group">
-								<label for="active">Actief</label><br>
-									<select name="active">
-										<option value="not" disabled selected><?php echo $status; ?></option>
-										<option value="1">Ja</option>
-										<option value="0">Nee</option>
-									</select>
+								<label>Active</label><br>
+								<label><input type="radio" id="active" name="active" value="1"
+								 <?php if ($member['0']->active == 1) echo "checked" ?> /> Ja
+								</label>
+								<label><input type="radio" id="active" name="active" value="0"
+								 <?php if ($member['0']->active == 0) echo "checked" ?> /> Nee
+								</label>
 							</div>
 							<input type="hidden" name="slug" value="<?=$member['0']->slug ?>">
 							<button type="submit" class="btn btn-blue">Student Aanpassen</button>
