@@ -28,44 +28,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	</div>
 	    	</div>
     	</div>
-    	<div class="overzicht">
-	    	<div class="container">
-		    	<div class="row">
-		    		<div class="col-md-12">
-				      	<table class="table table-striped table-center">
-				  		
-							<thead>
-								<tr>
-									<th>Ov-Nummer</th>
-									<th>Voornaam</th>
-									<th>Tussenvoegsel</th>
-									<th>Achternaam</th>
-				                    <th>acties</th>
-								</tr>
-							</thead>
-							<tbody>
+
+      	<table class="table table-striped table-center">
+  		
+			<thead>
+				<tr>
+					<th>Ov-Nummer</th>
+					<th>Voornaam</th>
+					<th>Tussenvoegsel</th>
+					<th>Achternaam</th>
+                    <th>acties</th>
+				</tr>
+			</thead>
+			<tbody>
 
 
-							<?php
-							    foreach ($members as $member) { 
-							?>
-							    <tr>
-									<td><?=$member->ovnumber;?></td>
-									<td><?=$member->name;?></td>
-									<td><?=$member->insertion;?></td>
-									<td><?=$member->lastname;?></td>
-									<td><a href="/members/editMember/<?=$member->slug; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-								</tr>
-							  	
-							<?php
-							    }
-							?>
-							</tbody>
-						</table>
-					</div>
-		    	</div>
-	    	</div>
-    	</div>
+			<?php
+			    foreach ($members as $member) { 
+			?>
+			    <tr>
+					<td><?=$member->ovnumber;?></td>
+					<td><?=$member->name;?></td>
+					<td><?=$member->insertion;?></td>
+					<td><?=$member->lastname;?></td>
+					<td><a href="/members/editMember/<?=$member->slug; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+				</tr>
+			  	
+			<?php
+			    }
+			?>
+			</tbody>
+		</table>
     </section>
 </div>
 
