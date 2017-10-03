@@ -12,7 +12,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    			<a href="#" class="file"><i class="fa fa-file file" aria-hidden="true"> Bestand importeren</i></a>
 		    			<a href="/members/addMember" class="add"><i class="fa fa-plus-circle" aria-hidden="true"> Student aanmaken   </i></a>
 		    		</div>
-		    		
 		    	</div>
 	    	</div>
     	</div>
@@ -22,14 +21,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    		<div class="col-md-12">
 		    			<?php echo form_open_multipart('Members/import');?>
 							<label>Importeer een csv bestand</label>
-							<input type="file" name="userfile" size="20" />
-							<button type="submit">importeren</button>
+							<input type="file" name="userfile" size="20"/>
+							<button type="submit" class="btn btn-blue">importeren</button>
 						</form>
 		    		</div>
-		    		
 		    	</div>
 	    	</div>
     	</div>
+
       	<table class="table table-striped table-center">
   		
 			<thead>

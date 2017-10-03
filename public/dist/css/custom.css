@@ -30,10 +30,43 @@
     margin-top: 15px;
 }
 
+.addproject button{
+    margin-top: 15px;
+}
+
 .bar a{
     margin-right: 15px;
 }
 
 .addmember .input-group{
     margin-bottom: 15px;
+}
+
+.addproject .input-group{
+    margin-bottom: 15px;
+}
+
+.input-group .form-control{
+    width: 150%!important;
+}
+
+
+.addproject textarea{
+    width: 450px!important;
+    height: 150px;
+}
+
+
+.editproject .input-group{
+    margin-bottom: 15px;
+}
+
+
+.editmember .input-group{
+    margin-bottom: 15px;
+}
+
+.btn-blue{
+    background-color:#3c8dbc;
+    color: white;
 }

@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 									<label for="name">Voornaam</label>
 								<div class="input-group">
-									<input type="input" class="form-control" pattern="[A-Za-z]{20}" name="name" required/>
+									<input type="text" class="form-control"  name="name" required/>
 								</div>
 							<label for="insertion">Tussenvoegsel</label>
 								<div class="input-group">
@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="input-group">
 									<input type="input" class="form-control" name="lastname" required/>
 								</div>
-							<button type="submit">Member Aanmaken</button>
+							<button type="submit" class="btn btn-blue">Member Aanmaken</button>
 						</form>
 					</div>
 				</div>
