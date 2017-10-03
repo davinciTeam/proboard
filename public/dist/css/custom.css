@@ -47,3 +47,8 @@
 .editmember .input-group{
     margin-bottom: 15px;
 }
+
+.btn-blue{
+    background-color:#3c8dbc;
+    color: white;
+}

@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<option value="0">Nee</option>
 									</select>
 							</div>
-							<input type="submit" name="submit" value="Student Aanpassen" />
+							<input type="submit" class="btn btn-blue" name="submit" value="Student Aanpassen" />
 							<input type="hidden" name="slug" value="<?=$member['0']->slug ?>">
 
 						</form>

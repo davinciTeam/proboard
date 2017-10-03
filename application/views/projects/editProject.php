@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<textarea name="description" class="form-control" style="width:450px!important;" required><?=$project['0']->description ?></textarea>
 								</div>
 							<input type="hidden" name="slug" value="<?=$project['0']->slug ?>">
-							<input type="submit" name="submit" value="Project Aanpassen" />
+							<input type="submit" name="submit" class="btn btn-blue" value="Project Aanpassen" />
 
 						</form>
 

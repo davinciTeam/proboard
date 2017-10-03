@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="input-group">
 									<textarea style="width:450px!important;" name="description" class="form-control" required></textarea>
 								</div>
-							<button type="submit">Project toevoegen</button>
+							<button type="submit" class="btn btn-blue">Project toevoegen</button>
 						</form>
 					</div>
 				</div>
