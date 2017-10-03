@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				  	<?php echo form_open('members/editMemberAction'); ?>
 						<label for="title">OV-Nummer</label>
 							<div class="form-group">
-								<input type="input" name="ovnumber" value="<?=$member['0']->ovnumber ?>" required/>
+								<input type="number" name="ovnumber" value="<?=$member['0']->ovnumber ?>" required/>
 							</div>
 						<label for="text">Voornaam</label>
 							<div class="form-group">

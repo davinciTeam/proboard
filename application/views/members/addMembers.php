@@ -7,13 +7,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    	<div class="row">
 	    		<div class="col-md-12">
 				  	<?php echo form_open('members/addMemberAction'); ?>
-						<label for="title">Ov-nummer</label>
-							<div class="form-group">
-								<input type="input" name="ovnumber" required/>
+							<div class="form-control">
+								<label for="ovnumber">Ov-nummer</label>
+								<input type="number" id="ovnumber" class="form-control" min="0" name="ovnumber" required/>
 							</div>
-						<label for="title">Voornaam</label>
-							<div class="form-group">
-								<input type="input" name="name" required/>
+							<div class="form-control">
+								<label for="title">Voornaam</label>
+								<input type="input" pattern="[A-Za-z]{20}" name="name" required/>
 							</div>
 						<label for="text">Tussenvoegsel</label>
 							<div class="form-group">

@@ -8,6 +8,7 @@ class Members extends CI_Controller {
 	{
 		parent::__construct();
 		//load auth en check, session
+		$this->load->library('Slug');
 		$this->load->library('Auth');
 		$this->auth->check('1');
 		$this->load->library('session');
@@ -26,6 +27,7 @@ class Members extends CI_Controller {
 
 	public function addMember()
 	{
+		$this->load->library('Slug');
 		$this->load->helper('form');
     	$this->load->library('form_validation');
 
@@ -38,6 +40,7 @@ class Members extends CI_Controller {
 		$save = Array(
 			"ovnumber" => $this->input->post('ovnumber'),
 			"name" => $this->input->post('name'),
+			"slug" => $this->slug->slug_exists(url_title($this->input->post('name'), 'dash', TRUE)),
 			"insertion" => $this->input->post('insertion'),
 			"lastname" => $this->input->post('lastname')
 		);
@@ -67,9 +70,9 @@ class Members extends CI_Controller {
 			"name" => $this->input->post('name'),
 			"insertion" => $this->input->post('insertion'),
 			"slug" => $this->input->post('slug'),
+			"active" => $this->input->post('active'),
 			"lastname" => $this->input->post('lastname')
 		);
-		// die($data['slug'] . $data['name'] . $data['insertion'] . $data['lastname']);
 		$this->members_model->editMember($data);
 		redirect('members/');
 
