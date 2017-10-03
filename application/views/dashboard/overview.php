@@ -2,15 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-	<div class="content-wrapper">
-        <section class="content-header">
-          <h1>
-            Welkom, <?=$this->session->userdata('name')?>
-            <small>Dashboard</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
-          </ol>
-        </section>
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="row white">
+      <div class="col-md-4">.col-md-4</div>
+      <div class="col-md-4">.col-md-4</div>
+      <div class="col-md-4">.col-md-4</div>
     </div>
+  </section>
+</div>
