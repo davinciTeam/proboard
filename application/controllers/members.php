@@ -70,6 +70,7 @@ class Members extends CI_Controller {
 			"name" => $this->input->post('name'),
 			"insertion" => $this->input->post('insertion'),
 			"slug" => $this->input->post('slug'),
+			"active" => $this->input->post('active'),
 			"lastname" => $this->input->post('lastname')
 		);
 		$this->members_model->editMember($data);
