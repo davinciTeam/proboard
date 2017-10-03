@@ -1,5 +1,20 @@
 .white {
-	background-color:white;
+	background-color:white !important;
+}
+.green {
+	background-color:darkgreen !important;
+	color:white;
+}
+.orange {
+	background-color:darkorange !important;
+	color:white;
+}
+.red {
+	background-color:darkred !important;
+	color:white;
+}
+.cards {
+	margin-bottom: 5px;
 }
 .bar {
     margin-bottom: 15px;
