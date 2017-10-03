@@ -34,12 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>
 				<?php echo form_open_multipart('Members/import');?>
 					
-					<label>importeer een csv bestand</label>
-					<p>formaat: ovnummer, voornaam, tussenvoegsel, achternaam <br>
-					bv ovnummer, voornaam, tussenvoegsel, achternaam <br>
-				    nieuwe kolomo 99035592, remco, de , zwart etc <br>
-					, in dit voorbeeld betekend een nieuwe cell</p>
-					<input type="file" name="userfile" size="20" />
+					<input type="file" name="userfile">
 
 					<button type="submit">importeren</button>
 				</form>	
