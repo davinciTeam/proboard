@@ -11,7 +11,7 @@ class Members_model extends CI_Model {
 
     public function getMembers()
     {
-        return $this->filter->xssFilter($this->db->get('members')->result());
+        return $this->filter->xssFilter($this->db->order_by('name')->get('members')->result());
     }
 
     public function getMember($slug)

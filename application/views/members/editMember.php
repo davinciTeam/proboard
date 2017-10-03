@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						<label for="text">Tussenvoegsel</label>
 							<div class="form-group">
-								<input type="input" name="insertion" value="<?=$member['0']->insertion ?>" required/>
+								<input type="input" name="insertion" value="<?=$member['0']->insertion ?>">
 							</div>
 						<label for="text">Achternaam</label>
 							<div class="form-group">

@@ -41,13 +41,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function addMembersAction()
 	{
-        $this->projects_model->addMember($this->input->post('slug'), $this->input->post('name'));
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('slug', '', 'required');
+		$this->form_validation->set_rules('name', 'Naam', 'required');
+		
+		if ($this->form_validation->run()) {
+  	      $this->projects_model->addMember($this->input->post('slug'), $this->input->post('name'));
+    	}
         redirect('projects/Members/'.$this->input->post('slug'));
 	}
 
 	public function deleteMembersAction()
 	{
-		$this->projects_model->deleteMember($this->input->post('slug'), $this->input->post('name'));
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('slug', '', 'required');
+		$this->form_validation->set_rules('name', 'Naam', 'required');
+		
+		if ($this->form_validation->run()) {
+			$this->projects_model->deleteMember($this->input->post('slug'), $this->input->post('name'));
+		}
         redirect('projects/Members/'.$this->input->post('slug'));
 	}
 
@@ -69,16 +83,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function editProjectAction()
 	{
-		$data = Array(
-			"name" => $this->input->post('name'),
-			"slug" => $this->input->post('slug'),
-			"client" => $this->input->post('client'),
-			"teacher" => $this->input->post('teacher'),
-			"description" => $this->input->post('description')
-		);
-		$this->projects_model->editProject($data);
-		redirect('projects/');
+		$this->load->library('form_validation');
 
+		$this->form_validation->set_rules('slug', '', 'required');
+		$this->form_validation->set_rules('name', 'Naam', 'required');
+		$this->form_validation->set_rules('client', 'client', 'required');
+		$this->form_validation->set_rules('teacher', 'Leraar', 'required');
+		$this->form_validation->set_rules('description', 'Beschrijving', 'required');
+
+		if ($this->form_validation->run()) {
+			$data = Array(
+				"name" => $this->input->post('name'),
+				"slug" => $this->input->post('slug'),
+				"client" => $this->input->post('client'),
+				"teacher" => $this->input->post('teacher'),
+				"description" => $this->input->post('description')
+			);
+			$this->projects_model->editProject($data);
+		} else if ($this->input->post('slug')) {
+			redirect('projects/editProject/'.$this->input->post('slug'));
+		} 
+		redirect('projects/');
 	}
 
 	public function addProject()
@@ -93,17 +118,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function addProjectAction()
 	{
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('name', 'Naam', 'required');
+		$this->form_validation->set_rules('client', 'client', 'required');
+		$this->form_validation->set_rules('teacher', 'Leraar', 'required');
+		$this->form_validation->set_rules('description', 'Beschrijving', 'required');
+		
+		if ($this->form_validation->run()) {
 
-		$slug = url_title($this->input->post('name'), 'dash', TRUE);
-		$save = Array(
-			"name" => $this->input->post('name'),
-			"client" => $this->input->post('client'),
-			'slug' => $slug,
-			"teacher" => $this->input->post('teacher'),
-			"description" => $this->input->post('description')
-		);
-		$this->projects_model->addProject($save);
-		redirect('projects/');
+			$slug = url_title($this->input->post('name'), 'dash', TRUE);
+			$save = Array(
+				"name" => $this->input->post('name'),
+				"client" => $this->input->post('client'),
+				'slug' => $slug,
+				"teacher" => $this->input->post('teacher'),
+				"description" => $this->input->post('description')
+			);
+			$this->projects_model->addProject($save);
+			redirect('projects/');
+		} else {
+			redirect('projects/addProject');
+		}
 		
 	}
 }

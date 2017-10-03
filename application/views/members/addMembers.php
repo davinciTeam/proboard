@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							<label for="insertion">Tussenvoegsel</label>
 								<div class="input-group">
-									<input type="input" class="form-control" name="insertion" required/>
+									<input type="input" class="form-control" name="insertion">
 								</div>
 							<label for="lastname">Achternaam</label>
 								<div class="input-group">
