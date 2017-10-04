@@ -46,7 +46,7 @@ class Projects_model extends CI_Model {
         $project = $this->getProject($slug);
 
         if (!$project) {
-            addFeeback(array('Geen project gevonden', 'negative');
+            addFeeback(array('Geen project gevonden', 'negative'));
             return false;
             exit;
         }
@@ -55,7 +55,7 @@ class Projects_model extends CI_Model {
 
         if ($member) {
             if ($this->db->from('project_members')->where('member_id', $member['0']->id)->where('project_id', $project['0']->id)->get()->result()) {
-                addFeeback(array('Student al aanwezig in project', 'negative');
+                addFeeback(array('Student al aanwezig in project', 'negative'));
                 return false;
                 exit;
             }
@@ -63,7 +63,7 @@ class Projects_model extends CI_Model {
             $result = $this->db->insert('project_members', 
                 array('member_id' => $member['0']->id, 'project_id' => $project['0']->id));
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden', 'negative');
+            addFeeback(array('Er is een onbekende fout opgetreden', 'negative'));
             $result = false;
         }
 
@@ -77,8 +77,8 @@ class Projects_model extends CI_Model {
         $member = $this->getMember($name);    
  
         if (!$project || !$member) {
-            if (!$project) addFeeback(array('Geen project gevonden', 'negative');
-            if (!$member) addFeeback(array('Student niet gevonden', 'negative');
+            if (!$project) addFeeback(array('Geen project gevonden', 'negative'));
+            if (!$member) addFeeback(array('Student niet gevonden', 'negative'));
             return false;
             exit;
         }
@@ -101,12 +101,15 @@ class Projects_model extends CI_Model {
 
     public function editProject($data)
     {
-        if ($this->db->where('slug', $data['slug'])->update('projects', array('name' => $data['name'],
+        $this->db->where('slug', $data['slug']);
+        if ($this->db->update('projects', array('name' => $data['name'],
             'client' => $data['client'],
             'teacher' => $data['teacher'],
             'description' => $data['description'])
-        )) else {
-            addFeeback(array('Er is een onbekende fout opgetreden', 'negative');
-        }        
+        )) {
+            addFeeback(array('Project succesvol bewerkt'));
+        }  else {
+            addFeeback(array('Er is een onbekende fout opgetreden', 'negative'));
+        }    
     }
 }
