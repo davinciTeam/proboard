@@ -22,19 +22,26 @@ class Members_model extends CI_Model {
     public function addMember($data)
     {
         // Add member into database
-        $this->db->insert('members', $data);
+        if ($this->db->insert('members', $data)) {
+            addFeeback(array('Nieuwe student aangemaakt'));
+        } else {
+            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+        }
     }
 
     public function editMember($data)
     {
         //Set where clause for update query
-        $this->db->where('slug', $data['slug']);
-        $this->db->update('members', array('name' => $data['name'],
+        if ($this->db->where('slug', $data['slug'])->db->update('members', array('name' => $data['name'],
             'insertion' => $data['insertion'],
             'lastname' => $data['lastname'],
             'active' => $data['active'],
             'ovnumber' => $data['ovnumber'])
-        );        
+        )) {
+            addFeeback(array('Student succesvol bewerkt'));
+        } else {
+            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+        }       
     }
 
     public function import()
@@ -65,9 +72,10 @@ class Members_model extends CI_Model {
                 );
                 $this->addMember($importData);
             } 
-
+            addFeeback(array('Import gelukt'));
             return true;
         }  
+        addFeeback(array($this->upload->display_errors()), 'negative');
         return false;
     }
 }

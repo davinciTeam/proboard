@@ -18,9 +18,9 @@
 			$CI->load->library('session');
 
 			if ($type === "positive") {
-				$this->session->set_userdata('feedbackPositive', $feedback);
+				$CI->session->set_userdata('feedbackPositive', $feedback);
 			} else if ($type === "negative") {
-				$this->session->set_userdata('feedbackNegative', $feedback);
+				$CI->session->set_userdata('feedbackNegative', $feedback);
 			} 
 		}
 	}
