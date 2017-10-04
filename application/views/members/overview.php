@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 <div class="content-wrapper">
     <section class="content">
+    	<?=feedback();?>
     	<div class="bar">
 	    	<div class="container">
 		    	<div class="row">

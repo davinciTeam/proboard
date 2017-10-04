@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="content-wrapper">
   <section class="content-header">
+    <?=feedback();?>
     <div class="row cards white">
       <div class="col-md-12">projecten</div>
     </div>

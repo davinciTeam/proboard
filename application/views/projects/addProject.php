@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="content-wrapper">
     <section class="content">
+		<?=feedback();?>
     	<div class="addproject">
 		    <div class="container">
 		    	<div class="row">

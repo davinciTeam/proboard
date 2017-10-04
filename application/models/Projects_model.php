@@ -86,7 +86,7 @@ class Projects_model extends CI_Model {
 
     protected function getAllMembers($id)
     {
-        return $this->db->order_by('name')->select('name')->from('project_members')->where('project_id', $id)->join('members', 'members.id = project_members.member_id', 'inner')->get()->result();
+        return $this->db->order_by('name')->from('project_members')->where('project_id', $id)->join('members', 'members.id = project_members.member_id', 'inner')->get()->result();
     }
 
 

@@ -4,6 +4,7 @@
 
 <div class="content-wrapper">
     <section class="content-header ">
+    	<?=feedback();?>
       <h1>
         Rechten
         <small>Overzicht</small>

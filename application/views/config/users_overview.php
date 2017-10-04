@@ -3,6 +3,7 @@
 ?>
 	<div class="content-wrapper">
         <section class="content-header ">
+          <?=feedback();?>
           <h1>
             Gebruikers
             <small>Overzicht	</small>

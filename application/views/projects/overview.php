@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="content-wrapper">
     <section class="content">
+    	<?=feedback();?>
+    	<div class="container">
+	    	<div class="row">
+	    		<div class="col-md-12">
+	    			<a href="/projects/addProject" class="add"><i class="fa fa-plus-circle" aria-hidden="true"> project aanmaken</i></a>
+	    		</div>
+	    	</div>
+    	</div>
       	<table class="table table-striped table-center">
 			<thead>
 				<tr>
@@ -14,8 +22,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</tr>
 			</thead>
 			<tbody>
-
-
 			<?php
 			    foreach ($projects as $project) { 
 			?>
@@ -23,7 +29,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$project->name;?></td>
 					<td><?=$project->client;?></td>
 					<td><?=$project->teacher;?></td>
-					<td><?php foreach ($project->members as $member) { echo $member->name." "; } ?></td>
+					<td><?php foreach ($project->members as $member) { 
+						echo $member->name." ".$member->insertion." ".$member->lastname; } ?></td>
 					<td><a href="/projects/Members/<?=$project->slug ?>">leden beheren</a></td>
 					<td><a href="/projects/editProject/<?=$project->slug ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 				</tr>
@@ -36,6 +43,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</table>
     </section>
 </div>
-
-
-	

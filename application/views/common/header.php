@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="/dist/css/custom.css">
-    <?php if(!$admin) { ?>
+    <?php if (!$admin) { ?>
     <link rel="stylesheet" href="/dist/css/notLoggedIn.css">
     <?php } ?>
     <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
