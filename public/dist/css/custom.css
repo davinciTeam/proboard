@@ -3,18 +3,19 @@
 }
 
 .white {
-	background-color:white !important;
+    background-color: rgba(250, 250, 250, 1.0)!important;
 }
 .green {
-	background-color:darkgreen !important;
+	background-color: rgba(22, 224, 26, 0.6)!important;
 	color:white;
 }
 .orange {
-	background-color:darkorange !important;
+
+    background-color: rgba(255, 149, 26, 0.6)!important;
 	color:white;
 }
 .red {
-	background-color:darkred !important;
+    background-color: rgba(255, 0, 0, 0.6)!important;
 	color:white;
 }
 .cards {
