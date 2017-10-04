@@ -1,14 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>    
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-        </div>
-        <strong>Copyright &copy; <?=date("Y")?> <a href="<?=APP_POWERED_BY_SITE?>"><?=APP_POWERED_BY?></a>.</strong> Alle rechten voorbehouden.
-      </footer>
-
-
-  
 
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script>

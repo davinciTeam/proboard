@@ -62,6 +62,7 @@ class Projects_model extends CI_Model {
 
             $result = $this->db->insert('project_members', 
                 array('member_id' => $member['0']->id, 'project_id' => $project['0']->id));
+            addFeeback(array('Student succesvol toegevoegd'));
         } else {
             addFeeback(array('Er is een onbekende fout opgetreden', 'negative'));
             $result = false;
@@ -84,6 +85,12 @@ class Projects_model extends CI_Model {
         }
         
         $result = $this->db->where('project_id', $project['0']->id)->where('member_id', $member['0']->id)->delete('project_members');
+
+        if ($result) {
+            addFeeback(array('Student succesvol van project gehaald'));
+        } else {
+            addFeeback(array('Er is een onbekende fout opgetreden', 'negative'));
+        }
         
         return $result;
     }

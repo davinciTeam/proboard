@@ -119,6 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function addProjectAction($table = "projects")
 	{
 		$this->load->library('form_validation');
+		$this->load->library('Slug');
 		
 		$this->form_validation->set_rules('name', 'Naam', 'required');
 		$this->form_validation->set_rules('client', 'client', 'required');

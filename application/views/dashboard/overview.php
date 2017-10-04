@@ -55,5 +55,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       </div>
     </div>
+    <?php if (!$admin) { ?> <a href="/login" class="btn btn-blue">Inloggen</a> <?php } ?>
   </section>
 </div>

@@ -89,7 +89,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 defined('APP_NAME') or define("APP_NAME", "Project beheer");
 defined('APP_SUFFIX') or define('APP_SUFFIX', "Development");
-defined('APP_SHORT') or define('APP_SHORT', "E");
+defined('APP_SHORT') or define('APP_SHORT', "P");
 defined('APP_POWERED_BY') or define('APP_POWERED_BY', "Mixfinity");
 defined('APP_POWERED_BY_SITE') or define('APP_POWERED_BY_SITE', "https://www.mixfinity.nl");
 
