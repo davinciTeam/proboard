@@ -3,6 +3,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   class Projects extends CI_Controller {
 
+  	private static $_validationRules = array(
+		array(
+			'field' => 'name', 
+			'label' => 'Naam',
+            'rules' => 'required|max_length[100]',
+            'errors' => array(
+				'required' => 'Vul een naam in voor het project',
+				'max_length' => 'De naam van het project mag maximaal 100 karakters lang zijn'
+			),
+		),
+		array(
+			'field' => 'client', 
+			'label' => 'Client',
+            'rules' => 'required|max_length[100]',
+            'errors' => array(
+				'required' => 'Vul een naam in van de client',
+				'max_length' => 'De naam van de client mag maximaal 100 karakters lang zijn'
+			)
+		),
+		array(
+			'field' => 'teacher', 
+			'label' => 'Leraar',
+            'rules' => 'required|max_length[100]',
+            'errors' => array(
+				'required' => 'Vul een leraar in'
+				'max_length' => 'De naam van de client mag maximaal 100 karakters lang zijn'
+			)
+		),
+		array(
+			'field' => 'ovnumber', 
+			'label' => 'Ovnummer',
+            'rules' => 'required|max_length[500]',
+            'errors' => array(
+				'required' => 'U moet een ovnummer invullen',
+				'max_length' => 'De ovnummer kan maximaal 8 karakters lang zijn',
+				'is_numeric' => 'Vul een geldig nummer in'
+			)
+		)
+	)
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -43,8 +83,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('slug', '', 'required');
-		$this->form_validation->set_rules('name', 'Naam', 'required');
+		$this->form_validation->set_rules('slug', '', 'required', 
+			array('required' => 'Er is een onbekende fout opgetreden'));
+		$this->form_validation->set_rules('name', 'Naam', 'required', 
+			array('required' => 'Selecteer een naam'));
 		
 		if ($this->form_validation->run()) {
   	      $this->projects_model->addMember($this->input->post('slug'), $this->input->post('name'));
@@ -56,8 +98,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('slug', '', 'required');
-		$this->form_validation->set_rules('name', 'Naam', 'required');
+		$this->form_validation->set_rules('slug', '', 'required', 
+			array('required' => 'Er is een onbekende fout opgetreden'));
+		$this->form_validation->set_rules('name', 'Naam', 'required', 
+			array('required' => 'Selecteer een naam'));
 		
 		if ($this->form_validation->run()) {
 			$this->projects_model->deleteMember($this->input->post('slug'), $this->input->post('name'));
@@ -69,7 +113,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function editProject($slug = null)
 	{
 		$this->load->helper('form');
-    	$this->load->library('form_validation');
 		
 		$query['project'] = $this->projects_model->getProject($slug);
 		
@@ -86,10 +129,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('slug', '', 'required');
-		$this->form_validation->set_rules('name', 'Naam', 'required');
-		$this->form_validation->set_rules('client', 'client', 'required');
-		$this->form_validation->set_rules('teacher', 'Leraar', 'required');
-		$this->form_validation->set_rules('description', 'Beschrijving', 'required');
 
 		if ($this->form_validation->run()) {
 			$data = Array(
@@ -106,25 +145,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		redirect('projects/');
 	}
 
-	public function addProject($table = "projects")
+	public function addProject()
 	{
 		$this->load->helper('form');
-    	$this->load->library('form_validation');
-		// $this->load->helper('url_helper');
+		
 		$data['data'] = $this->projects_model->getProjects();
 		render('projects/addProject', $data);
 		
 	}
 
-	public function addProjectAction($table = "projects")
+	public function addProjectAction()
 	{
 		$this->load->library('form_validation');
 		$this->load->library('Slug');
-		
-		$this->form_validation->set_rules('name', 'Naam', 'required');
-		$this->form_validation->set_rules('client', 'client', 'required');
-		$this->form_validation->set_rules('teacher', 'Leraar', 'required');
-		$this->form_validation->set_rules('description', 'Beschrijving', 'required');
 		
 		if ($this->form_validation->run()) {
 

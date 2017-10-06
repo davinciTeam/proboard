@@ -4,6 +4,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Members extends CI_Controller {
 
+	private static $_validationRules = array(
+		array(
+			'field' => 'name', 
+			'label' => 'Voornaam',
+            'rules' => 'required|max_length[100]',
+            'errors' => array(
+				'required' => 'U moet een voornaam invullen',
+				'max_length' => 'De naam mag maximaal 100 karakters lang zijn'
+			)
+		),
+		array(
+			'field' => 'insertion', 
+			'label' => 'Tussenvoegsel',
+            'rules' => 'max_length',
+            'errors' => array(
+				'max_length' => 'het tussenvoegsel mag maximaal 100 karakters lang zijn'
+			)
+		),
+		array(
+			'field' => 'insertion', 
+			'label' => 'Tussenvoegsel',
+            'rules' => 'max_length',
+            'errors' => array(
+				'max_length' => 'het tussenvoegsel mag maximaal 100 karakters lang zijn'
+			)
+		),
+		array(
+			'field' => 'ovnumber', 
+			'label' => 'Ovnummer',
+            'rules' => 'required|max_length[8]|is_numeric',
+            'errors' => array(
+				'required' => 'U moet een ovnummer invullen',
+				'max_length' => 'Het ovnummer kan maximaal 8 karakters lang zijn',
+				'is_numeric' => 'Vul een geldig ov-nummer in'
+			)
+		)
+	);
+
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -25,7 +64,7 @@ class Members extends CI_Controller {
 		render('members/overview', $query);
 	}
 
-	public function addMember($table = "members")
+	public function addMember()
 	{
 		$this->load->library('Slug');
 		$this->load->helper('form');
@@ -35,24 +74,22 @@ class Members extends CI_Controller {
 		render('members/addMembers', $data);
 		
 	}
-	public function addMemberAction($table = "members")
+	public function addMemberAction()
 	{
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('name', 'Voornaam', 'required');
-		$this->form_validation->set_rules('lastname', 'Achternaam', 'required');
-		$this->form_validation->set_rules('ovnumber', 'Ovnummer', 'required');
+		$this->form_validation->set_rules(self::$_validationRules);
 
 		if ($this->form_validation->run()) {
 
-			$save = Array(
+			$saveData = Array(
 				"ovnumber" => $this->input->post('ovnumber'),
 				"name" => $this->input->post('name'),
 				"slug" => $this->slug->slug_exists(url_title($this->input->post('name'), 'dash', TRUE)),
 				"insertion" => $this->input->post('insertion'),
 				"lastname" => $this->input->post('lastname')
 			);
-			$this->members_model->addMember($save);
+			$this->members_model->addMember($saveData);
 			redirect('members/');
 		} else {
 			redirect('members/addMember');
@@ -78,10 +115,9 @@ class Members extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('name', 'Voornaam', 'required');
-		$this->form_validation->set_rules('lastname', 'Achternaam', 'required');
-		$this->form_validation->set_rules('ovnumber', 'Ovnummer', 'required');
-		$this->form_validation->set_rules('slug', '', 'required');
+		$this->form_validation->set_rules(self::$_validationRules);
+		$this->form_validation->set_rules('slug', '', 'required',
+		array('required' => 'Er is een onbekende fout opgetreden'));
 
 		if ($this->form_validation->run()) {
 
