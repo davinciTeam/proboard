@@ -8,26 +8,29 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'name', 
 			'label' => 'Voornaam',
-            'rules' => 'required|max_length[100]',
+            'rules' => 'required|max_length[100]|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
             'errors' => array(
 				'required' => 'U moet een voornaam invullen',
-				'max_length' => 'De naam mag maximaal 100 karakters lang zijn'
+				'max_length' => 'De naam mag maximaal 100 karakters lang zijn',
+				'regex_match' => 'Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)'
 			)
 		),
 		array(
 			'field' => 'insertion', 
 			'label' => 'Tussenvoegsel',
-            'rules' => 'max_length',
+            'rules' => 'max_length|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
             'errors' => array(
-				'max_length' => 'het tussenvoegsel mag maximaal 100 karakters lang zijn'
+				'max_length' => 'Het tussenvoegsel mag maximaal 100 karakters lang zijn',
+				'regex_match' => 'Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)'
 			)
 		),
 		array(
-			'field' => 'insertion', 
-			'label' => 'Tussenvoegsel',
-            'rules' => 'max_length',
+			'field' => 'lastname', 
+			'label' => 'Achternaam',
+            'rules' => 'max_length|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
             'errors' => array(
-				'max_length' => 'het tussenvoegsel mag maximaal 100 karakters lang zijn'
+				'max_length' => 'De achternaam mag maximaal 100 karakters lang zijn',
+				'regex_match' => 'Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)'
 			)
 		),
 		array(

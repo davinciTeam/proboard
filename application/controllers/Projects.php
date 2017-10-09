@@ -7,28 +7,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		array(
 			'field' => 'name', 
 			'label' => 'Naam',
-            'rules' => 'required|max_length[100]',
+            'rules' => 'required|max_length[100]|regex_match[/^([\w !?.)*/]',
             'errors' => array(
 				'required' => 'Vul een naam in voor het project',
-				'max_length' => 'De naam van het project mag maximaal 100 karakters lang zijn'
+				'max_length' => 'De naam van het project mag maximaal 100 karakters lang zijn',
+				'regex_match' => 'Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)'
 			),
 		),
 		array(
 			'field' => 'client', 
 			'label' => 'Client',
-            'rules' => 'required|max_length[100]',
+            'rules' => 'required|max_length[100]|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
             'errors' => array(
 				'required' => 'Vul een naam in van de client',
-				'max_length' => 'De naam van de client mag maximaal 100 karakters lang zijn'
+				'max_length' => 'De naam van de client mag maximaal 100 karakters lang zijn',
+				'regex_match' => 'Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)'
 			)
 		),
 		array(
 			'field' => 'teacher', 
 			'label' => 'Leraar',
-            'rules' => 'required|max_length[100]',
+            'rules' => 'required|max_length[100]|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
             'errors' => array(
-				'required' => 'Vul een leraar in'
-				'max_length' => 'De naam van de client mag maximaal 100 karakters lang zijn'
+				'required' => 'Vul een leraar in',
+				'max_length' => 'De naam van de client mag maximaal 100 karakters lang zijn',
+				'regex_match' => 'Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)'
 			)
 		),
 		array(
@@ -41,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				'is_numeric' => 'Vul een geldig nummer in'
 			)
 		)
-	)
+	);
 
 	public function __construct()
 	{
@@ -128,6 +131,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->load->library('form_validation');
 
+		$this->form_validation->set_rules(self::$_validationRules);
 		$this->form_validation->set_rules('slug', '', 'required');
 
 		if ($this->form_validation->run()) {
@@ -159,6 +163,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->library('form_validation');
 		$this->load->library('Slug');
 		
+		$this->form_validation->set_rules(self::$_validationRules);
+
 		if ($this->form_validation->run()) {
 
 			$save = Array(
