@@ -15,15 +15,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							<label for="text">Voornaam</label>
 								<div class="input-group">
-									<input type="input" name="name" class="form-control" value="<?=$member['0']->name ?>" required/>
+									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="name" class="form-control" value="<?=$member['0']->name ?>" required/>
 								</div>
 							<label for="text">Tussenvoegsel</label>
 								<div class="input-group">
-									<input type="input" name="insertion" class="form-control" value="<?=$member['0']->insertion ?>" />
+									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="insertion" class="form-control" value="<?=$member['0']->insertion ?>" />
 								</div>
 							<label for="text">Achternaam</label>
 								<div class="input-group">
-									<input type="input" name="lastname" class="form-control" value="<?=$member['0']->lastname ?>" required/>
+									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="lastname" class="form-control" value="<?=$member['0']->lastname ?>" required/>
 								</div>
 
 							<div class="form-group">

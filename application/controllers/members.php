@@ -8,7 +8,7 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'name', 
 			'label' => 'Voornaam',
-            'rules' => 'required|max_length[100]|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
+            'rules' => 'required|max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/]',
             'errors' => array(
 				'required' => 'U moet een voornaam invullen',
 				'max_length' => 'De naam mag maximaal 100 karakters lang zijn',
@@ -18,7 +18,7 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'insertion', 
 			'label' => 'Tussenvoegsel',
-            'rules' => 'max_length|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
+            'rules' => 'max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/]',
             'errors' => array(
 				'max_length' => 'Het tussenvoegsel mag maximaal 100 karakters lang zijn',
 				'regex_match' => 'Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)'
@@ -27,7 +27,7 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'lastname', 
 			'label' => 'Achternaam',
-            'rules' => 'max_length|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
+            'rules' => 'max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/]',
             'errors' => array(
 				'max_length' => 'De achternaam mag maximaal 100 karakters lang zijn',
 				'regex_match' => 'Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)'
@@ -50,7 +50,6 @@ class Members extends CI_Controller {
 	{
 		parent::__construct();
 		//load auth en check, session
-		$this->load->library('Slug');
 		$this->load->library('Auth');
 		$this->auth->check('1');
 		$this->load->library('session');
@@ -69,9 +68,7 @@ class Members extends CI_Controller {
 
 	public function addMember()
 	{
-		$this->load->library('Slug');
 		$this->load->helper('form');
-    	$this->load->library('form_validation');
 
 		$data['data'] = $this->members_model->getMembers();
 		render('members/addMembers', $data);
@@ -80,6 +77,7 @@ class Members extends CI_Controller {
 	public function addMemberAction()
 	{
 		$this->load->library('form_validation');
+		$this->load->library('Slug');
 
 		$this->form_validation->set_rules(self::$_validationRules);
 
@@ -102,7 +100,6 @@ class Members extends CI_Controller {
 	public function editMember($slug = null)
 	{
 		$this->load->helper('form');
-    	$this->load->library('form_validation');
 		
 		$query['member'] = $this->members_model->getMember($slug);
 		

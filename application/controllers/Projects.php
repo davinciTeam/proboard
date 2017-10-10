@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		array(
 			'field' => 'name', 
 			'label' => 'Naam',
-            'rules' => 'required|max_length[100]|regex_match[/^([\w !?.)*/]',
+            'rules' => 'required|max_length[100]|regex_match[/^[\w !?.]*$/]',
             'errors' => array(
 				'required' => 'Vul een naam in voor het project',
 				'max_length' => 'De naam van het project mag maximaal 100 karakters lang zijn',
@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		array(
 			'field' => 'client', 
 			'label' => 'Client',
-            'rules' => 'required|max_length[100]|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
+            'rules' => 'required|max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/]',
             'errors' => array(
 				'required' => 'Vul een naam in van de client',
 				'max_length' => 'De naam van de client mag maximaal 100 karakters lang zijn',
@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		array(
 			'field' => 'teacher', 
 			'label' => 'Leraar',
-            'rules' => 'required|max_length[100]|regex_match[/^([\w öóáäéýúíÄËÿüïöÖÜǧ])*/]',
+            'rules' => 'required|max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/]',
             'errors' => array(
 				'required' => 'Vul een leraar in',
 				'max_length' => 'De naam van de client mag maximaal 100 karakters lang zijn',
