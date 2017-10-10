@@ -35,13 +35,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			)
 		),
 		array(
-			'field' => 'ovnumber', 
-			'label' => 'Ovnummer',
+			'field' => 'description', 
+			'label' => 'Beschrijving',
             'rules' => 'required|max_length[500]',
             'errors' => array(
 				'required' => 'U moet een ovnummer invullen',
-				'max_length' => 'De ovnummer kan maximaal 8 karakters lang zijn',
-				'is_numeric' => 'Vul een geldig nummer in'
+				'max_length' => 'De beschrijving mag maximaal 500 karakters lang zijn'
 			)
 		)
 	);
