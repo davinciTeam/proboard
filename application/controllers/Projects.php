@@ -113,15 +113,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('slug', '', 'required', 
+		$this->form_validation->set_rules('projectSlug', '', 'required', 
 			array('required' => 'Er is een onbekende fout opgetreden'));
-		$this->form_validation->set_rules('name', 'Naam', 'required', 
+		$this->form_validation->set_rules('MemberSlug', 'Naam', 'required', 
 			array('required' => 'Selecteer een naam'));
 		
 		if ($this->form_validation->run()) {
-			$this->projects_model->deleteMember($this->input->post('slug'), $this->input->post('name'));
+			$this->projects_model->deleteMember($this->input->post('projectSlug'), $this->input->post('MemberSlug'));
 		}
-        redirect('projects/Members/'.$this->input->post('slug'));
+        redirect('projects/Members/'.$this->input->post('projectSlug'));
 	}
 
 

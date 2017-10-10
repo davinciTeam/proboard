@@ -48,7 +48,7 @@ class Projects_model extends CI_Model {
         if ($this->db->insert('projects', $data)) {
             addFeeback(array('Succesvol project aangemaakt'));
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden', 'negative'));
+            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
         }
     }
 
@@ -58,7 +58,7 @@ class Projects_model extends CI_Model {
         $project = $this->getProject($slug);
 
         if (!$project) {
-            addFeeback(array('Geen project gevonden', 'negative'));
+            addFeeback(array('Geen project gevonden'), 'negative');
             return false;
             exit;
         }
@@ -67,7 +67,7 @@ class Projects_model extends CI_Model {
 
         if ($member) {
             if ($this->db->from('project_members')->where('member_id', $member['0']->id)->where('project_id', $project['0']->id)->get()->result()) {
-                addFeeback(array('Student al aanwezig in project', 'negative'));
+                addFeeback(array('Student al aanwezig in project'), 'negative');
                 return false;
                 exit;
             }
@@ -76,7 +76,7 @@ class Projects_model extends CI_Model {
                 array('member_id' => $member['0']->id, 'project_id' => $project['0']->id));
             addFeeback(array('Student succesvol toegevoegd'));
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden', 'negative'));
+            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
             $result = false;
         }
 
@@ -84,24 +84,22 @@ class Projects_model extends CI_Model {
     }
 
 
-    public function deleteMember($slug, $name)
+    public function deleteMember($projectSlug, $memberSlug)
     {
-        $project = $this->getProject($slug);
-        $member = $this->getMember($name);    
+        $project = $this->getProject($projectSlug);
+        $member = $this->db->get_where('members', array('slug' => $memberSlug))->result();    
  
         if (!$project || !$member) {
-            if (!$project) addFeeback(array('Geen project gevonden', 'negative'));
-            if (!$member) addFeeback(array('Student niet gevonden', 'negative'));
+            if (!$project) addFeeback(array('Geen project gevonden'), 'negative');
+            if (!$member) addFeeback(array('Student niet gevonden'), 'negative');
             return false;
             exit;
         }
-        
-        $result = $this->db->where('project_id', $project['0']->id)->where('member_id', $member['0']->id)->delete('project_members');
 
-        if ($result) {
+        if ($this->db->where('project_id', $project['0']->id)->where('member_id', $member['0']->id)->delete('project_members')) {
             addFeeback(array('Student succesvol van project gehaald'));
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden', 'negative'));
+            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
         }
         
         return $result;
@@ -133,7 +131,7 @@ class Projects_model extends CI_Model {
         )) {
             addFeeback(array('Project succesvol bewerkt'));
         }  else {
-            addFeeback(array('Er is een onbekende fout opgetreden', 'negative'));
+            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
         }    
     }
 }
