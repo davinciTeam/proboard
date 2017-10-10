@@ -65,8 +65,31 @@ class Members_model extends CI_Model {
 
         if ($this->upload->do_upload('userfile')) {
             $data = array('upload_data' => $this->upload->data());
+
             $fileData = explode(';',  str_replace("\n", '', file_get_contents($data['upload_data']['full_path'], false)));
             unlink($data['upload_data']['full_path']);
+
+            $errors = [];
+            for ($i = 4; $i < count($fileData)-1; $i+=4) {
+                if (strlen($fileData[$i]) > 8 || !is_numeric($fileData[$i])) {
+                    $errors[] = "Ongeldig Ov nummer regelnummer ".$i/4+1. ;
+                } 
+                if (strlen($fileData[$i+1]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+1])) {
+                    $errors[] = "Ongeldig naam regelnummer ".$i/4+1. ;
+                } 
+                if (strlen($fileData[$i+2]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+2])) {
+                    $errors[] = "Ongeldig tussenvoegsel regelnummer ".$i/4+1. ;
+                } 
+                if (strlen($fileData[$i+3]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+3])) {
+                    $errors[] = "Ongeldig achternaam regelnummer ".$i/4+1. ;
+                }
+            } 
+            
+            if (!empty($error)) {
+                addFeeback($errors, 'negative');
+                return false;
+            }
+
             for ($i = 4; $i < count($fileData)-1; $i+=4) {
                 $importData = Array(
                     "ovnumber" => $fileData[$i],
@@ -76,8 +99,10 @@ class Members_model extends CI_Model {
                     "lastname" => $fileData[$i+3]
                 );
                 $this->addMember($importData);
-            } 
+            }
+            
             addFeeback(array('Import gelukt'));
+            
             return true;
         }  
         addFeeback(array($this->upload->display_errors()), 'negative');
