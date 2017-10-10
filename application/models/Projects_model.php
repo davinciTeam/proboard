@@ -9,11 +9,16 @@ class Projects_model extends CI_Model {
     }
 
 
-    public function getProjects()
+    public function getProjects($offset = null)
     {
         //get all projects
-        $this->db->from('projects');
-        $queryResult = $this->db->get()->result();
+        if (is_numeric($offset) && $this->AmountOfProjects() >= ($offset+10)) {
+            $this->db->limit($offset, $offset+10);
+        } else {
+            $this->db->limit(10);
+        }
+
+        $queryResult = $this->db->from('projects')->get()->result();
 
         foreach ($queryResult as $result) {
             $result->members = $this->getAllMembers($result->id);
@@ -110,6 +115,11 @@ class Projects_model extends CI_Model {
     protected function getAllMembers($id)
     {
         return $this->db->order_by('name')->from('project_members')->where('project_id', $id)->join('members', 'members.id = project_members.member_id', 'inner')->get()->result();
+    }
+
+    public function AmountOfProjects()
+    {
+        return $this->db->count_all('projects');
     }
 
 

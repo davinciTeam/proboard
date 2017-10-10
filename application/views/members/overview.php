@@ -32,7 +32,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	</div>
 	    	</div>
     	</div>
-
+		<nav class="text-center" aria-label="Page navigation">
+  			<ul class="pagination">
+    			<?=$this->pagination->create_links() ?>
+    		</ul>
+    	</nav>
       	<table class="table table-striped table-center">
   		
 			<thead>
@@ -63,6 +67,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>
 			</tbody>
 		</table>
+		<nav class="text-center" aria-label="Page navigation">
+  			<ul class="pagination">
+    			<?=$this->pagination->create_links() ?>
+    		</ul>
+    	</nav>
     </section>
 </div>
 

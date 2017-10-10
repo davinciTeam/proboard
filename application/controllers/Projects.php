@@ -56,11 +56,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->helper('url_helper');
 		$this->load->model('projects_model');
 	}
-	
+
 	public function index()
 	{
-		$query['projects'] = $this->projects_model->getProjects();
-		//  //render view projects
+		redirect('projects/overview');
+	}
+	
+	public function overview($page = null)
+	{
+		$this->load->library('pagination');
+
+		$query['projects'] = $this->projects_model->getProjects($page);
+		
+		$config['base_url'] = 'http://project-beheer/projects/overview';
+		$config['total_rows'] =  $this->projects_model->AmountOfProjects();
+		$config['per_page'] = 10;
+
+		$this->pagination->initialize($config);
+		
 		render('projects/overview', $query);
 	}
 

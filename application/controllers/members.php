@@ -60,9 +60,22 @@ class Members extends CI_Controller {
 	
 	public function index()
 	{
+		redirect('members/overview');
+	}
+
+	public function overview($page = null)
+	{
 		$this->load->helper('form');
-		$query['members'] = $this->members_model->getMembers();
-		//  //render view projects
+		$this->load->library('pagination');
+
+		$query['members'] = $this->members_model->getMembers($page);
+
+		$config['base_url'] = 'http://project-beheer/members/overview';
+		$config['total_rows'] =  $this->members_model->AmountOfMembers();
+		$config['per_page'] = 10;
+
+		$this->pagination->initialize($config);
+
 		render('members/overview', $query);
 	}
 

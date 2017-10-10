@@ -9,9 +9,14 @@ class Members_model extends CI_Model {
     }
 
 
-    public function getMembers()
+    public function getMembers($offset = null)
     {
-        return $this->filter->xssFilter($this->db->order_by('name')->get('members')->result());
+        if (is_numeric($offset) && $this->AmountOfMembers() >= ($offset+10)) {
+            $this->db->limit($offset, $offset+10);
+        } else {
+            $this->db->limit(10);
+        }
+        return  $this->filter->xssFilter($this->db->order_by('name')->get('members')->result());
     }
 
     public function getMember($slug)
@@ -77,5 +82,10 @@ class Members_model extends CI_Model {
         }  
         addFeeback(array($this->upload->display_errors()), 'negative');
         return false;
+    }
+
+    public function AmountOfMembers()
+    {
+        return $this->db->count_all('members');
     }
 }
