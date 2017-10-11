@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="input-group">
 									<input type="input" class="form-control" maxlength="100" name="lastname" required/>
 								</div>
-							<button type="submit" class="btn btn-blue">Member Aanmaken</button>
+							<button type="submit" class="btn btn-blue">Studenten Aanmaken</button>
 						</form>
 					</div>
 				</div>

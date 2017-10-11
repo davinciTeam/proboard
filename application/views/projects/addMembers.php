@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</select>
 			</div>
 			<input value="<?=$project['0']->slug ?>" type="hidden" name="slug" required/>
-			<button type="submit">voeg nieuw lid toe</button>
+			<button class="btn btn-blue" type="submit">voeg nieuw lid toe</button>
 		</form>
 	    
     </section>

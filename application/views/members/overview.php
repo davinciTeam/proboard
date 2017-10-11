@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    			<?php echo form_open_multipart('Members/import');?>
 							<label>Importeer een csv bestand</label><br>
 							<label class="btn btn-blue">
-							    Browse <input type="file" name="userfile" size="20" class="hidden">
+							    Selecteer een bestand<input type="file" name="userfile" size="20" class="hidden">
 							</label><br>
 							<!-- <input type="file" class="btn btn-blue" name="userfile" size="20"/> -->
 							<button type="submit" class="btn btn-blue">importeren</button>

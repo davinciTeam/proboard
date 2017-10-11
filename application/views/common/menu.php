@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </li>
           <li class="treeview">
             <a href="#">
-              <span>Members</span> <i class="fa fa-angle-left pull-right"></i>
+              <span>Studenten</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
               <li><a href="/members">Overzicht</a></li>
