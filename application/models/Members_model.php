@@ -12,11 +12,11 @@ class Members_model extends CI_Model {
     public function getMembers($offset = null)
     {
         if (is_numeric($offset) && $this->AmountOfMembers() >= ($offset+10)) {
-            $this->db->limit($offset, $offset+10);
+            $this->db->limit(10, $offset);
         } else {
             $this->db->limit(10);
         }
-        return  $this->filter->xssFilter($this->db->order_by('name')->get('members')->result());
+        return $this->filter->xssFilter($this->db->order_by('name')->get('members')->result());
     }
 
     public function getMember($slug)
