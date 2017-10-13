@@ -30,17 +30,20 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `code_date` varchar(50) DEFAULT NULL,
   `code_start` varchar(50) DEFAULT NULL,
   `code_end` varchar(50) DEFAULT NULL,
+  `git_url` varchar(255) DEFAULT NULL,
+  `trello_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel demoautentication.projects: ~6 rows (ongeveer)
+-- Dumpen data van tabel demoautentication.projects: ~5 rows (ongeveer)
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` (`id`, `name`, `teacher`, `client`, `active`, `slug`, `description`, `iteration_date`, `iteration_start`, `iteration_end`, `code_date`, `code_start`, `code_end`) VALUES
-	(1, 'stagemarktAO', 'Huisman', 'slemmer', '1', 'test', 'Dit project houdt in het bouwen van een nieuwe versie van stagemarktAO', '13-10-2017', '15:00', '16:00', '22-10-2017', '12:00', '13:00'),
-	(2, 'stagemarkt 23erwerw', 'nouwen1234', 'Nouwen1234', '1', 'test2', 'Deze project houdt in het bouwen van een nieuwe versie van stagemarkt', '14-10-2017', '16:00', '16:30', '24-10-2017', '14:00', '15:00'),
-	(28, 'ufo', 'df', 'sdf', '0', 'ufo1', 'sdafs', '12-10-2017', '14:00', '15:00', '21-10-2017', '11:00', '12:00'),
-	(29, 'ufo', 'ufo', 'ufo', '0', 'ufo12', 'ufo', '11-10-2017', '13:00', '14:00', '20-10-2017', '10:00', '11:00'),
-	(40, 'testproject', 'slemmer', 'jan klaas', '0', 'testproject1', 'Dit is een beschrijving', '15-10-2017', '16:30', '17:00', '23-10-2017', '13:00', '14:00');
+INSERT INTO `projects` (`id`, `name`, `teacher`, `client`, `active`, `slug`, `description`, `iteration_date`, `iteration_start`, `iteration_end`, `code_date`, `code_start`, `code_end`, `git_url`, `trello_url`) VALUES
+	(1, 'stagemarktAO', 'Huisman', 'slemmer', '1', 'test', 'Dit project houdt in het bouwen van een nieuwe versie van stagemarktAO', '13-10-2017', '15:00', '16:00', '22-10-2017', '12:00', '13:00', NULL, NULL),
+	(2, 'stagemarkt 23erwerw', 'nouwen1234', 'Nouwen1234', '1', 'test2', 'Deze project houdt in het bouwen van een nieuwe versie van stagemarkt', '', '16:00', '16:30', NULL, '', '', NULL, NULL),
+	(28, 'ufo', 'df', 'sdf', '0', 'ufo1', 'sdafs', '12-10-2017', '14:00', '15:00', '21-10-2017', '11:00', '12:00', NULL, NULL),
+	(29, 'ufo', 'ufo', 'ufo', '0', 'ufo12', 'ufo', '11-10-2017', '13:00', '14:00', '20-10-2017', '10:00', '11:00', NULL, NULL),
+	(40, 'testproject', 'slemmer', 'jan klaas', '0', 'testproject1', 'Dit is een beschrijving', '15-10-2017', '16:30', '17:00', '23-10-2017', '13:00', '14:00', NULL, NULL),
+	(41, 'naam12', 'docent12', 'klant12', '0', 'naam12', 'qeeqwrewrerwe', NULL, NULL, NULL, NULL, NULL, NULL, 'giturl12', 'trellourl12');
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
