@@ -72,16 +72,16 @@ class Members_model extends CI_Model {
             $errors = [];
             for ($i = 4; $i < count($fileData)-1; $i+=4) {
                 if (!isset($fileData[$i]) || strlen($fileData[$i]) > 8 || !is_numeric($fileData[$i])) {
-                    $errors[] = "Ongeldig Ov nummer regelnummer ".$i/4+1. ;
+                    $errors[] = "Ongeldig Ov nummer regelnummer ".$i/4+1 ;
                 } 
                 if (!isset($fileData[$i+1])|| strlen($fileData[$i+1]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+1])) {
-                    $errors[] = "Ongeldig naam regelnummer ".$i/4+1. ;
+                    $errors[] = "Ongeldig naam regelnummer ".$i/4+1 ;
                 } 
                 if (!isset($fileData[$i+2]) || strlen($fileData[$i+2]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+2])) {
-                    $errors[] = "Ongeldig tussenvoegsel regelnummer ".$i/4+1. ;
+                    $errors[] = "Ongeldig tussenvoegsel regelnummer ".$i/4+1 ;
                 } 
                 if (!isset($fileData[$i+3]) || strlen($fileData[$i+3]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+3])) {
-                    $errors[] = "Ongeldig achternaam regelnummer ".$i/4+1. ;
+                    $errors[] = "Ongeldig achternaam regelnummer ".$i/4+1 ;
                 }
             } 
             
