@@ -129,6 +129,7 @@ class Projects_model extends CI_Model {
             'client' => $data['client'],
             'teacher' => $data['teacher'],
             'git_url' => $data['git_url'],
+            "active" => $data['active'],
             'trello_url' => $data['trello_url'],
             'description' => $data['description'])
         )) {

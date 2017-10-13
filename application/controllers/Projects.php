@@ -154,6 +154,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				'teacher' => $this->input->post('teacher'),
             	'git_url' => $this->input->post('git_url'),
             	'trello_url' => $this->input->post('trello_url'),
+            	"active" => $this->input->post('active'),
 				"teacher" => $this->input->post('teacher'),
 				"description" => $this->input->post('description')
 			);

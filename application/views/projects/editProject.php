@@ -29,6 +29,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="input-group">
 									<input title= type="input" value="<?=$project['0']->trello_url ?>" class="form-control" name="trello_url" required/>
 								</div>
+							<div class="form-group">
+								<label>Active</label><br>
+								<label><input type="radio" id="active" name="active" value="1"
+								 <?php if ($project['0']->active == 1) echo "checked" ?> /> Ja
+								</label>
+								<label><input type="radio" id="active" name="active" value="0"
+								 <?php if ($project['0']->active == 0) echo "checked" ?> /> Nee
+								</label>
+							</div>
 							<label for="text">Beschrijving</label>
 								<div class="input-group">
 									<textarea maxlength="500" name="description" class="form-control" style="width:450px!important;" required><?=$project['0']->description ?></textarea>
