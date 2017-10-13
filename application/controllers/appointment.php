@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 	}
 
-	public function addAppointmentAction($table = "projects")
+	public function addAppointmentAction()
 	{
 		$this->load->library('form_validation');
 
@@ -59,6 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				"code_end" => $this->input->post('code_end')
 			);
 			$this->Appointment_model->addAppointment($save);
+			
 			redirect('appointment/');
 		// } else {
 		// 	redirect('members/addMember');

@@ -21,6 +21,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="input-group">
 									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="teacher" value="<?=$project['0']->teacher ?>" required/>
 								</div>
+							<label for="text">Github Url</label>
+								<div class="input-group">
+									<input title= type="input" value="<?=$project['0']->git_url ?>" class="form-control" name="git_url" required/>
+								</div>
+							<label for="text">Trello Url</label>
+								<div class="input-group">
+									<input title= type="input" value="<?=$project['0']->trello_url ?>" class="form-control" name="trello_url" required/>
+								</div>
 							<label for="text">Beschrijving</label>
 								<div class="input-group">
 									<textarea maxlength="500" name="description" class="form-control" style="width:450px!important;" required><?=$project['0']->description ?></textarea>

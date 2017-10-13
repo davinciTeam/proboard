@@ -32,8 +32,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <td><?=$project->client ?></td>
               <td><?=$project->teacher ?></td>
               <td>student 1, student 2</td>
-              <td><?=$project->iteration_date ." ". $project->iteration_start ?></td>
               <td><?=$project->code_date ." ". $project->code_start ?></td>
+              <td><?=$project->iteration_date ." ". $project->iteration_start ?></td>
               <td><a href="/appointment/addAppointment/<?=$project->slug ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
             </tr>
 

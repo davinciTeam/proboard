@@ -151,6 +151,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				"name" => $this->input->post('name'),
 				"slug" => $this->input->post('slug'),
 				"client" => $this->input->post('client'),
+				'teacher' => $this->input->post('teacher'),
+            	'git_url' => $this->input->post('git_url'),
+            	'trello_url' => $this->input->post('trello_url'),
 				"teacher" => $this->input->post('teacher'),
 				"description" => $this->input->post('description')
 			);
@@ -184,6 +187,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				"client" => $this->input->post('client'),
 				'slug' => $this->slug->slug_exists(url_title($this->input->post('name'), 'dash', TRUE), 'projects'),
 				"teacher" => $this->input->post('teacher'),
+				'teacher' => $this->input->post('teacher'),
+            	'git_url' => $this->input->post('git_url'),
+            	'trello_url' => $this->input->post('trello_url'),
 				"description" => $this->input->post('description')
 			);
 			$this->projects_model->addProject($save);

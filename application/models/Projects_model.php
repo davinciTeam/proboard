@@ -128,6 +128,8 @@ class Projects_model extends CI_Model {
         if ($this->db->update('projects', array('name' => $data['name'],
             'client' => $data['client'],
             'teacher' => $data['teacher'],
+            'git_url' => $data['git_url'],
+            'trello_url' => $data['trello_url'],
             'description' => $data['description'])
         )) {
             addFeeback(array('Project succesvol bewerkt'));

@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									 value="<?php if ($projects['0']->code_end != null or "") echo $projects['0']->code_end  ?>">
 								</div>
 								<input type="hidden" name="slug" value="<?=$projects['0']->slug ?>">
-							<button type="submit" class="btn btn-blue">Afsrpaak toevoegen</button>
+							<!-- <button type="submit" class="btn btn-blue">Afsrpaak toevoegen</button> -->
 						</form>
 					</div>
 				</div>
