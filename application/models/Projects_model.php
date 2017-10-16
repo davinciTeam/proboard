@@ -98,11 +98,11 @@ class Projects_model extends CI_Model {
         }
 
         if ($this->db->where('project_id', $project['0']->id)->where('member_id', $member['0']->id)->delete('project_members')) {
-            addFeeback(array('Student succesvol van project gehaald'));
+            addFeeback(array('Student '. $member['0']->name." ".$member['0']->insertion." ".$member['0']->lastname.' succesvol van project gehaald'));
         } else {
             addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
         }
-        
+       
         return $result;
     }
 
