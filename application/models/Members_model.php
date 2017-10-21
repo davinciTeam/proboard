@@ -66,7 +66,7 @@ class Members_model extends CI_Model {
         if ($this->upload->do_upload('userfile')) {
             $data = array('upload_data' => $this->upload->data());
 
-            $fileData = explode(';',  str_replace("\n", '', file_get_contents($data['upload_data']['full_path'], false)));
+            $fileData = str_getcsv(str_replace("\n", '', file_get_contents($data['upload_data']['full_path'], false)), ';');
             unlink($data['upload_data']['full_path']);
 
             $errors = [];
