@@ -23,6 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<th>Klant</th>
 					<th>docent</th>
 					<th>leden</th>
+					<th>Active</th>
                     <th>acties</th>
 				</tr>
 			</thead>
@@ -37,6 +38,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?php foreach ($project->members as $member) { 
 						echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
 					<td><a href="/projects/Members/<?=$project->slug ?>">leden beheren</a></td>
+					<td><label>
+					
+					</label></td>
 					<td><a href="/projects/editProject/<?=$project->slug ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 				</tr>
 			  	

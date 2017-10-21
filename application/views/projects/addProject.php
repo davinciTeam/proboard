@@ -29,6 +29,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="input-group">
 									<input title= type="input" class="form-control" name="trello_url" required/>
 								</div>
+							<label for="text">Test omgeving Url</label>
+								<div class="input-group">
+									<input title= type="input" class="form-control" name="project_url" required/>
+								</div>
+							<label for="text">Bug tracking Url</label>
+								<div class="input-group">
+									<input title= type="input" class="form-control" name="bug_url" required/>
+								</div>
 							<label for="text">Beschrijving</label>
 								<div class="input-group">
 									<textarea maxlength="500" style="width:450px!important;" name="description" class="form-control" required></textarea>
