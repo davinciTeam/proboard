@@ -25,6 +25,14 @@
     margin-bottom: 15px;
 }
 
+.red-text{
+    color:rgba(255, 0, 0, 1.0);
+}
+
+.green-text{
+    color:rgba(0, 255, 0, 1.0);
+}
+
 .import-file{
     display: none;
     margin-top: 15px;

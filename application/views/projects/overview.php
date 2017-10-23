@@ -26,9 +26,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<tr>
 					<th>Projectnaam</th>
 					<th>Klant</th>
-					<th>docent</th>
-					<th>leden</th>
-                    <th>acties</th>
+					<th>Docent</th>
+					<th>Leden</th>
+					<th>Leden beheer</th>
+                    <th>Acties</th>
+                    <th>Actief</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,6 +45,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
 					<td><a href="/projects/Members/<?=$project->slug ?>">leden beheren</a></td>
 					<td><a href="/projects/editProject/<?=$project->slug ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+					<td><label><?php if($project->active == 1){
+						echo "<i class='fa fa-circle green-text' aria-hidden='true'></i>";
+					}else{
+						echo "<i class='fa fa-circle red-text' aria-hidden='true'></i>";
+					}?>
+					
+					</label></td>
 				</tr>
 			  	
 			<?php
