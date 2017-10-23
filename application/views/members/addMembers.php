@@ -2,8 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="content-wrapper">
+	<div class="col-md-12">
+      <?=RenderBreadCrum()?>
+    </div>
     <section class="content">
-    	<?=feedback();?>
+    	<div class="col-md-12">
+    		<?=feedback();?>
+    	</div>
     	<div class="addmember">
 		    <div class="container">
 		    	<div class="row">

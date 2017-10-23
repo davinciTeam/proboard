@@ -3,7 +3,12 @@
 ?>
 	<div class="content-wrapper">
         <section class="content-header ">
-          <?=feedback();?>
+          <div class="col-md-12">
+            <?=RenderBreadCrum()?>
+          </div>
+          <div class="col-md-12">
+            <?=feedback();?>
+          </div>
           <h1>
             Gebruikers
             <small>Overzicht	</small>

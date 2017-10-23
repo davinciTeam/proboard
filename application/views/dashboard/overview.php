@@ -3,8 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <div class="content-wrapper">
+  <div class="col-md-12">
+    <?=RenderBreadCrum()?>
+  </div>
   <section class="content-header">
-    <?=feedback();?>
+    <div class="col-md-12">
+        <?=feedback();?>
+      </div>
     <div class="row cards white">
       <div class="col-md-12">projecten</div>
     </div>
