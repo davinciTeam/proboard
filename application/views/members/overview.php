@@ -45,7 +45,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<th>Voornaam</th>
 					<th>Tussenvoegsel</th>
 					<th>Achternaam</th>
-                    <th>acties</th>
+                    <th>Acties</th>
+                    <th>Actief</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -60,6 +61,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$member->insertion;?></td>
 					<td><?=$member->lastname;?></td>
 					<td><a href="/members/editMember/<?=$member->slug; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+					<td><?php if($member->active == 1){
+						echo "<i class='fa fa-circle green-text' aria-hidden='true'></i>";
+					}else{
+						echo "<i class='fa fa-circle red-text' aria-hidden='true'></i>";
+					}?></td>	
 				</tr>
 			  	
 			<?php
