@@ -9,13 +9,11 @@ class Members_model extends CI_Model {
     }
 
 
-    public function getMembers($offset = null, $search = null)
+    public function getMembers($offset = null)
     {
        
-        if (!empty($search)) {
-            foreach ($search as $key => $paramater) {
-                $this->db->order_by($key, $paramater);
-            }
+        if (!empty($this->input->post('search') && !empty($this->input->post('field') ))) {
+            $this->db->order_by($this->input->post('field'), $this->input->post('search'));
         } else {
             if (is_numeric($offset) && $this->AmountOfMembers() >= ($offset+10)) {
                 $this->db->limit(10, $offset)->order_by('name');

@@ -20,7 +20,7 @@ $(document).ready(function(){
 				<td>"+result[i].insertion+"</td>\
 				<td>"+result[i].lastname+"</td>\
 				<td><a href=\"/members/editMember/" + result[i].slug +'"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>';
-			if (result[i].active) {
+			if (result[i].active == '1') {
 				html += "<td><i class='fa fa-circle green-text' aria-hidden='true'></i></td>"
 			} else {
 				html += "<td><i class='fa fa-circle red-text' aria-hidden='true'></td>"
@@ -41,7 +41,8 @@ $(document).ready(function(){
     	$.ajax({
 			url: "/members/overview/0/true",
 			data: {
-				search: searchParamaters
+				field: $(this).attr('id'),
+				search: searchParamaters[$(this).attr('id')]
 			},
 			method: 'POST',
 			success: function( result ) {
