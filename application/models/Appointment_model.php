@@ -5,34 +5,24 @@ class Appointment_model extends CI_Model {
     {
         parent::__construct();
         $this->load->database();
-        //Get database class availeble
     }
 
-    public function getProjects()
+    public function addAppointment($data)
     {
-        return $this->filter->xssFilter($this->db->order_by('name')->get('projects')->result());
-    }
+        if (!$this->validateAppointment($data)) return false;
 
-    public function getProject($slug)
-    {
-        return $this->filter->xssFilter($this->db->get_where('projects', array('slug' => $slug))->result());
-    }
-
-     public function addAppointment($save)
-    {
-
-        $this->db->where('slug', $save['slug'])->update('projects', array('iteration_start' => $save['iteration_start'],
-            'iteration_end' => $save['iteration_end'],
-            'iteration_date' => $save['iteration_date'],
-            'code_date' => $save['code_date'],
-            'code_start' => $save['code_start'],
-            'code_end' => $save['code_end'])
+        $this->db->where('slug', $data['slug'])->update('projects', array(
+            'iteration_start' => $data['iteration_start'],
+            'iteration_end' => $data['iteration_end'],
+            'iteration_date' => $data['iteration_date'],
+            'code_date' => $data['code_date'],
+            'code_start' => $data['code_start'],
+            'code_end' => $data['code_end'])
         );
-        // $query['project'] = $this->Appointment_model->getProject($slug);
-        $this->load->helper('form');
-        // $this->db->where('slug', $data['slug']);
-        // $this->db->where('slug', $save['slug']);
-        // // Add Appiontment into database
-        // $this->db->insert('projects', $save);
+    }
+
+    protected function validateAppointment($data)
+    {
+        return true;
     }
 }

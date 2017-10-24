@@ -41,9 +41,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de nummers 0-9 en : zijn toegestaan"></i>
 									</div>
 								</div>
-								
-							<button type="submit" class="btn btn-blue">Afsrpaak toevoegen</button>
-						
 					</div>
 					<div class="col-md-5">
 							<label>code review dag</label>
@@ -71,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</div>
 								<input type="hidden" name="slug" value="<?=$projects['0']->slug ?>">
-							<!-- <button type="submit" class="btn btn-blue">Afsrpaak toevoegen</button> -->
+							<button type="submit" class="btn btn-blue">Afsrpaak toevoegen</button>
 						</form>
 					</div>
 				</div>
