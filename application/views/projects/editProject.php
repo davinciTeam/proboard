@@ -16,49 +16,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					  	<?php echo form_open('projects/editProjectAction'); ?>
 							<label for="title">Projectnaam</label>
 								<div class="input-group">
-									<input title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w !?.]*$" type="input" name="name" class="form-control" value="<?=$project['0']->name ?>" required/>
+									<input title="Voer hier de naam van het project in" pattern="^[\w !?.]*$" type="input" name="name" class="form-control" value="<?=$project['0']->name ?>" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="text">klant</label>
 								<div class="input-group">
-									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="client" value="<?=$project['0']->client ?>" required/>
+									<input title="Voer hier de naam van de klant in" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="client" value="<?=$project['0']->client ?>" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="text">Docent</label>
 								<div class="input-group">
-									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="teacher" value="<?=$project['0']->teacher ?>" required/>
+									<input title="Voer hier de naam van de docent in" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="teacher" value="<?=$project['0']->teacher ?>" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="text">Github Url</label>
 								<div class="input-group">
-									<input title= type="input" value="<?=$project['0']->git_url ?>" class="form-control" name="git_url" required/>
+									<input title="Voer hier de repository url in" type="input" value="<?=$project['0']->git_url ?>" class="form-control" name="git_url" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="text">Trello Url</label>
 								<div class="input-group">
-									<input title= type="input" value="<?=$project['0']->trello_url ?>" class="form-control" name="trello_url" required/>
+									<input title="Voer hier de Trello url in" type="input" value="<?=$project['0']->trello_url ?>" class="form-control" name="trello_url" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="text">Test omgeving Url</label>
 								<div class="input-group">
-									<input title= type="input" class="form-control" value="<?=$project['0']->project_url ?>" name="project_url" required/>
+									<input title="Voer hier de url in van de test omgeving" type="input" class="form-control" value="<?=$project['0']->project_url ?>" name="project_url" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="text">Bug tracking Url</label>
 								<div class="input-group">
-									<input title= type="input" value="<?=$project['0']->bug_url ?>" class="form-control" name="bug_url" required/>
+									<input title="Voer hier de url in van de bug tracking" type="input" value="<?=$project['0']->bug_url ?>" class="form-control" name="bug_url" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
