@@ -14,7 +14,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    	<div class="container">
 		    	<div class="row">
 		    		<div class="col-md-12">
-		    			<!-- <a href="#" class="add-student"><i class="fa fa-plus-circle" aria-hidden="true"> Student aanmaken   </i></a> -->
 		    			<a href="#" class="file"><i class="fa fa-file file" aria-hidden="true"> Bestand importeren</i></a>
 		    			<a href="/members/addMember" class="add"><i class="fa fa-plus-circle" aria-hidden="true"> Student aanmaken   </i></a>
 		    		</div>
@@ -38,24 +37,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    	</div>
     	</div>
 		<nav class="text-center" aria-label="Page navigation">
-  			<ul class="pagination">
+  			<ul id="pagination" class="pagination">
     			<?=$this->pagination->create_links() ?>
     		</ul>
     	</nav>
-      	<table class="table table-striped table-center">
+      	<table class="disabled table table-striped table-center">
   		
 			<thead>
 				<tr>
-					<th>Ov-Nummer</th>
-					<th>Voornaam</th>
-					<th>Tussenvoegsel</th>
-					<th>Achternaam</th>
+					<th>Ov-Nummer<span id="ovnumber" class="sorting glyphicon glyphicon-arrow-up"></span></th>
+					<th>Voornaam<span id="name" class="sorting glyphicon glyphicon-arrow-up"></span></th>
+					<th>Tussenvoegsel<span id="insertion" class="sorting glyphicon glyphicon-arrow-up"></span></th>
+					<th>Achternaam<span id="lastname" class="sorting glyphicon glyphicon-arrow-up"></span></th>
                     <th>Acties</th>
                     <th>Actief</th>
 				</tr>
 			</thead>
-			<tbody>
-
+			<tbody id="members">
 
 			<?php
 			    foreach ($members as $member) { 
@@ -81,6 +79,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
     </section>
 </div>
-
-
+<script src="/custom/scripts/members.js"></script>
 	

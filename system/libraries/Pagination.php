@@ -86,7 +86,7 @@ class CI_Pagination {
 	 *
 	 * @var	int
 	 */
-	protected $num_links = 2;
+	protected $num_links = 10;
 
 	/**
 	 * Items per page
@@ -165,7 +165,7 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $first_tag_open = '<li>';
+	protected $first_tag_open = '<li class="navigation-js">';
 
 	/**
 	 * First tag close
@@ -179,7 +179,7 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $last_tag_open = '<li>';
+	protected $last_tag_open = '<li class="navigation-js">';
 
 	/**
 	 * Last tag close
@@ -202,7 +202,7 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $cur_tag_open = '<li class="active"><a href="#">';
+	protected $cur_tag_open = '<li class="active"><a href="#members">';
 
 	/**
 	 * Current tag close
@@ -216,7 +216,7 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $next_tag_open = '<li>';
+	protected $next_tag_open = '<li class="navigation-js">';
 
 	/**
 	 * Next tag close
@@ -230,7 +230,7 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $prev_tag_open = '<li>';
+	protected $prev_tag_open = '<li  class="navigation-js">';
 
 	/**
 	 * Previous tag close
@@ -244,7 +244,7 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $num_tag_open = '<li>';
+	protected $num_tag_open = '<li  class="navigation-js">';
 
 	/**
 	 * Number tag close

@@ -9,14 +9,21 @@ class Members_model extends CI_Model {
     }
 
 
-    public function getMembers($offset = null)
+    public function getMembers($offset = null, $search = null)
     {
-        if (is_numeric($offset) && $this->AmountOfMembers() >= ($offset+10)) {
-            $this->db->limit(10, $offset);
+       
+        if (!empty($search)) {
+            foreach ($search as $key => $paramater) {
+                $this->db->order_by($key, $paramater);
+            }
         } else {
-            $this->db->limit(10);
+            if (is_numeric($offset) && $this->AmountOfMembers() >= ($offset+10)) {
+                $this->db->limit(10, $offset)->order_by('name');
+            } else {
+                $this->db->limit(10)->order_by('name');
+            }
         }
-        return $this->filter->xssFilter($this->db->order_by('name')->get('members')->result());
+        return $this->filter->xssFilter($this->db->get('members')->result());
     }
 
     public function getMember($slug)
@@ -67,8 +74,9 @@ class Members_model extends CI_Model {
             $data = array('upload_data' => $this->upload->data());
 
             $fileData = str_getcsv(str_replace("\n", '', file_get_contents($data['upload_data']['full_path'], false)), ';');
+            $fileData = preg_replace('/[\x00-\x1F\x7F]/u', '', $fileData);
             unlink($data['upload_data']['full_path']);
-
+      
             $errors = [];
             for ($i = 4; $i < count($fileData)-1; $i+=4) {
                 if (!isset($fileData[$i]) || strlen($fileData[$i]) > 8 || !is_numeric($fileData[$i])) {

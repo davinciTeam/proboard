@@ -63,13 +63,18 @@ class Members extends CI_Controller {
 		redirect('members/overview');
 	}
 
-	public function overview($page = null)
+	public function overview($page = null, $json = false)
 	{
+		$query['members'] = $this->members_model->getMembers($page, $this->input->post('search'));
+
+		if ($json == 'true') {
+			header('Content-type:application/json');
+			echo json_encode($query['members']);
+			exit;
+		}
+
 		$this->load->helper('form');
 		$this->load->library('pagination');
-
-		$query['members'] = $this->members_model->getMembers($page);
-
 		$config['base_url'] = 'http://project-beheer/members/overview';
 		$config['total_rows'] =  $this->members_model->AmountOfMembers();
 		$config['per_page'] = 10;
