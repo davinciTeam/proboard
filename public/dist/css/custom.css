@@ -60,14 +60,14 @@
 }
 
 .input-group .form-control{
-    width: 150%!important;
+    width: 100%!important;
 }
 
 
-.addproject textarea{
+/*.addproject textarea{
     width: 450px!important;
     height: 150px;
-}
+}*/
 
 
 .editproject .input-group{
