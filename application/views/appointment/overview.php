@@ -4,27 +4,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="content-wrapper">
   <section class="content-header">
-    <div class="col-md-12">
-      <?=RenderBreadCrum()?>
+    <div class="breadcrumbs-bar">
+        <div class="col-md-12">
+          <?=RenderBreadCrum()?>
+        </div>
     </div>
     <div class="col-md-12">
         <?=feedback();?>
       </div>
-    <div class="row cards white">
-      <div class="col-md-12">projecten</div>
+      <div class="toggle-bar">
+        <div class="col-md-12 text-right">
+          <i class="fa fa-arrows-alt" title="Klik om te wisselen tussen fullscreen" aria-hidden="true" id="fullscreen"></i>
+        </div>
     </div>
-    <div class="row cards">
       <div class="col-md-12">
         <table class="table table-striped table-center">
           <thead>
             <tr>
               <th>Projectnaam</th>
               <th>Klant</th>
-              <th>docent</th>
-              <th>leden</th>
-              <th>eerst volgende code revieuw</th>
-              <th>eerst volgende iteratie bespreking</th>
-              <th>opmerking</th>
+              <th>Docent</th>
+              <th>Leden</th>
+              <th>Eerst volgende code revieuw</th>
+              <th>Eerst volgende iteratie bespreking</th>
+              <th>Opmerking</th>
             </tr>
           </thead>
           <tbody>

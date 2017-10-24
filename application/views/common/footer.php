@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $.widget.bridge('uibutton', $.ui.button);
     </script>
     <script src="/dist/js/members.js"></script>
+    <script src="/dist/js/appointment.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/plugins/morris/morris.min.js"></script>
     <script src="/plugins/sparkline/jquery.sparkline.min.js"></script>

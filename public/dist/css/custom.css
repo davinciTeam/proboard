@@ -83,3 +83,7 @@
     background-color:#3c8dbc;
     color: white;
 }
+
+.content-wrapper-margin{
+    margin-left: 0px!important;
+}
