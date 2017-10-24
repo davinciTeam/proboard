@@ -3,7 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="content-wrapper">
     <section class="content">
-    	<?=feedback();?>
+    	<div class="col-md-12">
+     		<?=RenderBreadCrum()?>
+    	</div>
+    	<div class="col-md-12">
+    		<?=feedback();?>
+    	</div>
 	    <h1>project-naam: <?=$project['0']->name ?></h1>
 	    <h2>huidige leden</h2>
 	    <pre><?php foreach ($project['0']->members as $member) { echo $member->name." ".$member->insertion." ".$member->lastname ; ?> <form method="post" action="/projects/deleteMembersAction" class="inline"><input type="hidden" name="<?=$name;?>" value="<?=$hash;?>" /><input value="<?=$project['0']->slug?>" type="hidden" name="projectSlug"><input value="<?=$member->slug?>" type="hidden" name="MemberSlug"><button class="btn btn-link" type="submit"><i class="glyphicon glyphicon-remove-circle"></i></button></form><?php  } ?></pre>

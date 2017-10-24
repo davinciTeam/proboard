@@ -3,8 +3,13 @@
 ?>
 
 <div class="content-wrapper">
-    <section class="content-header ">
-    	<?=feedback();?>
+    <section class="content-header">
+    	<div class="col-md-12">
+	      <?=RenderBreadCrum()?>
+	    </div>
+    	<div class="col-md-12">
+    		<?=feedback();?>
+    	</div>
       <h1>
         Rechten
         <small>Overzicht</small>

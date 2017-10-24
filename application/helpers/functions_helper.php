@@ -78,6 +78,31 @@
 		}
 	}
 
+	if (!function_exists('RenderBreadCrum')) {
+		function RenderBreadCrum($customs = null)
+	    {
+	    	$CI =& get_instance();
+	    	$breadCrums = $CI->breadcrums->BreadCrum();
+
+	    	$url = '';
+	    	$html = '';
+	    	$html .=  '<ol class="breadcrumb">';
+	    		foreach($breadCrums as $breadcrumb) {
+	    			$html .=  '<li><a href="/'.$url. $breadcrumb .'">'. $breadcrumb .'</a></li>';
+	    			$url .= $breadcrumb.'/';
+	    		}
+	    		if (!empty($customs)) {
+	    			foreach($customs as $custom)
+	    			{
+	    				$html .=  '<li>'.$custom.'</li>';
+	    			}
+	    		}
+
+	    	$html .=  '</ol>';
+	    	return $html;
+	    }
+	}
+
 
 	if (!function_exists('render')) {
 		function render($view = false, $data = false)

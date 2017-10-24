@@ -4,7 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 <div class="content-wrapper">
     <section class="content">
-    	<?=feedback();?>
+    	<div class="col-md-12">
+     		<?=RenderBreadCrum()?>
+    	</div>
+    	<div class="col-md-12">
+    		<?=feedback();?>
+    	</div>
     	<div class="bar">
 	    	<div class="container">
 		    	<div class="row">
@@ -73,11 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>
 			</tbody>
 		</table>
-		<nav class="text-center" aria-label="Page navigation">
-  			<ul class="pagination">
-    			<?=$this->pagination->create_links() ?>
-    		</ul>
-    	</nav>
+		
     </section>
 </div>
 
