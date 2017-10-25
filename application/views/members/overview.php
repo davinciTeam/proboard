@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		
 			<thead>
 				<tr>
-					<th>Ov-Nummer<span id="ovnumber" class="sorting glyphicon glyphicon-arrow-up"></span></th>
+					<th>Ov-Nummer<i id="ovnumber" class="sorting glyphicon glyphicon-arrow-up"></i></th>
 					<th>Voornaam<span id="name" class="sorting glyphicon glyphicon-arrow-up"></span></th>
 					<th>Tussenvoegsel<span id="insertion" class="sorting glyphicon glyphicon-arrow-up"></span></th>
 					<th>Achternaam<span id="lastname" class="sorting glyphicon glyphicon-arrow-up"></span></th>

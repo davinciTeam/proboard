@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <th>Leden</th>
               <th>Eerst volgende code revieuw</th>
               <th>Eerst volgende iteratie bespreking</th>
-              <th>Opmerking</th>
+              <th class="fullscreen-hide">Opmerking</th>
             </tr>
           </thead>
           <tbody>
@@ -43,7 +43,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
               <td><?=$project->code_date ." ". $project->code_start ?></td>
               <td><?=$project->iteration_date ." ". $project->iteration_start ?></td>
-              <td><a href="/appointment/addAppointment/<?=$project->slug ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+              <td class="fullscreen-hide"><a href="/appointment/addAppointment/<?=$project->slug ?>"><i class="fa fa-pencil-square" aria-hidden="true" style="color:white;"></i>
+</a></td>
             </tr>
 
             <?php
