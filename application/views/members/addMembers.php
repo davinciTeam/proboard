@@ -25,21 +25,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="input-group">
 									<input type="text" class="form-control"  maxlength="100" name="name" required/>
 									<div class="input-group-addon">
-										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="insertion">Tussenvoegsel</label>
 								<div class="input-group">
 									<input type="input" class="form-control" maxlength="100" name="insertion">
 									<div class="input-group-addon">
-										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="lastname">Achternaam</label>
 								<div class="input-group">
 									<input type="input" class="form-control" maxlength="100" name="lastname" required/>
 									<div class="input-group-addon">
-										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<button type="submit" class="btn btn-blue">Studenten Aanmaken</button>

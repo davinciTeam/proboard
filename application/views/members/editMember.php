@@ -18,28 +18,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="input-group">
 									<input type="number" class="form-control" name="ovnumber" value="<?=$member['0']->ovnumber ?>" required/>
 									<div class="input-group-addon">
-										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de nummers 0-9 toegestaan"></i>
+										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de nummers 0-9 toegestaan"></i>
 									</div>
 								</div>
 							<label for="text">Voornaam</label>
 								<div class="input-group">
 									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="name" class="form-control" value="<?=$member['0']->name ?>" required/>
 									<div class="input-group-addon">
-										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="text">Tussenvoegsel</label>
 								<div class="input-group">
 									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="insertion" class="form-control" value="<?=$member['0']->insertion ?>" />
 									<div class="input-group-addon">
-										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 							<label for="text">Achternaam</label>
 								<div class="input-group">
 									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="lastname" class="form-control" value="<?=$member['0']->lastname ?>" required/>
 									<div class="input-group-addon">
-										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
 									</div>
 								</div>
 
