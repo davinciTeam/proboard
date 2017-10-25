@@ -3,6 +3,7 @@ $(document).ready(function(){
         $("header.main-header").toggle();
         $("aside.main-sidebar").toggle();
         $(".breadcrumbs-bar").toggle();
+        $(".fullscreen-hide").toggle();
         $(".content-wrapper").toggleClass("content-wrapper-margin");
     });
 });
