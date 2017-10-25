@@ -54,7 +54,7 @@ class Projects_model extends CI_Model {
     }
 
 
-    public function addMember($slug, $slug)
+    public function addMember($slug, $name)
     {
         $project = $this->getProject($slug);
 
@@ -64,7 +64,7 @@ class Projects_model extends CI_Model {
             exit;
         }
 
-        $member = $this->getMember($slug);
+        $member = $this->getMember($name);
 
         if ($member) {
             if ($this->db->from('project_members')->where('member_id', $member['0']->id)->where('project_id', $project['0']->id)->get()->result()) {
@@ -106,9 +106,9 @@ class Projects_model extends CI_Model {
         return $result;
     }
 
-    protected function getMember($slug)
+    protected function getMember($name)
     {
-        return $this->db->get_where('members', array('slug' => $slug))->result();
+        return $this->db->get_where('members', array('slug' => $name))->result();
     }
 
     protected function getAllMembers($id)
