@@ -108,7 +108,7 @@ class Projects_model extends CI_Model {
 
     protected function getMember($name)
     {
-        return $this->db->get_where('members', array('name' => $name))->result();
+        return $this->db->get_where('members', array('slug' => $name))->result();
     }
 
     protected function getAllMembers($id)
