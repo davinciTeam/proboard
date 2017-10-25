@@ -13,29 +13,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		//Load url_helper
 		$this->load->helper('url_helper');
 		$this->load->model('Appointment_model');
-		// $this->load->model('project_model');
+		$this->load->model('projects_model');
 	}
 	
 	public function index()
 	{
 		$this->load->helper('form');
-		$query['projects'] = $this->Appointment_model->getProjects();
+		$query['projects'] = $this->projects_model->getProjects();
 		//  //render view projects
 		render('appointment/overview',$query);
 	}
 
 	public function addAppointment($slug = null)
 	{
-		$this->load->library('Slug');
 		$this->load->helper('form');
     	$this->load->library('form_validation');
 
-    	$query['projects'] = $this->Appointment_model->getProject($slug);
+    	$query['projects'] = $this->projects_model->getProject($slug);
 		render('appointment/addAppointment', $query);
-
-		// $data['data'] = $this->appointment_model->getAppiontment();
-		// render('appointment/addAppointment');
-		
 	}
 
 	public function addAppointmentAction()
@@ -53,7 +48,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				"iteration_end" => $this->input->post('iteration_end'),
 				"iteration_date" => $this->input->post('iteration_date'),
 				"slug" => $this->input->post('slug'),
-				// "slug" => $this->slug->slug_exists(url_title($this->input->post('name'), 'dash', TRUE)),
 				"code_date" => $this->input->post('code_date'),
 				"code_start" => $this->input->post('code_start'),
 				"code_end" => $this->input->post('code_end')
@@ -61,9 +55,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->Appointment_model->addAppointment($save);
 			
 			redirect('appointment/');
+		// } else if($this->input->post('slug')) {
+		// 	redirect('appointment/addAppointment'.$this->input->post('slug'));
 		// } else {
-		// 	redirect('members/addMember');
-		// }
+		//	redirect('appointment/addAppointment')
+		//}
 		
 	}
 }

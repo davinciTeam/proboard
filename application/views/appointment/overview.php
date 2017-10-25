@@ -39,7 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <td><?=$project->name ?></td>
               <td><?=$project->client ?></td>
               <td><?=$project->teacher ?></td>
-              <td>student 1, student 2</td>
+              <td><?php foreach ($project->members as $member) { 
+            echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
               <td><?=$project->code_date ." ". $project->code_start ?></td>
               <td><?=$project->iteration_date ." ". $project->iteration_start ?></td>
               <td><a href="/appointment/addAppointment/<?=$project->slug ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
