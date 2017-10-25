@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="input-group">
 									<input type="number" class="form-control" id="ovnumber" max="99999999" name="ovnumber" required/>
 									<div class="input-group-addon">
-										<i class="fa fa-question" data-toggle="tooltip"  aria-hidden="true" title="Alleen de nummers 0-9 toegestaan"></i>
+										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de nummers 0-9 toegestaan"></i>
 									</div>
 								</div>
 							<label for="name">Voornaam</label>
