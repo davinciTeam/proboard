@@ -36,10 +36,10 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'ovnumber', 
 			'label' => 'Ovnummer',
-            'rules' => 'required|max_length[8]|is_numeric',
+            'rules' => 'required|exact_length[8]|is_numeric',
             'errors' => array(
 				'required' => 'U moet een ovnummer invullen',
-				'max_length' => 'Het ovnummer kan maximaal 8 karakters lang zijn',
+				'exact_length' => 'Vul een geldig ov-nummer in',
 				'is_numeric' => 'Vul een geldig ov-nummer in'
 			)
 		)
