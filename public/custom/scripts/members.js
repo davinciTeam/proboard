@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	var page = 1;
 	var searchParamaters = 
 	{
+		'active' : 'name',
 		'name': 'ASC',
 		'insertion': 'ASC',
 		'lastname': 'ASC',
@@ -31,13 +31,18 @@ $(document).ready(function(){
 	}
 
     $(".sorting").click(function(){
-        $(this).toggleClass("glyphicon-arrow-up").toggleClass("glyphicon-arrow-down");
-    
+
+    	$('#'+searchParamaters['active']).removeClass('currentSorting');
+    	$(this).addClass('currentSorting').children('span').toggleClass("glyphicon-arrow-up").toggleClass("glyphicon-arrow-down")
+    	
+    	searchParamaters['active'] = $(this).attr('id');
+
     	if (searchParamaters[$(this).attr('id')] === 'ASC') {
     		searchParamaters[$(this).attr('id')] = 'DESC'
 		} else {
 			searchParamaters[$(this).attr('id')] = 'ASC'
 		}
+
     	$.ajax({
 			url: "/members/overview/0/true",
 			data: {
@@ -45,7 +50,7 @@ $(document).ready(function(){
 				search: searchParamaters[$(this).attr('id')]
 			},
 			method: 'POST',
-			success: function( result ) {
+			success: function(result) {
 				generateHtml(result);
 			},
 			fail :function() {
@@ -68,6 +73,10 @@ $(document).ready(function(){
         $.ajax({
 			url: "/members/overview/"+page+"/true",
 			method: 'POST',
+			data: {
+				field: searchParamaters['active'],
+				search: searchParamaters[searchParamaters['active']]
+			},
 			success: function( result ) {
 				generateHtml(result);
 			},

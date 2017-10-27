@@ -29,7 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label class="btn btn-blue">
 							    Selecteer een bestand<input type="file" name="userfile" size="20" class="hidden">
 							</label><br>
-							<!-- <input type="file" class="btn btn-blue" name="userfile" size="20"/> -->
 							<button type="submit" class="btn btn-blue">importeren</button>
 						</form>
 		    		</div>
@@ -45,10 +44,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		
 			<thead>
 				<tr>
-					<th>Ov-Nummer<i id="ovnumber" class="sorting glyphicon glyphicon-arrow-up"></i></th>
-					<th>Voornaam<span id="name" class="sorting glyphicon glyphicon-arrow-up"></span></th>
-					<th>Tussenvoegsel<span id="insertion" class="sorting glyphicon glyphicon-arrow-up"></span></th>
-					<th>Achternaam<span id="lastname" class="sorting glyphicon glyphicon-arrow-up"></span></th>
+					<th id="ovnumber" class="sorting">Ov-Nummer<span class="glyphicon glyphicon-arrow-up"></span></th>
+					<th id="name" class="currentSorting sorting">Voornaam<span class="sorting glyphicon glyphicon-arrow-up"></span></th>
+					<th id="insertion" class="sorting">Tussenvoegsel<span id="insertion" class="sorting glyphicon glyphicon-arrow-up"></span></th>
+					<th id="lastname" class="sorting">Achternaam<span id="lastname" class="sorting glyphicon glyphicon-arrow-up"></span></th>
                     <th>Acties</th>
                     <th>Actief</th>
 				</tr>
@@ -65,11 +64,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$member->lastname;?></td>
 					<td><a href="/members/editMember/<?=$member->slug; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 					<td>
-					<?php if ($member->active == 1) {
-						echo "<i class='fa fa-circle green-text' aria-hidden='true'></i>";
-					} else {
-						echo "<i class='fa fa-circle red-text' aria-hidden='true'></i>";
-					} ?>
+					<?php if ($member->active == 1) { ?>
+						<i class='fa fa-circle green-text' aria-hidden='true'></i>
+					<?php } else { ?>
+						<i class='fa fa-circle red-text' aria-hidden='true'></i>
+					<?php } ?>
 					</td>	
 				</tr>
 			  	

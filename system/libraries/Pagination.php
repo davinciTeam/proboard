@@ -202,14 +202,14 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $cur_tag_open = '<li class="active"><a href="#members">';
+	protected $cur_tag_open = '<li class="navigation-js active">';
 
 	/**
 	 * Current tag close
 	 *
 	 * @var	string
 	 */
-	protected $cur_tag_close = '</a></li>';
+	protected $cur_tag_close = '</li>';
 
 	/**
 	 * Next tag open
@@ -571,7 +571,7 @@ class CI_Pagination {
 		}
 
 		// Render the "Previous" link.
-		if ($this->prev_link !== FALSE && $this->cur_page !== 1)
+		if ($this->prev_link !== FALSE)
 		{
 			$i = ($this->use_page_numbers) ? $uri_page_number - 1 : $uri_page_number - $this->per_page;
 
@@ -606,8 +606,9 @@ class CI_Pagination {
 				{
 					if ($this->cur_page === $loop)
 					{
-						// Current page
-						$output .= $this->cur_tag_open.$loop.$this->cur_tag_close;
+						$append = $this->prefix.$i.$this->suffix;
+						$output .= $this->cur_tag_open.'<a href="'.$base_url.$append.'"'.$attributes.'>'
+							.$loop.'</a>'.$this->cur_tag_close;
 					}
 					elseif ($i === $base_page)
 					{
@@ -626,7 +627,7 @@ class CI_Pagination {
 		}
 
 		// Render the "next" link
-		if ($this->next_link !== FALSE && $this->cur_page < $num_pages)
+		if ($this->next_link !== FALSE)
 		{
 			$i = ($this->use_page_numbers) ? $this->cur_page + 1 : $this->cur_page * $this->per_page;
 
