@@ -12,7 +12,7 @@ class Projects_model extends CI_Model {
     public function getProjects($offset = null)
     {
         //get all projects
-        if (is_numeric($offset) && $this->AmountOfProjects() >= ($offset+10)) {
+        if (is_numeric($offset)) {
             $this->db->limit(10, $offset);
         } else {
             $this->db->limit(10);
