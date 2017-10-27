@@ -14,13 +14,14 @@ class Members_model extends CI_Model {
        
         if (!empty($this->input->post('search') && !empty($this->input->post('field') ))) {
             $this->db->order_by($this->input->post('field'), $this->input->post('search'));
+        } 
+
+        if (is_numeric($offset) && $this->AmountOfMembers() <= ($offset+10)) {
+            $this->db->limit(10, $offset)->order_by('name');
         } else {
-            if (is_numeric($offset) && $this->AmountOfMembers() >= ($offset+10)) {
-                $this->db->limit(10, $offset)->order_by('name');
-            } else {
-                $this->db->limit(10)->order_by('name');
-            }
+            $this->db->limit(10)->order_by('name');
         }
+        
         return $this->filter->xssFilter($this->db->get('members')->result());
     }
 
@@ -54,6 +55,7 @@ class Members_model extends CI_Model {
         }       
     }
 
+
     public function import()
     {
         $this->load->helper('url_helper');
@@ -63,7 +65,7 @@ class Members_model extends CI_Model {
         $config['file_name']            = 'import.csv';
         $config['allowed_types']        = 'csv';
         $config['max_size']             = 100;
-        
+
         $this->load->library('upload', $config);
         
         $data = array('file' => $this->upload->data());
@@ -72,39 +74,49 @@ class Members_model extends CI_Model {
             $data = array('upload_data' => $this->upload->data());
 
             $fileData = str_getcsv(str_replace("\n", '', file_get_contents($data['upload_data']['full_path'], false)), ';');
-            $fileData = preg_replace('/[\x00-\x1F\x7F]/u', '', $fileData);
+            $fileData = preg_replace('/[\x00-\x1F\x7F]/u', '', $fileData);//remove any none utf-8 charachers
             unlink($data['upload_data']['full_path']);
       
             $errors = [];
             for ($i = 4; $i < count($fileData)-1; $i+=4) {
-                if (!isset($fileData[$i]) || strlen($fileData[$i]) > 8 || !is_numeric($fileData[$i])) {
-                    $errors[] = "Ongeldig Ov nummer regelnummer ".$i/4+1 ;
+                if (!isset($fileData[$i]) || strlen($fileData[$i]) !== 8 || !is_numeric($fileData[$i])) {
+                    $errors[] = "Ongeldig Ov nummer regelnummer ".((string)$i/4+1) ;
                 } 
                 if (!isset($fileData[$i+1])|| strlen($fileData[$i+1]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+1])) {
-                    $errors[] = "Ongeldig naam regelnummer ".$i/4+1 ;
+                    $errors[] = "Ongeldig naam regelnummer ".((string)$i/4+1) ;
                 } 
                 if (!isset($fileData[$i+2]) || strlen($fileData[$i+2]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+2])) {
-                    $errors[] = "Ongeldig tussenvoegsel regelnummer ".$i/4+1 ;
+                    $errors[] = "Ongeldig tussenvoegsel regelnummer ".((string)$i/4+1) ;
                 } 
                 if (!isset($fileData[$i+3]) || strlen($fileData[$i+3]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+3])) {
-                    $errors[] = "Ongeldig achternaam regelnummer ".$i/4+1 ;
+                    $errors[] = "Ongeldig achternaam regelnummer ".((string)$i/4+1) ;
                 }
             } 
-            
+           
             if (!empty($errors)) {
                 addFeeback($errors, 'negative');
                 return false;
             }
-        
+            
+            $ovNumbers = $this->db->from('members')->select('ovnumber, slug')->get()->result_array();
+            $slugs = array_column($ovNumbers, 'slug');
+            $ovNumbers = array_column($ovNumbers, 'ovnumber');
+
             for ($i = 4; $i < count($fileData)-1; $i+=4) {
                 $importData = Array(
                     "ovnumber" => $fileData[$i],
                     "name" => $fileData[$i+1],
-                    "slug" => $this->slug->slug_exists($fileData[$i+1]),
                     "insertion" => $fileData[$i+2],
                     "lastname" => $fileData[$i+3]
                 );
-                $this->addMember($importData);
+                if (in_array($importData['ovnumber'], $ovNumbers)) {
+                    $importData["active"] = 1;
+                    $importData["slug"] = $slugs[$i/4-1];
+                    $this->editMember($importData);
+                } else {
+                    $importData["slug"] = $this->slug->slug_exists($fileData[$i+1]);
+                    $this->addMember($importData);
+                }
             }
             
             addFeeback(array('Import gelukt'));
