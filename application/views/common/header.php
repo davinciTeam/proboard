@@ -18,7 +18,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="/dist/css/notLoggedIn.css">
     <?php } ?>
     <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/plugins/daterangepicker/moment.min.js"></script>
+    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>

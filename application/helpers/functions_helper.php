@@ -103,6 +103,32 @@
 	    }
 	}
 
+	if (!function_exists('displayTime')) {
+		function displayTime($time) {
+			if ($time === '0000-00-00 00:00:00') {
+				return 'Niks ingepland';
+			} else if (date('Ymd') == date('Ymd', strtotime($time))) {
+				return date('l G:i', strtotime($time));
+			} else if (date('Ymd', strtotime("+1 week")) == date('Ymd', strtotime($time))) {
+				return date('l G:i', strtotime($time));
+			} 
+			return $time;
+		}
+	}
+
+	if (!function_exists('compareTime')) {
+		function compareTime(array $times) {
+			$class = 'green';
+			foreach ($times as $time) {
+				if (strtotime(date('Ymd')) > strtotime($time) && $time !== '0000-00-00 00:00:00' || $class === 'red') {
+					$class = 'red';
+				} else if (date('Ymd') == date('Ymd', strtotime($time)) && $time !== '0000-00-00 00:00:00' || $class === 'orange') {
+					$class = 'orange';
+				}				
+			}
+			return $class;
+		}
+	}
 
 	if (!function_exists('render')) {
 		function render($view = false, $data = false)

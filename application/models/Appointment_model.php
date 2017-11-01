@@ -7,22 +7,49 @@ class Appointment_model extends CI_Model {
         $this->load->database();
     }
 
-    public function addAppointment($data)
+    public function addAppointment($data, $type)
     {
+        $data = str_replace('/', ':', $data);
         if (!$this->validateAppointment($data)) return false;
 
-        $this->db->where('slug', $data['slug'])->update('projects', array(
-            'iteration_start' => $data['iteration_start'],
-            'iteration_end' => $data['iteration_end'],
-            'iteration_date' => $data['iteration_date'],
-            'code_date' => $data['code_date'],
-            'code_start' => $data['code_start'],
-            'code_end' => $data['code_end'])
-        );
+        if ($type === 'iteration') {
+            $data = Array(
+                "iteration_start" => $data['start_date'],
+                "iteration_end" => $data['end_date'],
+                "slug" => $data['slug'],
+            );
+        } else {
+            $data = Array(
+                "code_review_start" => $data['start_date'],
+                "code_review_end" => $data['end_date'],
+                "slug" => $data['slug'],
+            );
+        }
+        if ( $this->db->where('slug', $data['slug'])->update('projects', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     protected function validateAppointment($data)
     {
-        return true;
+        if ($this->db->from('projects')
+            ->where('slug !=', $data['slug'])
+                ->group_start()
+                    ->group_start()
+                        ->where('iteration_start >=', $data['start_date'])
+                        ->where('iteration_end <=', $data['end_date'])
+                    ->group_end()
+                    ->or_group_start()
+                        ->where('code_review_start >=', $data['start_date'])
+                        ->where('code_review_end <=', $data['end_date'])
+                    ->group_end()
+                ->group_end()
+            ->get()->result()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

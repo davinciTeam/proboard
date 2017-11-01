@@ -22,39 +22,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <th>Klant</th>
               <th>docent</th>
               <th>leden</th>
-              <th>eerst volgende code revieuw</th>
+              <th>eerst volgende code review</th>
               <th>eerst volgende iteratie bespreking</th>
               <th>opmerking</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="red">
-              <td>project beheer</td>
-              <td>slemmer</td>
-              <td>slemmer</td>
-              <td>student 1, student 2</td>
-              <td>woensdag 11 uur</td>
-              <td>10-10-2017 13 uur</td>
+          <?php foreach($projects as $project) { ?>
+            <tr class="<?=compareTime(array($project->iteration_start, $project->code_review_start)) ?>">
+              <td><?=$project->name ?></td>
+              <td><?=$project->teacher ?></td>
+              <td><?=$project->client ?></td>
+              <td><?php foreach ($project->members as $member) { 
+            echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
+              <td>
+                <?php if ($admin) { ?>
+                <div class="input-group">
+                  <span class="edit glyphicon glyphicon-edit">
+                    <input data-slug="<?=$project->slug ?>" data-type="iteration" class="hidden form-control dateRange" type="text" name="daterange" 
+                    <?php if ($project->iteration_start !== '0000-00-00 00:00:00') { ?>
+                      value="<?=$project->iteration_start ?> - <?=$project->iteration_end ?>">
+                    <?php } else { ?>
+                      value="<?=$today ?> 00:00:00 - <?=$today ?> 00:00:00 ">
+                    <?php } ?>
+                    <?=displayTime($project->iteration_start) ?>
+                  </span>
+                </div>
+                  <?php } else { ?>
+                    <?=displayTime($project->iteration_start) ?>
+                  <?php } ?>
+              </td>
+              <td>
+                <?php if ($admin) { ?>
+                <div class="input-group">
+                  <span class="edit glyphicon glyphicon-edit">
+                    <input data-slug="<?=$project->slug ?>" data-type="code_review" class="hidden form-control dateRange" type="text" name="daterange" 
+                    <?php if ($project->code_review_start !== '0000-00-00 00:00:00') { ?>
+                      value="<?=$project->code_review_start ?> - <?=$project->code_review_end ?>">
+                    <?php } else { ?>
+                      value="<?=$today ?> 00:00:00 - <?=$today ?> 00:00:00">
+                    <?php } ?>
+                  <?=displayTime($project->code_review_start) ?>
+                  </span>
+                </div>
+                <?php } else { ?>
+                  <?=displayTime($project->code_review_start) ?>
+                <?php } ?>
+              </td>
               <td></td>
             </tr>
-            <tr class="orange">
-              <td>componenten beheer</td>
-              <td>de jong</td>
-              <td>de jong</td>
-              <td>student 3, student 4</td>
-              <td>maandag 11 uur</td>
-              <td>vrijdag 13 uur</td>
-              <td>erg lange laadtijd</td>
-            </tr>
-            <tr class="green">
-              <td>speur tocht</td>
-              <td>ruijter</td>
-              <td>ruijter</td>
-              <td>student 5, student 6</td>
-              <td>25-10-2017 13 uur</td>
-              <td>donderdag 11 uur</td>
-              <td>security workshop onvoldoende</td>
-            </tr>
+        <?php } ?>
           </tbody>
         </table>
 
@@ -63,3 +80,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php if (!$admin) { ?> <a href="/login" class="btn btn-blue">Inloggen</a> <?php } ?>
   </section>
 </div>
+<script src="/custom/scripts/iterations_code_review.js"></script>

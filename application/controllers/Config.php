@@ -118,4 +118,10 @@ class Config extends CI_Controller {
 			header('Location: /config/users');
 		}
 	}
+
+	public function newToken()
+	{
+		header('Content-type:application/json');
+		echo json_encode(array('new_token' => $this->security->get_csrf_hash()));
+	}
 }

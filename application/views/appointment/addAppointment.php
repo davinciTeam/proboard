@@ -68,8 +68,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</div>
 								<input type="hidden" name="slug" value="<?=$projects['0']->slug ?>">
+								
 							<button type="submit" class="btn btn-blue">Afsrpaak toevoegen</button>
 						</form>
+
 					</div>
 				</div>
 			</div>
