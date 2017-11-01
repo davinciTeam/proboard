@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <tbody>
           <?php foreach($projects as $project) { ?>
             <tr class="<?=compareTime(array($project->iteration_start, $project->code_review_start)) ?>">
-              <td><?=$project->name ?></td>
+              <td><?=$project->name ?> <span data-toggle="tooltip" title="<?=$project->description ?>" class="glyphicon glyphicon-comment"></span></td>
               <td><?=$project->teacher ?></td>
               <td><?=$project->client ?></td>
               <td><?php foreach ($project->members as $member) { 
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?=displayTime($project->code_review_start) ?>
                 <?php } ?>
               </td>
-              <td></td>
+              <td><span class="glyphicon glyphicon-comment"></span></td>
             </tr>
         <?php } ?>
           </tbody>
