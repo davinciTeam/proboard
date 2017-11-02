@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							<label for="text">Github Url</label>
 								<div class="input-group">
-									<input title="Voer hier de repository url in" type="url" class="form-control" name="git_url" required/>
+									<input title="Voer hier de repository url in" type="text" class="form-control" name="git_url" required/>
 									<div class="input-group-addon" data-toggle="tooltip" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>

@@ -43,6 +43,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				'max_length' => 'De beschrijving mag maximaal 500 karakters lang zijn'
 			)
 		)
+		// array(
+		// 	'field' => 'git_url', 
+		// 	'label' => 'git_url',
+  //           'rules' => 'regex_match[/\b(?:(?:https?):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i]'
+
+			
+		// )
 	);
 
 	public function __construct()
@@ -176,12 +183,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 	}
 
+	// public function regex_check($url){
+
+	// 	if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)) {
+	// 		var_dump($this->input->post('git_url'));
+	// 		$this->form_validation->set_message('regex_check', 'Voer een geldige url in');
+ //  			exit();
+
+	// 	}else{
+	// 		var_dump("test",$this->input->post('git_url'));
+	// 		exit();
+	// 	}
+	// }
+
 	public function addProjectAction()
 	{
 		$this->load->library('form_validation');
 		$this->load->library('Slug');
-		
 		$this->form_validation->set_rules(self::$_validationRules);
+
+		// $this->form_validation->set_rules('git_url','regex_check');
 
 		if ($this->form_validation->run()) {
 
