@@ -1,5 +1,9 @@
-[hidden] {
+[hidden], hidden {
   display: none !important;
+}
+
+.dateRange{
+    width:150% !important;
 }
 
 .currentSorting {
@@ -89,7 +93,7 @@
 }
 
 
-.sorting:hover {
+.sorting:hover, .edit {
     cursor:pointer;
 }
 

@@ -9,7 +9,7 @@ class Projects_model extends CI_Model {
     }
 
 
-    public function getProjects($offset = null)
+    public function getProjects($offset = null, $sort = false)
     {
         //get all projects
         if (is_numeric($offset)) {
@@ -18,6 +18,10 @@ class Projects_model extends CI_Model {
             $this->db->limit(10);
         }
 
+        if ($sort) {
+            $this->db->order_by('iteration_start', 'DESC');
+            $this->db->order_by('code_review_start', 'DESC');
+        }
 
         $queryResult = $this->db->from('projects')->get()->result();
 
