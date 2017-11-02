@@ -183,6 +183,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->library('form_validation');
 		$this->load->library('Slug');
 		// $this->form_validation->set_rules(self::$_validationRules);
+		$this->form_validation->set_rules('name', '', 'required');
 
 		// $this->form_validation->set_rules('git_url','regex_check');
 
