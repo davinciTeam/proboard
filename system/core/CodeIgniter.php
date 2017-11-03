@@ -56,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 	const CI_VERSION = '3.1.5';
-	// require '../vendor/autoload.php';
+	require '../vendor/autoload.php';
 /*
  * ------------------------------------------------------
  *  Load the framework constants
