@@ -14,11 +14,6 @@
         Rechten
         <small>Overzicht</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="/dashboard"><i class="fa fa-cogs"></i> Home</a></li>
-        <li><a href="#">Configuratie</a></li>
-		<li class="active">Rechten</li>
-      </ol>
     </section>
 
     <section class="content">

@@ -14,12 +14,6 @@
         Rechten
         <small>Bewerken</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="/dashboard/dashboard"><i class="fa fa-cogs"></i> Home</a></li>
-        <li><a href="/config/config">Configuratie</a></li>
-        <li><a href="/config/config/rights">Rechten</a></li>
-		    <li class="active">Bewerken</li>
-      </ol>
     </section>
     <form method="post">
       <input type="hidden" name="profile_id" value="<?=$profile_id?>">
