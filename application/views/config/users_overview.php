@@ -22,7 +22,7 @@
               <div class="box box-success">
                 <div class="box-header">
                   <h3 class="box-title">Gebruikers</h3>
-                  <button class="btn btn-success pull-right" onClick="javascript: window.location = '/config/newUser';">Nieuw</button>
+                  <button class="btn btn-success pull-right" onClick="javascript: window.location = '/Users/newUser';">Nieuw</button>
                 </div>
                 <div class="box-body">
 
@@ -48,8 +48,8 @@
                           <td>
                              <!-- edit / delete buttons -->
 
-                             <a href="/config/editUser/<?=$user->id?>" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                             <a href="/config/deleteUser/<?=$user->id?>" class="btn btn-danger removeBtn"><i class="fa fa-trash"></i></a>
+                             <a href="/Users/editUser/<?=$user->id?>" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                             <a href="/Users/deleteUser/<?=$user->id?>" class="btn btn-danger removeBtn"><i class="fa fa-trash"></i></a>
                           </td>
                         </tr>
                       <?php }?>

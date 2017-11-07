@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Config extends CI_Controller {
+class Users extends CI_Controller {
 	public function __construct()
    	{
    		parent::__construct();
@@ -40,7 +40,7 @@ class Config extends CI_Controller {
 		render('config/user_edit', $data);
 	}
 
-	public function NewUser($id = null)
+	public function NewUser()
 	{
 		$this->load->model("ConfigModel", "config_model");
 
@@ -55,7 +55,6 @@ class Config extends CI_Controller {
 			"name" => $this->input->post('name'),
 			"username" => $this->input->post('username'),
 			"email" => $this->input->post('email'),
-			"password" => 'test'
 		);
 
 		$this->config_model->insertUser($saveData);
@@ -70,8 +69,7 @@ class Config extends CI_Controller {
 		$saveData = array(
 			"name" => $this->input->post('name'),
 			"username" => $this->input->post('username'),
-			"email" => $this->input->post('email'),
-			"password" => $this->input->post('password')
+			"email" => $this->input->post('email')
 		);
 
 		$newId = $this->config_model->updateUser($saveData, $this->input->post('id'));

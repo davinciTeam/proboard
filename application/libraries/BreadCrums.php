@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 class BreadCrums {
-    function breadCrum()
+    public function breadCrum()
     {
     	$CI =& get_instance();
         $i = 1;

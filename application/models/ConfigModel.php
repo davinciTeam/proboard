@@ -1,7 +1,6 @@
 <?php
 	class ConfigModel extends CI_Model  {
 
-
 		public function getUserByUsername($username)
 		{
 			$query = $this->db->get_where('users', array("username" => $username, "active" => 1));
@@ -43,39 +42,55 @@
 			if ($this->db->update('users', $updateData, array("id" => $id))) {
 				addFeeback(array('Gebruiker succesvol bijgewerkt'));
 			}
-			// Check for duplicate username
-			
-			//$query = $this->db->get_where('users', array("id <>" => $id, "username" => $data["username"]));
-			//if ($data["password"] != "*************************") {
-			//	$this->load->library('Auth');
-			//	$user = $this->getUser($id);
-			//	$hash = $this->auth->getPasswordHash($data["password"], $user);
-			//	$this->db->update('users', array("password" => $hash) , array("id" => $id));
-			//}
 			
 			return $id;
 		}
 		public function insertUser($data)
 		{
 			$this->load->library('Auth');
+
+			$hash = md5(uniqid());
+
+			while ($this->getUserByActivationHash($hash)) {
+				$hash = md5(uniqid());
+			}
+			
 			$updateData = array(
 				"name" => $data["name"],
 				"email" => $data["email"],
 				"date_created" =>  date('Y-m-d H:i:s'),
 				"active" => 0, 
-				"start_page" => '/dashboard'
+				"activation_hash" => $hash
 			);
+
 			if ($this->db->insert('users', $updateData)) {
 				addFeeback(array('Gebruiker succesvol aangemaakt'));
 			}
 			
-			$id =  $this->db->insert_id();
-			
-			$user = $this->getUser($id);
-			$hash = $this->auth->getPasswordHash($data["password"], $user);
-			$this->db->update('users', array("password" => $hash), array("id" => $id));
+			$this->load->library('Emails');
+			$this->emails->register($updateData["name"], $updateData["email"], $updateData["activation_hash"]);
+
 			return $id; 
 		}
 
+		public function getUserByActivationHash($hash)
+		{
+			return $this->db->from("users")->where("activation_hash", $hash)->get()->row();
+		}
 
+		public function setUserPassword($data, $hash) {
+			$user = $this->getUserByActivationHash($hash);
+			if (!$user) {
+				addFeeback('Er is een onbekende fout opgetreden', 'negative');
+				return false;
+			}
+
+			$hash = $this->auth->getPasswordHash($data["password"], $user);
+
+			if ($this->db->update('users', array("password" => $hash) , array("id" => $user->id))) {
+				addFeeback(array('U kunt nu inloggen'));
+			}
+
+			return true;
+		}
 	}

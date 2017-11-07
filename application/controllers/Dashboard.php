@@ -13,20 +13,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     public function index($page = null)
     {
-      //Create a new PHPMailer instance
-
-      $mail = new PHPMailer;
-      $mail->setFrom('proboard@ws.dvc-icta.nl');
-
-      $mail->addAddress('remcodezwart1997@gmail.com');
-      $mail->Subject = 'PHPMailer mail() test';
-      $mail->msgHTML('<html><head></head><body><h1>test</h1></body>');
-      $mail->AltBody = 'This is a plain-text message body';
-      //$mail->send();
-     
       $data['projects'] = $this->projects_model->getProjects($page, true);
       $data['today'] = date('Y-m-d');
 
       render('dashboard/overview', $data);
+    }
+
+    public function activation($hash = null)
+    {
+      $this->load->model("ConfigModel", "config_model");
+      $this->load->helper('form');
+
+      $data['user'] = $this->config_model->getUserByActivationHash($hash);
+
+      if (!$data['user']) {
+        show_404();
+      }
+      
+      render('config/activation', $data);
+    }
+
+    public function activationAction()
+    {
+      $this->load->model("ConfigModel", "config_model");
+
+      $this->load->library('form_validation');
+      $this->form_validation->set_rules('password', 'wachtwoord', 'required',
+        array('required' => 'Vul een watchwoord in'));
+
+      $this->form_validation->set_rules('password_repeat', 'wachtwoord', 'required|callback_doublePasswordCheck',
+        array('required' => 'Vul uw wachtwoord nog een keer in ter bevesteging',
+              'callback_doublePasswordCheck' => 'Watchtwoorden komen niet overheen'));
+
+      if ($this->form_validation->run()) {
+        
+        $data = array(
+          'password' => $this->input->post('password'),
+          'active' => 1
+        );
+
+        $this->config_model->setUserPassword($data, $this->input->post('activation_hash'));
+
+      } else if ($this->input->post('activation_hash')) {
+        redirect('dashboard/activation/'.$this->input->post('activation_hash'));
+      }
+      redirect('dashboard');
+    }
+
+    public function doublePasswordCheck()
+    {
+      return ($this->input->post('password') === $this->input->post('password_repeat'));
     }
 }

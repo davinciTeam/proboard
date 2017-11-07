@@ -51,5 +51,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
     </section>
 </div>
-<!-- <script src="/custom/scripts/members.js"></script> -->
-	

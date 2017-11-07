@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 		  <div class="box box-success">
-		  	<?=form_open('Config/NewUserAction') ?>
+		  	<?=form_open('Users/NewUserAction') ?>
 		    <div class="box-header">
 		      <button type="submit" class="btn btn-success pull-right">Opslaan</button>
 		    </div>

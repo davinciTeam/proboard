@@ -18,10 +18,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li class="header">Navigatie</li>
           <li class="treeview">
             <a href="#">
-              <span>Users</span> <i class="fa fa-angle-left pull-right"></i>
+              <span>Gebruikers</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/config/users">Config</a></li>
+              <li><a href="/Users/users">Gebruikers overzicht</a></li>
             </ul>
           </li>
           <li class="treeview">
