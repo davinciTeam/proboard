@@ -36,7 +36,7 @@ class Projects_model extends CI_Model {
     {
             $check_url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
             // echo $check_url;
-        if (strpos($check_url,'tags') !== false) {
+        if (strpos($check_url,'tags') or strpos($check_url,'Tags') !== false) {
             $project = $this->db->get_where('projects', array('slug' => $slug))->result();
             $project['0']->tags = $this->getAllTags($project['0']->id);
 
