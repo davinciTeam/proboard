@@ -7,11 +7,12 @@ class Config extends CI_Controller {
         $this->load->library('Auth');
      	$this->auth->check('1');
         $this->load->library('session');
+        $this->load->helper('form');
    	}
    	
 	public function index()
 	{
-		header('Location: ' . $this->session->start_page);
+		redirect('config/users');
 	}
 
 	public function users()
@@ -26,93 +27,70 @@ class Config extends CI_Controller {
 		render('config/users_overview', $users_data);
 	}
 
-	public function editUser($f_id = 0)
+	public function editUser($id = null)
 	{
 		$this->load->model("ConfigModel", "config_model");
-		if ($this->input->server('REQUEST_METHOD') == 'POST') {
-			$saveData = array(
-				"name" => $this->input->post('name'),
-				"username" => $this->input->post('username'),
-				"email" => $this->input->post('email'),
-				"password" => $this->input->post('password')
-			);
 
-			$newId = $f_id > 0 ?  $this->config_model->updateUser($saveData, $this->input->post('id')) : $this->config_model->insertUser($saveData);
-			header('Location: /config/editUser/' . $newId);
+		$data['user_data'] = $this->config_model->getUser($id);
+
+		if (!$data['user_data']) {
+			show_404();
 		}
 
-		/* User Edit */
-		$line = $this->config_model->getUser($f_id);
-		if($line){
-			$pageType = "Bewerken";
-		} else {
-			$pageType = "Nieuw";
-		}
-
-		$saved = !empty($this->input->get('saved')) ? 1 : 0;
-
-		$user_data = array(
-			"id" => $f_id,
-			"line" => $line,
-			"saved" => $saved,
-			"type" => $pageType,
-		);
-		render('config/user_edit', $user_data);
+		render('config/user_edit', $data);
 	}
 
-	public function rights(){
+	public function NewUser($id = null)
+	{
 		$this->load->model("ConfigModel", "config_model");
-		$profiles = $this->config_model->getProfiles();
-		$rights_data = array(
-			'profiles' => $profiles
-		);
-		render('config/rights_overview', $rights_data);
+
+		render('config/user_new');
 	}
 
-	public function editRights($f_id = 0){
+	public function NewUserAction()
+	{
 		$this->load->model("ConfigModel", "config_model");
-		$saved = 0;
-		if ($this->input->server('REQUEST_METHOD') == 'POST') {
-			$this->config_model->clearRights($f_id);
-			if(is_array($this->input->post('right'))){
-				foreach($this->input->post('right') as $key => $value){
-					$insertData = array(
-						"profile_id" => $f_id,
-						"rights_id" => $value
-					);
-					$this->config_model->insertRights($insertData);
-				}
-			} else {
-				if (!empty($this->input->post('right'))) {
-					$insertData = array(
-						"profile_id" => $f_id,
-						"rights_id" => $this->input->post('right')
-					);
-					$this->config_model->insertRights($insertData);
-				}
-			}
-			
-			$saved = 1;
-		}
-		$rights_data = array(
-			"profile_id" => $f_id,
-			"rights" => $this->config_model->getRights($f_id),
-			"saved" => $saved
+		
+		$saveData = array(
+			"name" => $this->input->post('name'),
+			"username" => $this->input->post('username'),
+			"email" => $this->input->post('email'),
+			"password" => 'test'
 		);
-		render('config/rights_edit', $rights_data);
+
+		$this->config_model->insertUser($saveData);
+
+		redirect('/config');
 	}
 
-	public function saveProfile(){
-		if ($this->input->server('REQUEST_METHOD') == 'POST'){
-			if(!empty($this->input->post('profile_name'))){
+	public function editUserAction()
+	{
+		$this->load->model("ConfigModel", "config_model");
+		
+		$saveData = array(
+			"name" => $this->input->post('name'),
+			"username" => $this->input->post('username'),
+			"email" => $this->input->post('email'),
+			"password" => $this->input->post('password')
+		);
+
+		$newId = $this->config_model->updateUser($saveData, $this->input->post('id'));
+		redirect('/config/editUser/' . $newId);
+	}
+
+	public function saveProfile()
+	{
+		if ($this->input->server('REQUEST_METHOD') == 'POST') {
+			if (!empty($this->input->post('profile_name'))) {
 				$this->load->model("ConfigModel", "config_model");
 				$this->config_model->saveProfile($this->input->post('profile_name'));
 			}
 		}
 	}
 
-	public function deleteUser($f_id = 0){
-		if($f_id > 0){
+	public function deleteUser($f_id = 0)
+	{
+		if ($f_id > 0) {
 			$this->load->model("ConfigModel", "config_model");
 			$this->config_model->deleteUser($f_id);
 			header('Location: /config/users');
