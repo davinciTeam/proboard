@@ -34,6 +34,22 @@ class Projects_model extends CI_Model {
 
     public function getProject($slug)
     {
+            $check_url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+            // echo $check_url;
+        if (strpos($check_url,'tags') !== false) {
+            $project = $this->db->get_where('projects', array('slug' => $slug))->result();
+            $project['0']->tags = $this->getAllTags($project['0']->id);
+
+            $query = $this->db->from('tags');
+
+            foreach ($project['0']->tags as $tag) {
+                $this->db->where('id !=', $tag->id);
+            }
+                       
+            $project['0']->none_tags = $this->db->get()->result();
+
+            return $this->filter->xssFilter($project);
+        }
         $project = $this->db->get_where('projects', array('slug' => $slug))->result();
         $project['0']->members = $this->getAllMembers($project['0']->id);
 
@@ -47,18 +63,6 @@ class Projects_model extends CI_Model {
 
         return $this->filter->xssFilter($project);
 
-        $project = $this->db->get_where('projects', array('slug' => $slug))->result();
-        $project['0']->tags = $this->getAllTags($project['0']->id);
-
-        $query = $this->db->from('tags');
-
-        foreach ($project['0']->tags as $tag) {
-            $this->db->where('id !=', $tag->id);
-        }
-
-        $project['0']->none_tags = $this->db->get()->result();
-
-        return $this->filter->xssFilter($project);
 
     }
 
