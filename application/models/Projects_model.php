@@ -34,6 +34,22 @@ class Projects_model extends CI_Model {
 
     public function getProject($slug)
     {
+            $check_url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+            // echo $check_url;
+        if (strpos($check_url,'tags') or strpos($check_url,'Tags') !== false) {
+            $project = $this->db->get_where('projects', array('slug' => $slug))->result();
+            $project['0']->tags = $this->getAllTags($project['0']->id);
+
+            $query = $this->db->from('tags');
+
+            foreach ($project['0']->tags as $tag) {
+                $this->db->where('id !=', $tag->id);
+            }
+                       
+            $project['0']->none_tags = $this->db->get()->result();
+
+            return $this->filter->xssFilter($project);
+        }
         $project = $this->db->get_where('projects', array('slug' => $slug))->result();
         $project['0']->members = $this->getAllMembers($project['0']->id);
 
@@ -46,6 +62,8 @@ class Projects_model extends CI_Model {
         $project['0']->none_members = $this->db->get()->result();
 
         return $this->filter->xssFilter($project);
+
+
     }
 
     public function addProject($data)
@@ -89,6 +107,65 @@ class Projects_model extends CI_Model {
     }
 
 
+
+
+    // Add tags to projects
+    public function addTags($slug, $name)
+    {
+        $project = $this->getProject($slug);
+
+        if (!$project) {
+            addFeeback(array('Geen project gevonden'), 'negative');
+            return false;
+            exit;
+        }
+
+        $tag = $this->getTags($name);
+
+        if ($tag) {
+            if ($this->db->from('projects_tags')->where('tag_id', $tag['0']->id)->where('project_id', $project['0']->id)->get()->result()) {
+                addFeeback(array('Tag al toegewezen aan project'), 'negative');
+                return false;
+                exit;
+            }
+
+            $result = $this->db->insert('projects_tags', 
+                array('tag_id' => $tag['0']->id, 'project_id' => $project['0']->id));
+            addFeeback(array('Tag succesvol toegewezen'));
+        } else {
+            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+            $result = false;
+        }
+
+        return $result;
+    }
+
+     // End add tags
+    // Delete tags
+    public function deleteTag($projectSlug, $tagSlug)
+    {
+        $project = $this->getProject($projectSlug);
+        $tag = $this->db->get_where('tags', array('slug' => $tagSlug))->result();    
+ 
+        if (!$project || !$tag) {
+            if (!$project) addFeeback(array('Geen project gevonden'), 'negative');
+            if (!$tag) addFeeback(array('Tag niet gevonden'), 'negative');
+            return false;
+            exit;
+        }
+
+        if ($this->db->where('project_id', $project['0']->id)->where('tag_id', $tag['0']->id)->delete('projects_tags')) {
+            addFeeback(array('Tag '. $tag['0']->name.' succesvol van project gehaald'));
+        } else {
+            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+        }
+       
+        return $result;
+    }
+
+
+    // End delete tags
+
     public function deleteMember($projectSlug, $memberSlug)
     {
         $project = $this->getProject($projectSlug);
@@ -119,6 +196,20 @@ class Projects_model extends CI_Model {
     {
         return $this->db->order_by('name')->from('project_members')->where('project_id', $id)->join('members', 'members.id = project_members.member_id', 'inner')->get()->result();
     }
+    // 
+    protected function getTags($name)
+    {
+        return $this->db->get_where('tags', array('slug' => $name))->result();
+    }
+
+    protected function getAllTags($id)
+    {
+        return $this->db->order_by('name')->from('projects_tags')->where('project_id', $id)->join('tags', 'tags.id = projects_tags.tag_id', 'inner')->get()->result();
+    }
+
+
+
+    // 
 
     public function AmountOfProjects()
     {

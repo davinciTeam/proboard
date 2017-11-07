@@ -72,12 +72,6 @@
 }
 
 
-/*.addproject textarea{
-    width: 450px!important;
-    height: 150px;
-}*/
-
-
 .editproject .input-group{
     margin-bottom: 15px;
 }
@@ -99,5 +93,10 @@
 
 .content-wrapper-margin{
     margin-left: 0px!important;
+}
+
+
+.actions a{
+    margin-right: 10px;
 }
 
