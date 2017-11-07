@@ -45,7 +45,7 @@ class Projects_model extends CI_Model {
 
         $project['0']->none_members = $this->db->get()->result();
 
-        // return $this->filter->xssFilter($project);
+        return $this->filter->xssFilter($project);
 
         $project = $this->db->get_where('projects', array('slug' => $slug))->result();
         $project['0']->tags = $this->getAllTags($project['0']->id);
