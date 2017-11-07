@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <pre><?php foreach ($project['0']->tags as $tag) { echo $tag->name; ?> <form method="post" action="/projects/deleteTagsAction" class="inline"><input type="hidden" name="<?=$name;?>" value="<?=$hash;?>" /><input value="<?=$project['0']->slug?>" type="hidden" name="projectSlug"><input value="<?=$tag->slug?>" type="hidden" name="tagSlug"><button class="btn btn-link" type="submit"><i class="glyphicon glyphicon-remove-circle"></i></button></form><?php  } ?></pre>
 	
 	 	<?php echo form_open('projects/addTagsAction') ?>
-		<label>naam nieuw lid</label>
+		<label>Tag Selecteren</label>
 			<div class="form-group">
 				<select name="name">
 					<?php foreach($project['0']->none_tags as $newTags) { ?>
@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</select>
 			</div>
 			<input value="<?=$project['0']->slug ?>" type="hidden" name="slug" required/>
-			<button class="btn btn-blue" type="submit">Voeg nieuwe Tag toe</button>
+			<button class="btn btn-blue" type="submit">Tag toewijzen</button>
 		</form>
 	    
     </section>
