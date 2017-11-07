@@ -43,13 +43,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				'max_length' => 'De beschrijving mag maximaal 500 karakters lang zijn'
 			)
 		)
-		// array(
-		// 	'field' => 'git_url', 
-		// 	'label' => 'git_url',
-  //           'rules' => 'regex_match[/\b(?:(?:https?):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i]'
-
-			
-		// )
 	);
 
 	public function __construct()
@@ -131,6 +124,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         redirect('projects/Members/'.$this->input->post('projectSlug'));
 	}
 
+	// ----------------
+
+	public function Tags($slug = null)
+	{
+		$query = array(
+	        'name' => $this->security->get_csrf_token_name(),
+	        'hash' => $this->security->get_csrf_hash(),
+	        'project' => $this->projects_model->getProject($slug)
+		);
+
+		if (empty($query['project'])) {
+			show_404();
+		} 
+		$this->load->helper('form');
+
+		render('projects/addTags', $query);
+	}
+
+
+	public function addTagsAction()
+	{
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('slug', '', 'required', 
+			array('required' => 'Er is een onbekende fout opgetreden'));
+		$this->form_validation->set_rules('name', 'Naam', 'required', 
+			array('required' => 'Selecteer een naam'));
+		
+		if ($this->form_validation->run()) {
+  	      $this->projects_model->addTags($this->input->post('slug'), $this->input->post('name'));
+    	}
+        redirect('projects/Tags/'.$this->input->post('slug'));
+	}
+
+	public function deleteTagsAction()
+	{
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('projectSlug', '', 'required', 
+			array('required' => 'Er is een onbekende fout opgetreden'));
+		$this->form_validation->set_rules('tagSlug', 'Naam', 'required', 
+			array('required' => 'Selecteer een naam'));
+		
+		if ($this->form_validation->run()) {
+			$this->projects_model->deleteTag($this->input->post('projectSlug'), $this->input->post('tagSlug'));
+		}
+        redirect('projects/Tags/'.$this->input->post('projectSlug'));
+	}
+
+
+
+	// ----------------
+
 
 	public function editProject($slug = null)
 	{
@@ -183,18 +229,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 	}
 
-	// public function regex_check($url){
-
-	// 	if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)) {
-	// 		var_dump($this->input->post('git_url'));
-	// 		$this->form_validation->set_message('regex_check', 'Voer een geldige url in');
- //  			exit();
-
-	// 	}else{
-	// 		var_dump("test",$this->input->post('git_url'));
-	// 		exit();
-	// 	}
-	// }
+	public function regex_check($url)
+	{
+		$url = $this->input->post('git_url');
+		if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)) {
+			$this->form_validation->set_message('regex_check', 'Voer een geldige url in');
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 	public function addProjectAction()
 	{
@@ -202,7 +246,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->library('Slug');
 		$this->form_validation->set_rules(self::$_validationRules);
 
-		// $this->form_validation->set_rules('git_url','regex_check');
+		$this->form_validation->set_rules('git_url','Git url' ,'callback_regex_check');
 
 		if ($this->form_validation->run()) {
 
