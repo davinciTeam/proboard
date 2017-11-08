@@ -10,6 +10,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     	<div class="col-md-12">
     		<?=feedback();?>
     	</div>
+    	<div class="container">
+	    	<div class="row">
+	    		<div class="col-md-12">
+	    			<a href="/tags/addtag" class="add"><i class="fa fa-plus-circle" aria-hidden="true">  Tag aanmaken</i></a>
+	    		</div>
+	    	</div>
+    	</div>
+    	<?php if (!empty($tags)) { ?>
 		<nav class="text-center" aria-label="Page navigation">
   			<ul id="pagination" class="pagination">
     			<?=$this->pagination->create_links() ?>
@@ -48,6 +56,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>
 			</tbody>
 		</table>
-		
+		<?php } else { ?>
+	        <div class="col-md-12">
+	          <div class="panel panel-default">
+	            <div class="panel-body">
+	               Er zijn nog geen tags
+	            </div>
+	          </div>
+	        </div>
+	    <?php } ?>		
     </section>
 </div>

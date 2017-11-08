@@ -49,7 +49,7 @@ $(document).ready(function(){
     function regenerateToken() 
     {
         $.ajax({
-            url: "/config/newToken",
+            url: "/users/newToken",
             method: 'POST',
             success: function(result) {
                 token = result.new_token;

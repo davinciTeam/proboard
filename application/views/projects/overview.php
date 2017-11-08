@@ -16,6 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    		</div>
 	    	</div>
     	</div>
+    	<?php if (!empty($projects)) { ?>
     	<nav class="text-center" aria-label="Page navigation">
   			<ul class="pagination">
     			<?=$this->pagination->create_links() ?>
@@ -60,6 +61,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			</tbody>
 		</table>
+		<?php } else { ?>
+	        <div class="col-md-12">
+	          <div class="panel panel-default">
+	            <div class="panel-body">
+	               Er zijn nog geen projecten
+	            </div>
+	          </div>
+	        </div>
+	    <?php } ?>	
 		
     </section>
 </div>

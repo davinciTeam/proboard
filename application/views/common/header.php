@@ -41,10 +41,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-              
-
-           
-                <li class="dropdown notifications-menu">
+                    
+              <li class="dropdown notifications-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
                   <span class="label label-warning"></span>
@@ -54,33 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </ul>
               </li>
      
-               
-
-              <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<?=$this->session->userdata('profile_image');?>" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><?=$this->session->userdata('name');?></span>
-                </a>
-                <ul class="dropdown-menu">
-  
-                  <li class="user-header">
-                    <img src="<?=$this->session->userdata('profile_image');?>" class="img-circle" alt="User Image">
-                    <p>
-                     <?=$this->session->userdata('name');?>
-                      <small>&nbsp;</small>
-                    </p>
-                  </li>              
-                  <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profiel</a>
-                    </div>
-                    <div class="pull-right">
-                      <a href="/login/logout" class="btn btn-default btn-flat">Afmelden</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-            
+              <li class="name"><?=$this->session->userdata('name');?></li>
+              <li><a href="/login/logout" class="btn btn-warning">Afmelden</a></li>
+          
             </ul>
           </div>
 
