@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </li>
      
               <li class="name"><?=$this->session->userdata('name');?></li>
-              <li><a href="/login/logout" class="btn btn-warning">Afmelden</a></li>
+              <li><a href="/login/logout" class="btn">Afmelden</a></li>
           
             </ul>
           </div>

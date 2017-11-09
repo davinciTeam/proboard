@@ -11,9 +11,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <?=feedback();?>
     </div>
     <?php if (empty(!$projects)) { ?>
-    <div class="row cards white">
-      <div class="col-md-12">projecten</div>
-    </div>
     <div class="row cards">
       <div class="col-md-12">
         <table class="table table-striped table-center">
