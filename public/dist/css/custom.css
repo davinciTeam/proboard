@@ -102,9 +102,13 @@
 
 .name {
     color: white;
-    margin:14px 14px 0px 0px;
+    margin:14px 14px 14px 14px;
 }
 
 .panel-body {
     text-align: center;
+}
+
+.logout{
+    padding: 14px!important;
 }
