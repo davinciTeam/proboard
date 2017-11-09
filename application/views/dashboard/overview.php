@@ -10,9 +10,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-md-12">
       <?=feedback();?>
     </div>
-    <div class="row cards white">
-      <div class="col-md-12">projecten</div>
-    </div>
     <div class="row cards">
       <div class="col-md-12">
         <table class="table table-striped table-center">
@@ -20,11 +17,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <tr>
               <th>Projectnaam</th>
               <th>Klant</th>
-              <th>docent</th>
-              <th>leden</th>
-              <th>eerst volgende code review</th>
-              <th>eerst volgende iteratie bespreking</th>
-              <th>opmerking</th>
+              <th>Docent</th>
+              <th>Leden</th>
+              <th>Datum code review</th>
+              <th>Datum iteratie</th>
+              <th>Opmerking</th>
             </tr>
           </thead>
           <tbody>
