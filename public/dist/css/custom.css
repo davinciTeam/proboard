@@ -100,3 +100,11 @@
     margin-right: 10px;
 }
 
+.name {
+    color: white;
+    margin:14px 14px 0px 0px;
+}
+
+.panel-body {
+    text-align: center;
+}

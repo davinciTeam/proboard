@@ -35,6 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	</div>
 	    	</div>
     	</div>
+    	<?php if (!empty($members)) { ?>
 		<nav class="text-center" aria-label="Page navigation">
   			<ul id="pagination" class="pagination">
     			<?=$this->pagination->create_links() ?>
@@ -77,6 +78,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>
 			</tbody>
 		</table>
+		<?php } else { ?>
+	        <div class="col-md-12">
+	          <div class="panel panel-default">
+	            <div class="panel-body">
+	               Er zijn nog geen studenten
+	            </div>
+	          </div>
+	        </div>
+	    <?php } ?>		
 		
     </section>
 </div>

@@ -10,6 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-md-12">
       <?=feedback();?>
     </div>
+    <?php if (empty(!$projects)) { ?>
+    <div class="row cards white">
+      <div class="col-md-12">projecten</div>
+    </div>
     <div class="row cards">
       <div class="col-md-12">
         <table class="table table-striped table-center">
@@ -45,9 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?=displayTime($project->iteration_start) ?>
                   </span>
                 </div>
-                  <?php } else { ?>
-                    <?=displayTime($project->iteration_start) ?>
-                  <?php } ?>
+                <?php } else { ?>
+                  <?=displayTime($project->iteration_start) ?>
+                <?php } ?>
               </td>
               <td>
                 <?php if ($admin) { ?>
@@ -71,9 +75,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php } ?>
           </tbody>
         </table>
-
       </div>
-    </div>
+    <?php } else { ?>
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+               Er zijn nog geen projecten
+            </div>
+          </div>
+        </div>
+    <?php } ?>
     <?php if (!$admin) { ?> <a href="/login" class="btn btn-blue">Inloggen</a> <?php } ?>
   </section>
 </div>
