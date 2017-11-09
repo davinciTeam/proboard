@@ -9,12 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     	$this->auth->check('0');
       $this->load->library('session');
       $this->load->model('projects_model');    
+      $this->load->model('appointment_model');    
     }
     
     public function index($page = null)
     {
       $data['projects'] = $this->projects_model->getProjects($page, true);
       $data['today'] = date('Y-m-d');
+      $data['project_items'] = $this->appointment_model->getTodayAppointment($page, true);
 
       render('dashboard/overview', $data);
     }

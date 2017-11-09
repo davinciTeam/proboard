@@ -10,9 +10,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-md-12">
       <?=feedback();?>
     </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-11">
+					<?php if (empty(!$project_items)){?>
+        	<table class="table table-striped table-center">
+				<thead>
+					<tr>
+						<th>Projectnaam</th>
+						<th>Klant</th>
+						<th>Docent</th>
+						<th>Leden</th>
+						<th>Datum code review</th>
+						<th>Datum iteratie</th>
+						<th>Opmerking</th>
+					</tr>
+				</thead>
+				<tbody>
+		    			<?php foreach($project_items as $project_item) { ?>
+				          	<tr>
+				          		<td><?=$project_item->name ?> <span data-toggle="tooltip" title="<?=$project_item->description ?>" class="glyphicon glyphicon-comment"></span></td>
+				          		<td><?=$project_item->teacher ?></td>
+		              			<td><?=$project_item->client ?></td>
+				          		<td></td>
+				          		<td><?=displayTime($project_item->iteration_start) ?></td>
+				          		<td><?=displayTime($project_item->code_review_start) ?></td>
+				          		<td><span class="glyphicon glyphicon-comment"></span></td>
+				          	</tr>
+		    			<?php } ;?>
+				</tbody>
+			</table>
+		         <?php  }else{ ?>
+		        	<div class="col-md-12">
+			        	<div class="panel panel-default">
+			            	<div class="panel-body">
+			               	Er zijn nog geen Afspraken vandaag
+			            	</div>
+			          	</div>
+			        </div>
+
+		      	<?php } //end if else ?>
+
+      </div>
+    </div>
     <?php if (empty(!$projects)) { ?>
     <div class="row cards">
-      <div class="col-md-12">
+      <div class="col-md-11">
         <table class="table table-striped table-center">
           <thead>
             <tr>

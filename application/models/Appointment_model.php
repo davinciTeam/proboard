@@ -32,6 +32,23 @@ class Appointment_model extends CI_Model {
         }
     }
 
+
+    public function getTodayAppointment($data)
+    {
+       return $this->db->from('projects')
+       ->group_start()
+                    ->group_start()
+                        ->where('iteration_start >=', date("Y-m-d"))
+                        ->where('iteration_end <=', date("Y-m-d"))
+                    ->group_end()
+                    ->or_group_start()
+                        ->where('code_review_start >=', date("Y-m-d"))
+                        ->where('code_review_end <=', date("Y-m-d"))
+                    ->group_end()
+                ->group_end()
+            ->get()->result();
+    }
+
     protected function validateAppointment($data)
     {
         if ($this->db->from('projects')
