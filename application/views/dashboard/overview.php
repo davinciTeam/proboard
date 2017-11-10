@@ -61,6 +61,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       </div>
     </div>
+  	<div class="row">
+   		<div class="col-md-11 blue-text">
+      		<h1 class="db-space">Alle Afspraken</h1>
+    	</div>
+	</div>
     <?php if (empty(!$projects)) { ?>
     <div class="row cards">
       <div class="col-md-11">

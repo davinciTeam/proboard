@@ -45,6 +45,11 @@
     color:#3c8dbc;
 }
 
+.db-space{
+    border-top: 3px solid;
+    padding-top: 20px;
+}
+
 .import-file{
     display: none;
     margin-top: 15px;
