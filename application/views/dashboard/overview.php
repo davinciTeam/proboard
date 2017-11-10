@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-md-12">
       <?=feedback();?>
     </div>
+<<<<<<< HEAD
     <?php if (empty(!$projects)) { ?>
   
     <?php if ($admin) { ?>
@@ -17,18 +18,71 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="col-md-12"> <div class="input-group input-group-lg"><input name="search" type="text" class="form-control" aria-describedby="search_icon"><span class="input-group-addon" id="search_icon"><i class="fa fa-search" aria-hidden="true"></span></div></i></div>
     <?php } ?>
 
+=======
+    <div class="container">
+      	<div class="row">
+	   		<div class="col-md-11 blue-text">
+	      		<h1>Afspraken van Vandaag</h1>
+	    	</div>
+	    </div>
+	</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-11">
+					<?php if (empty(!$project_items)){?>
+        	<table class="table table-striped table-center">
+				<thead>
+					<tr>
+						<th>Projectnaam</th>
+						<th>Klant</th>
+						<th>Docent</th>
+						<th>Leden</th>
+						<th>Datum code review</th>
+						<th>Datum iteratie</th>
+						<th>Opmerking</th>
+					</tr>
+				</thead>
+				<tbody>
+		    			<?php foreach($project_items as $project_item) { ?>
+				          	<tr>
+				          		<td><?=$project_item->name ?> <span data-toggle="tooltip" title="<?=$project_item->description ?>" class="glyphicon glyphicon-comment"></span></td>
+				          		<td><?=$project_item->teacher ?></td>
+		              			<td><?=$project_item->client ?></td>
+				          		<td><?php foreach ($project_item->members as $member) { 
+            						echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
+				          		<td><?=displayTime($project_item->iteration_start) ?></td>
+				          		<td><?=displayTime($project_item->code_review_start) ?></td>
+				          		<td><span class="glyphicon glyphicon-comment"></span></td>
+				          	</tr>
+		    			<?php } ;?>
+				</tbody>
+			</table>
+		         <?php  }else{ ?>
+		        	<div class="col-md-12">
+			        	<div class="panel panel-default">
+			            	<div class="panel-body">
+			               	Er zijn nog geen Afspraken vandaag
+			            	</div>
+			          	</div>
+			        </div>
+
+		      	<?php } //end if else ?>
+
+      </div>
+    </div>
+    <?php if (empty(!$projects)) { ?>
     <div class="row cards">
-      <div class="col-md-12">
+      <div class="col-md-11">
         <table class="table table-striped table-center">
           <thead>
             <tr>
               <th>Projectnaam</th>
               <th>Klant</th>
-              <th>docent</th>
-              <th>leden</th>
-              <th>eerst volgende iteratie bespreking</th>
-              <th>eerst volgende code review</th>
-              <th>opmerking</th>
+              <th>Docent</th>
+              <th>Leden</th>
+              <th>Datum iteratie</th>
+              <th>Datum code review</th>
+              <th>Opmerking</th>
             </tr>
           </thead>
           <tbody id="projects">

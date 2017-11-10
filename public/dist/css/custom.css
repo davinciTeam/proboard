@@ -41,6 +41,10 @@
     color:rgba(0, 255, 0, 1.0);
 }
 
+.blue-text{
+    color:#3c8dbc;
+}
+
 .import-file{
     display: none;
     margin-top: 15px;
@@ -102,9 +106,13 @@
 
 .name {
     color: white;
-    margin:14px 14px 0px 0px;
+    margin:14px 14px 14px 14px;
 }
 
 .panel-body {
     text-align: center;
+}
+
+.logout{
+    padding: 14px!important;
 }
