@@ -11,6 +11,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <?=feedback();?>
     </div>
     <div class="container">
+      	<div class="row">
+	   		<div class="col-md-11 blue-text">
+	      		<h1>Afspraken van Vandaag</h1>
+	    	</div>
+	    </div>
+	</div>
+    <div class="container">
       <div class="row">
         <div class="col-md-11">
 					<?php if (empty(!$project_items)){?>
