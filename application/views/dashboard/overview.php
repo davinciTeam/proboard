@@ -32,7 +32,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				          		<td><?=$project_item->name ?> <span data-toggle="tooltip" title="<?=$project_item->description ?>" class="glyphicon glyphicon-comment"></span></td>
 				          		<td><?=$project_item->teacher ?></td>
 		              			<td><?=$project_item->client ?></td>
-				          		<td></td>
+				          		<td><?php foreach ($project_item->members as $member) { 
+            						echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
 				          		<td><?=displayTime($project_item->iteration_start) ?></td>
 				          		<td><?=displayTime($project_item->code_review_start) ?></td>
 				          		<td><span class="glyphicon glyphicon-comment"></span></td>

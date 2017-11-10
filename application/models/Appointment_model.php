@@ -35,7 +35,7 @@ class Appointment_model extends CI_Model {
 
     public function getTodayAppointment($data)
     {
-       return $this->db->from('projects')
+       $queryResult = $this->db->from('projects')
        ->group_start()
                     ->group_start()
                         ->where('iteration_start >=', date("Y-m-d"))
@@ -47,6 +47,12 @@ class Appointment_model extends CI_Model {
                     ->group_end()
                 ->group_end()
             ->get()->result();
+            
+            foreach ($queryResult as $result) {
+                $result->members = $this->getAllMembers($result->id);
+            }
+
+        return $this->filter->xssFilter($queryResult);
     }
 
     protected function validateAppointment($data)
@@ -68,5 +74,10 @@ class Appointment_model extends CI_Model {
         } else {
             return true;
         }
+    }
+
+    protected function getAllMembers($id)
+    {
+        return $this->db->order_by('name')->from('project_members')->where('project_id', $id)->join('members', 'members.id = project_members.member_id', 'inner')->get()->result();
     }
 }
