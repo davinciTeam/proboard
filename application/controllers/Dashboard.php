@@ -18,6 +18,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $data['today'] = date('Y-m-d');
       $data['project_items'] = $this->appointment_model->getTodayAppointment($page, true);
 
+      if ($this->input->post('json') == 'true') {
+        header('Content-type:application/json');
+        echo json_encode($data);
+        exit;
+      }
+
       render('dashboard/overview', $data);
     }
 

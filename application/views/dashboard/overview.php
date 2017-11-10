@@ -10,6 +10,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-md-12">
       <?=feedback();?>
     </div>
+<<<<<<< HEAD
+    <?php if (empty(!$projects)) { ?>
+  
+    <?php if ($admin) { ?>
+      <div class="col-md-12 row cards white">projecten</div>
+      <div class="col-md-12"> <div class="input-group input-group-lg"><input name="search" type="text" class="form-control" aria-describedby="search_icon"><span class="input-group-addon" id="search_icon"><i class="fa fa-search" aria-hidden="true"></span></div></i></div>
+    <?php } ?>
+
+=======
     <div class="container">
       	<div class="row">
 	   		<div class="col-md-11 blue-text">
@@ -76,12 +85,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <th>Klant</th>
               <th>Docent</th>
               <th>Leden</th>
-              <th>Datum code review</th>
               <th>Datum iteratie</th>
+              <th>Datum code review</th>
               <th>Opmerking</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="projects">
           <?php foreach($projects as $project) { ?>
             <tr class="<?=compareTime(array($project->iteration_start, $project->code_review_start)) ?>">
               <td><?=$project->name ?> <span data-toggle="tooltip" title="<?=$project->description ?>" class="glyphicon glyphicon-comment"></span></td>

@@ -11,7 +11,16 @@ class Projects_model extends CI_Model {
 
     public function getProjects($offset = null, $sort = false)
     {
-        //get all projects
+        $search = $this->input->post('searchParamaters');
+        if (!empty($search)) {
+
+            $search = '%'.$search.'%';       
+            foreach($this->db->list_fields('projects') as $fieldName) {
+                if ($fieldName === 'id' || $fieldName === 'active') continue;
+                $this->db->or_where($fieldName. ' LIKE', $search);
+            }
+        }
+
         if (is_numeric($offset)) {
             $this->db->limit(10, $offset);
         } else {
@@ -26,7 +35,7 @@ class Projects_model extends CI_Model {
         $queryResult = $this->db->from('projects')->get()->result();
 
         foreach ($queryResult as $result) {
-            $result->members = $this->getAllMembers($result->id);
+            $result->members = $this->getAllMembers($result->id, $search);
         }
 
        	return $this->filter->xssFilter($queryResult);
