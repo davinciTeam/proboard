@@ -11,31 +11,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <?=feedback();?>
     </div>
 
-    <?php if (empty(!$projects)) { ?>
-  
+     
+ 
     <?php if ($admin) { ?>
-      <div class="col-md-12 row cards white">projecten</div>
       <div class="col-md-12"> <div class="input-group input-group-lg"><input name="search" type="text" class="form-control" aria-describedby="search_icon"><span class="input-group-addon" id="search_icon"><i class="fa fa-search" aria-hidden="true"></span></div></i></div>
     <?php } ?>
 
 
     <div class="container">
+      	<div class="row">
+	   		<div class="col-md-11 blue-text">
+	      		<h1>Afspraken van Vandaag</h1>
+	    	</div>
+	    </div>
+	</div>
+    <div class="container">
       <div class="row">
         <div class="col-md-11">
-					<?php if (empty(!$project_items)){?>
-        	<table class="table table-striped table-center">
-				<thead>
-					<tr>
-						<th>Projectnaam</th>
-						<th>Klant</th>
-						<th>Docent</th>
-						<th>Leden</th>
-						<th>Datum code review</th>
-						<th>Datum iteratie</th>
-						<th>Opmerking</th>
-					</tr>
-				</thead>
-				<tbody>
+
+				<?php if (empty(!$project_items)){?>
+		        	<table class="table table-striped table-center">
+						<thead>
+							<tr>
+								<th>Projectnaam</th>
+								<th>Klant</th>
+								<th>Docent</th>
+								<th>Leden</th>
+								<th>Datum code review</th>
+								<th>Datum iteratie</th>
+								<th>Opmerking</th>
+							</tr>
+						</thead>
+						<tbody>
 		    			<?php foreach($project_items as $project_item) { ?>
 				          	<tr>
 				          		<td><?=$project_item->name ?> <span data-toggle="tooltip" title="<?=$project_item->description ?>" class="glyphicon glyphicon-comment"></span></td>
@@ -50,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    			<?php } ;?>
 				</tbody>
 			</table>
-		         <?php  }else{ ?>
+		        <?php  }else{ ?>
 		        	<div class="col-md-12">
 			        	<div class="panel panel-default">
 			            	<div class="panel-body">
@@ -68,6 +75,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       		<h1 class="db-space">Alle Afspraken</h1>
     	</div>
 	</div>
+
+
     <?php if (empty(!$projects)) { ?>
     <div class="row cards">
       <div class="col-md-11">
@@ -109,6 +118,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php } ?>
               </td>
               <td>
+
                 <?php if ($admin) { ?>
                 <div class="input-group">
                   <span class="edit glyphicon glyphicon-edit">
@@ -135,12 +145,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-12">
           <div class="panel panel-default">
             <div class="panel-body">
-               Er zijn nog geen projecten
+               <p>Er zijn nog geen projecten</p>
             </div>
           </div>
         </div>
+    
+    <?php }  ?>
+
+   <?php if (!$admin) { ?> 
+    		<a href="/login" class="btn btn-blue">Inloggen</a> 
     <?php } ?>
-    <?php if (!$admin) { ?> <a href="/login" class="btn btn-blue">Inloggen</a> <?php } ?>
   </section>
 </div>
-<script src="/custom/scripts/iterations_code_review.js"></script>
+<script src="/custom/scripts/iterations_code_review.js" type="text/javascript"></script>
