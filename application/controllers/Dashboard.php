@@ -16,6 +16,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $data['projects'] = $this->projects_model->getProjects($page, true);
       $data['today'] = date('Y-m-d');
 
+      if ($this->input->post('json') == 'true') {
+        header('Content-type:application/json');
+        echo json_encode($data);
+        exit;
+      }
+
       render('dashboard/overview', $data);
     }
 
