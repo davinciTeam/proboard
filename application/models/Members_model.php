@@ -73,15 +73,16 @@ class Members_model extends CI_Model {
         if ($this->upload->do_upload('userfile')) {
             $data = array('upload_data' => $this->upload->data());
 
-            $fileData = str_getcsv(str_replace("\n", '', file_get_contents($data['upload_data']['full_path'], false)), ';');
-            $fileData = preg_replace('/[\x00-\x1F\x7F]/u', '', $fileData);//remove any none utf-8 charachers
+            $fileData = str_replace(array("\r\n", "\n", "\r"), '', file($data['upload_data']['full_path']));
+            $fileData = preg_replace('/[\x00-\x1F\x7F]/u', '', explode(';', implode($fileData, '')));
+
             unlink($data['upload_data']['full_path']);
       
             $errors = [];
             $counter = count($fileData)-1;
             for ($i = 4; $i < $counter; $i+=4) {
                 if (!isset($fileData[$i]) || 1 > $fileData[$i] || strlen($fileData[$i]) !== 8 || !is_numeric($fileData[$i])) {
-                    $errors[] = "Ongeldig Ov nummer regelnummer ".((string)$i/4+1) ;
+                    $errors[] = "Ongeldig Ov nummer regelnummer ".((string)$i/4+1);
                 } 
                 if (!isset($fileData[$i+1])|| strlen($fileData[$i+1]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/",     $fileData[$i+1])) {
                     $errors[] = "Ongeldig naam regelnummer ".((string)$i/4+1) ;
@@ -119,7 +120,7 @@ class Members_model extends CI_Model {
                     $this->addMember($importData);
                 }
             }
-            
+          
             addFeeback(array('Import gelukt'));
             
             return true;
