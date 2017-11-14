@@ -83,13 +83,13 @@ class Members_model extends CI_Model {
                 if (!isset($fileData[$i]) || 1 > $fileData[$i] || strlen($fileData[$i]) !== 8 || !is_numeric($fileData[$i])) {
                     $errors[] = "Ongeldig Ov nummer regelnummer ".((string)$i/4+1) ;
                 } 
-                if (!isset($fileData[$i+1])|| strlen($fileData[$i+1]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+1])) {
+                if (!isset($fileData[$i+1])|| strlen($fileData[$i+1]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/",     $fileData[$i+1])) {
                     $errors[] = "Ongeldig naam regelnummer ".((string)$i/4+1) ;
                 } 
-                if (!isset($fileData[$i+2]) || strlen($fileData[$i+2]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+2])) {
+                if (!isset($fileData[$i+2]) || strlen($fileData[$i+2]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/",     $fileData[$i+2])) {
                     $errors[] = "Ongeldig tussenvoegsel regelnummer ".((string)$i/4+1) ;
                 } 
-                if (!isset($fileData[$i+3]) || strlen($fileData[$i+3]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+3])) {
+                if (!isset($fileData[$i+3]) || strlen($fileData[$i+3]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/",     $fileData[$i+3])) {
                     $errors[] = "Ongeldig achternaam regelnummer ".((string)$i/4+1) ;
                 }
             } 
