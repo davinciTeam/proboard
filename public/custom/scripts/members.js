@@ -66,8 +66,28 @@ $(document).ready(function(){
         var page = $(this).children();
         page = ($(page['0']).attr('data-ci-pagination-page')-1)*10;
 
+        var current = $('.active').children('a').attr('data-ci-pagination-page');
+     
         $('.active').removeClass('active');
-        $(this).addClass('active');
+
+        var ci_pagination_page = page/10+1;
+
+        if ( $(this).children('a').attr('rel') === 'prev') {
+        	if (current == 1) return;
+        	$('a[data-ci-pagination-page="'+ci_pagination_page+'"][rel!="prev"]').parent('li').addClass('active')
+        	$('a[rel=\'prev\']').attr('data-ci-pagination-page', ci_pagination_page-1)
+        	$('a[rel=\'next\']').attr('data-ci-pagination-page', ci_pagination_page+1)
+
+        } else if ( $(this).children('a').attr('rel') === 'next' ) {
+        	$('a[data-ci-pagination-page="'+ci_pagination_page+'"][rel!="next"]').parent('li').addClass('active')
+        	$('a[rel=\'next\']').attr('data-ci-pagination-page', ci_pagination_page+1)
+        	$('a[rel=\'prev\']').attr('data-ci-pagination-page', ci_pagination_page-1)
+        } else {
+	        $(this).addClass('active');
+        }
+
+        
+      
         window.history.pushState({}, 'Project-beheer', 'http://project-beheer/members/overview/'+page)
 
         $.ajax({
