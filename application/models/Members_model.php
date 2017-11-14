@@ -78,8 +78,9 @@ class Members_model extends CI_Model {
             unlink($data['upload_data']['full_path']);
       
             $errors = [];
-            for ($i = 4; $i < count($fileData)-1; $i+=4) {
-                if (!isset($fileData[$i]) || strlen($fileData[$i]) !== 8 || !is_numeric($fileData[$i])) {
+            $counter = count($fileData)-1;
+            for ($i = 4; $i < $counter; $i+=4) {
+                if (!isset($fileData[$i]) || 1 > $fileData[$i] || strlen($fileData[$i]) !== 8 || !is_numeric($fileData[$i])) {
                     $errors[] = "Ongeldig Ov nummer regelnummer ".((string)$i/4+1) ;
                 } 
                 if (!isset($fileData[$i+1])|| strlen($fileData[$i+1]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/",     $fileData[$i+1])) {

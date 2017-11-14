@@ -36,11 +36,12 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'ovnumber', 
 			'label' => 'Ovnummer',
-            'rules' => 'required|exact_length[8]|is_numeric',
+            'rules' => 'required|greater_than[1]|exact_length[8]|is_numeric',
             'errors' => array(
 				'required' => 'U moet een ovnummer invullen',
 				'exact_length' => 'Vul een geldig ov-nummer in',
-				'is_numeric' => 'Vul een geldig ov-nummer in'
+				'is_numeric' => 'Vul een geldig ov-nummer in',
+				'greater_than' => 'Vul een geldig ov-nummer in'
 			)
 		)
 	);
