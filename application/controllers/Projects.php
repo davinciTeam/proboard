@@ -229,14 +229,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 	}
 
-	public function regex_check($url)
+	public function regex_check()
 	{
-		$url = $this->input->post('git_url');
-		if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)) {
-			$this->form_validation->set_message('regex_check', 'Voer een geldige url in');
-			return false;
-		}else{
-			return true;
+
+		$urls = array($this->input->post('git_url'),
+			$this->input->post('trello_url'),
+			$this->input->post('bug_url'),
+			$this->input->post('project_url')
+	);
+
+		$validate_error = array();
+		foreach ($urls as $url) {
+			
+			if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)){			
+				$this->form_validation->set_message('regex_check', 'Voer een geldige url in');
+				// echo "false";
+				array_push($validate_error,1);
+			}else{
+				// echo "true";
+				array_push($validate_error,0);
+				// return true;
+			}
+		}//end foreach
+		// var_dump($validate_error);
+		if( in_array( "1" ,$validate_error)){
+		    $this->form_validation->set_message('regex_check', 'Voer een geldige url in');
+		    return false;
 		}
 	}
 
@@ -247,6 +265,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->form_validation->set_rules(self::$_validationRules);
 
 		$this->form_validation->set_rules('git_url','Git url' ,'callback_regex_check');
+		
+		
 
 		if ($this->form_validation->run()) {
 
