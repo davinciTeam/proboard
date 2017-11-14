@@ -25,7 +25,7 @@ class Emails {
                 </head>
                 <body> 
                     <p>Meneer/Mevrouw ".$name." bevestig u acount van proboard</p>
-                    <a href='http://www.proboard.dvc-icta.nl/dashboard/activation/".$hash."'>bevestig</a>
+                    <a target=\"_blank\" href='http://www.proboard.dvc-icta.nl/dashboard/activation/".$hash."'>bevestig</a>
                 </body>
             </html>";
 
