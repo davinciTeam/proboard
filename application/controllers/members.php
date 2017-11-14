@@ -8,7 +8,7 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'name', 
 			'label' => 'Voornaam',
-            'rules' => 'required|max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/]',
+            'rules' => 'required|max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/]',
             'errors' => array(
 				'required' => 'U moet een voornaam invullen',
 				'max_length' => 'De naam mag maximaal 100 karakters lang zijn',
@@ -18,7 +18,7 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'insertion', 
 			'label' => 'Tussenvoegsel',
-            'rules' => 'max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/]',
+            'rules' => 'max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/]',
             'errors' => array(
 				'max_length' => 'Het tussenvoegsel mag maximaal 100 karakters lang zijn',
 				'regex_match' => 'Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)'
@@ -27,7 +27,7 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'lastname', 
 			'label' => 'Achternaam',
-            'rules' => 'max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$/]',
+            'rules' => 'max_length[100]|regex_match[/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/]',
             'errors' => array(
 				'max_length' => 'De achternaam mag maximaal 100 karakters lang zijn',
 				'regex_match' => 'Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)'
@@ -36,11 +36,12 @@ class Members extends CI_Controller {
 		array(
 			'field' => 'ovnumber', 
 			'label' => 'Ovnummer',
-            'rules' => 'required|exact_length[8]|is_numeric',
+            'rules' => 'required|greater_than[1]|exact_length[8]|is_numeric',
             'errors' => array(
 				'required' => 'U moet een ovnummer invullen',
 				'exact_length' => 'Vul een geldig ov-nummer in',
-				'is_numeric' => 'Vul een geldig ov-nummer in'
+				'is_numeric' => 'Vul een geldig ov-nummer in',
+				'greater_than' => 'Vul een geldig ov-nummer in'
 			)
 		)
 	);
