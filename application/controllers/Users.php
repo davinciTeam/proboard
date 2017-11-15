@@ -59,7 +59,7 @@ class Users extends CI_Controller {
 
 		$this->config_model->insertUser($saveData);
 
-		redirect('/config');
+		redirect('Users/users');
 	}
 
 	public function editUserAction()
