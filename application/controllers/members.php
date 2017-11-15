@@ -156,9 +156,54 @@ class Members extends CI_Controller {
 		
 	}
 
-	public function import()
+	public function import($fileData)
 	{
-		$this->members_model->import();
+		$this->load->helper('url_helper');
+
+        $config['upload_path']          = realpath(APPPATH . '../uploads/');
+        $config['file_name']            = 'import.csv';
+        $config['allowed_types']        = 'csv';
+        $config['max_size']             = 100;
+
+        $this->load->library('upload', $config);
+        
+        $data = array('file' => $this->upload->data());
+
+        if ($this->upload->do_upload('userfile')) {
+            $data = array('upload_data' => $this->upload->data());
+
+            $fileData = str_replace(array("\r\n", "\n", "\r"), '', file($data['upload_data']['full_path']));
+            $fileData = preg_replace('/[\x00-\x1F\x7F]/u', '', explode(';', implode($fileData, '')));
+
+            unlink($data['upload_data']['full_path']);
+      
+            $errors = [];
+            $counter = count($fileData)-1;
+            for ($i = 4; $i < $counter; $i+=4) {
+                if (!isset($fileData[$i]) || 1 > $fileData[$i] || strlen($fileData[$i]) !== 8 || !is_numeric($fileData[$i])) {
+                    $errors[] = "Ongeldig Ov nummer regelnummer ".((string)$i/4+1);
+                } 
+                if (!isset($fileData[$i+1])|| strlen($fileData[$i+1]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/",     $fileData[$i+1])) {
+                    $errors[] = "Ongeldig naam regelnummer ".((string)$i/4+1) ;
+                } 
+                if (!isset($fileData[$i+2]) || strlen($fileData[$i+2]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/",     $fileData[$i+2])) {
+                    $errors[] = "Ongeldig tussenvoegsel regelnummer ".((string)$i/4+1) ;
+                } 
+                if (!isset($fileData[$i+3]) || strlen($fileData[$i+3]) >= 100 || !preg_match("/^[\w öóáäéýúíÄËÿüïöÖÜǧğ]*$/",     $fileData[$i+3])) {
+                    $errors[] = "Ongeldig achternaam regelnummer ".((string)$i/4+1) ;
+                }
+            } 
+           
+            if (!empty($errors)) {
+                addFeeback($errors, 'negative');
+                return false;
+            }
+            $this->members_model->import($fileData);
+        } else {
+        	addFeeback(array($this->upload->display_errors()), 'negative');
+        }
+        addFeeback(array('import gelukt'));
+
 		redirect('members/');
 	}
 }
