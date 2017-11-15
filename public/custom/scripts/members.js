@@ -70,21 +70,22 @@ $(document).ready(function(){
 
         if ( $(this).children('a').attr('rel') === 'prev') {
         	if (current <= 1) return;
+        	$('.active').removeClass('active');
         	$('a[data-ci-pagination-page="'+ci_pagination_page+'"][rel!="prev"]').parent('li').addClass('active')
         	$('a[rel=\'prev\']').attr('data-ci-pagination-page', ci_pagination_page-1)
         	$('a[rel=\'next\']').attr('data-ci-pagination-page', ci_pagination_page+1)
 
         } else if ( $(this).children('a').attr('rel') === 'next' ) {
+        	$('.active').removeClass('active');
         	$('a[data-ci-pagination-page="'+ci_pagination_page+'"][rel!="next"]').parent('li').addClass('active')
         	$('a[rel=\'next\']').attr('data-ci-pagination-page', ci_pagination_page+1)
         	$('a[rel=\'prev\']').attr('data-ci-pagination-page', ci_pagination_page-1)
         } else {
+        	$('.active').removeClass('active');
 	        $(this).addClass('active');
 	        $('a[rel=\'prev\']').attr('data-ci-pagination-page', ci_pagination_page-1)
         	$('a[rel=\'next\']').attr('data-ci-pagination-page', ci_pagination_page+1)
         }
-
-        $('.active').removeClass('active');
       
         window.history.pushState({}, 'Project-beheer', 'http://project-beheer/members/overview/'+page)
 

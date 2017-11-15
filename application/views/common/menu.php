@@ -16,6 +16,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <ul class="sidebar-menu">
         <li class="header">Navigatie</li>
+          <li>
+            <a href="/">
+              <span>dashboard</span> 
+            </a>
+          </li>
           <li class="treeview">
             <a href="#">
               <span>Gebruikers</span> <i class="fa fa-angle-left pull-right"></i>
@@ -50,11 +55,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <li><a href="/tags">Overzicht</a></li>
               <li><a href="/tags/addTag">Tag Aanmaken</a></li>
             </ul>
-          </li>
-          <li>
-            <a href="/">
-              <span>dashboard</span> 
-            </a>
           </li>
     </ul>
   </section>
