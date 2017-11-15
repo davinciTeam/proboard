@@ -27,8 +27,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		
 			<thead>
 				<tr>
-					<th id="Tagname" class="sorting">Tag naam<span class="glyphicon glyphicon-arrow-up"></span></th>
-					<th id="Description" class="currentSorting sorting">Bescrhijving<span class="sorting glyphicon glyphicon-arrow-up"></span></th>
+					<th>Tag naam</th>
+					<th>Bescrhijving</th>
                     <th>Acties</th>
                     <th>Actief</th>
 				</tr>
