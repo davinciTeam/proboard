@@ -87,6 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <th>Klant</th>
               <th>Docent</th>
               <th>Leden</th>
+              <th>tags</th>
               <th>Datum iteratie</th>
               <th>Datum code review</th>
               <th>Opmerking</th>
@@ -98,9 +99,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <td><?=$project->name ?> <span data-toggle="tooltip" title="<?=$project->description ?>" class="glyphicon glyphicon-comment"></span></td>
               <td><?=$project->teacher ?></td>
               <td><?=$project->client ?></td>
-              <td><?php foreach ($project->members as $member) { 
-            echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
+              <td><?php foreach ($project->members as $member) { echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
+              <td><?php foreach ($project->tags as $tag) { ?><span data-toggle="tooltip" title="<?=$tag->description ?>" class="label label-info"><?=$tag->name ?> </span> <?php } ?></td>
               <td>
+
                 <?php if ($admin) { ?>
                 <div class="input-group">
                   <span class="edit glyphicon glyphicon-edit">

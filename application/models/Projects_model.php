@@ -35,7 +35,8 @@ class Projects_model extends CI_Model {
         $queryResult = $this->db->from('projects')->get()->result();
 
         foreach ($queryResult as $result) {
-            $result->members = $this->getAllMembers($result->id, $search);
+            $result->members = $this->getAllMembers($result->id);
+            $result->tags = $this->getAllTags($result->id);
         }
 
        	return $this->filter->xssFilter($queryResult);
@@ -43,8 +44,8 @@ class Projects_model extends CI_Model {
 
     public function getProject($slug)
     {
-            $check_url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-            // echo $check_url;
+        $check_url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
         if (strpos($check_url,'tags') or strpos($check_url,'Tags') !== false) {
             $project = $this->db->get_where('projects', array('slug' => $slug))->result();
             $project['0']->tags = $this->getAllTags($project['0']->id);
@@ -105,7 +106,7 @@ class Projects_model extends CI_Model {
             }
 
             $result = $this->db->insert('project_members', 
-                array('member_id' => $member['0']->id, 'project_id' => $project['0']->id));
+            array('member_id' => $member['0']->id, 'project_id' => $project['0']->id));
             addFeeback(array('Student succesvol toegevoegd'));
         } else {
             addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
@@ -149,8 +150,6 @@ class Projects_model extends CI_Model {
         return $result;
     }
 
-     // End add tags
-    // Delete tags
     public function deleteTag($projectSlug, $tagSlug)
     {
         $project = $this->getProject($projectSlug);
@@ -171,9 +170,6 @@ class Projects_model extends CI_Model {
        
         return $result;
     }
-
-
-    // End delete tags
 
     public function deleteMember($projectSlug, $memberSlug)
     {
@@ -215,10 +211,6 @@ class Projects_model extends CI_Model {
     {
         return $this->db->order_by('name')->from('projects_tags')->where('project_id', $id)->join('tags', 'tags.id = projects_tags.tag_id', 'inner')->get()->result();
     }
-
-
-
-    // 
 
     public function AmountOfProjects()
     {

@@ -87,7 +87,7 @@
 
 			$hash = $this->auth->getPasswordHash($data["password"], $user);
 
-			if ($this->db->update('users', array("password" => $hash) , array("id" => $user->id))) {
+			if ($this->db->update('users', array("password" => $hash, "active" => 1) , array("id" => $user->id))) {
 				addFeeback(array('U kunt nu inloggen'));
 			}
 

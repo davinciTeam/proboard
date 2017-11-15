@@ -29,6 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<th>Klant</th>
 					<th>Docent</th>
 					<th>Leden</th>
+					<th>tags</th>
                     <th>Acties</th>
 					<th>Actief</th>
 				</tr>
@@ -43,6 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$project->teacher;?></td>
 					<td><?php foreach ($project->members as $member) { 
 						echo $member->name." ".$member->insertion." ".$member->lastname.",  "; } ?></td>
+					<td> <td><?php foreach ($project->tags as $tag) { ?><span data-toggle="tooltip" title="<?=$tag->description ?>" class="label label-info"><?=$tag->name ?> </span> <?php } ?></td></td>
 					<td class="actions"><a title="Leden beheren" href="/projects/Members/<?=$project->slug ?>"><i class="fa fa-users" aria-hidden="true"></i></a>
 					<a title="Tags beheren" href="/projects/tags/<?=$project->slug ?>"><i class="fa fa-tag" aria-hidden="true"></i></a>
 					<a title="Project Bewerken" href="/projects/editProject/<?=$project->slug ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
