@@ -16,7 +16,7 @@ class Members_model extends CI_Model {
             $this->db->order_by($this->input->post('field'), $this->input->post('search'));
         } 
 
-        if (is_numeric($offset)) {
+        if (is_numeric($offset) && $offset > 0) {
             $this->db->limit(10, $offset)->order_by('name');
         } else {
             $this->db->limit(10)->order_by('name');

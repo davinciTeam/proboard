@@ -21,7 +21,7 @@ class Projects_model extends CI_Model {
             }
         }
 
-        if (is_numeric($offset)) {
+        if (is_numeric($offset) && $offset > 0) {
             $this->db->limit(10, $offset);
         } else {
             $this->db->limit(10);
