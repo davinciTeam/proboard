@@ -202,6 +202,7 @@ class Members extends CI_Controller {
         } else {
         	addFeeback(array($this->upload->display_errors()), 'negative');
         }
+        addFeeback(array('import gelukt'));
 
 		redirect('members/');
 	}
