@@ -49,15 +49,19 @@ class Users extends CI_Controller {
 
 	public function NewUserAction()
 	{
+		$this->load->library('form_validation');
 		$this->load->model("ConfigModel", "config_model");
-		
-		$saveData = array(
-			"name" => $this->input->post('name'),
-			"username" => $this->input->post('username'),
-			"email" => $this->input->post('email'),
-		);
+		$this->form_validation->set_rules('email', 'email', 'required|is_unique[users.email]',	
+		array('is_unique' => 'E-mail adres is al in gebruik'));
 
-		$this->config_model->insertUser($saveData);
+		if ($this->form_validation->run()) {
+
+			$saveData = array(
+				"name" => $this->input->post('name'),
+				"username" => $this->input->post('username'),
+				"email" => $this->input->post('email'),
+			);
+		}
 
 		redirect('Users/users');
 	}
