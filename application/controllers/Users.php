@@ -61,6 +61,7 @@ class Users extends CI_Controller {
 				"username" => $this->input->post('username'),
 				"email" => $this->input->post('email'),
 			);
+			$this->config_model->insertUser($saveData);
 		}
 
 		redirect('Users/users');
