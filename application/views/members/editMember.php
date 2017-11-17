@@ -19,6 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input type="number" class="form-control" name="ovnumber" value="<?=$member['0']->ovnumber ?>" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de nummers 0-9 toegestaan"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">Voornaam</label>
@@ -26,6 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="name" class="form-control" value="<?=$member['0']->name ?>" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">Tussenvoegsel</label>
@@ -40,6 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="lastname" class="form-control" value="<?=$member['0']->lastname ?>" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 
@@ -55,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<input type="hidden" name="slug" value="<?=$member['0']->slug ?>">
 							<button type="submit" class="btn btn-blue">Student Aanpassen</button>
 						</form>
-
+						<i class="darkRed fa fa-star" aria-hidden="false"> = verplicht veld</i>
 					</div>
 				</div>
 			</div>

@@ -12,7 +12,7 @@ class Users extends CI_Controller {
    	
 	public function index()
 	{
-		redirect('config/users');
+		redirect('Users/users');
 	}
 
 	public function users()
@@ -73,7 +73,7 @@ class Users extends CI_Controller {
 		);
 
 		$newId = $this->config_model->updateUser($saveData, $this->input->post('id'));
-		redirect('/config/editUser/' . $newId);
+		redirect('/Users/editUser/' . $newId);
 	}
 
 	public function saveProfile()
@@ -91,7 +91,7 @@ class Users extends CI_Controller {
 		if ($f_id > 0) {
 			$this->load->model("ConfigModel", "config_model");
 			$this->config_model->deleteUser($f_id);
-			header('Location: /config/users');
+			header('Location: /Users/users');
 		}
 	}
 

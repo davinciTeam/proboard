@@ -19,6 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input type="text" class="form-control" name="name" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de nummers 0-9 toegestaan"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 								<label for="text">Beschrijving</label>
@@ -26,10 +27,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<textarea maxlength="500" name="description" class="form-control" rows="5" required></textarea>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<button type="submit" class="btn btn-blue">Tag Toevoegen</button>
 						</form>
+						<i class="darkRed fa fa-star" aria-hidden="false"> = verplicht veld</i>
 
 					</div>
 				</div>

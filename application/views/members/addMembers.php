@@ -19,6 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input type="number" class="form-control" id="ovnumber" max="99999999" name="ovnumber" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de nummers 0-9 toegestaan"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="name">Voornaam</label>
@@ -26,6 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input type="text" class="form-control"  maxlength="100" name="name" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="insertion">Tussenvoegsel</label>
@@ -40,10 +42,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input type="input" class="form-control" maxlength="100" name="lastname" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<button type="submit" class="btn btn-blue">Studenten Aanmaken</button>
 						</form>
+						<i class="darkRed fa fa-star" aria-hidden="false"> = verplicht veld</i>
 					</div>
 				</div>
 			</div>

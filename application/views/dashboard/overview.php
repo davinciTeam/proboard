@@ -11,7 +11,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <?=feedback();?>
     </div>
 
-     
  
     <?php if ($admin) { ?>
       <div class="col-md-12"> <div class="input-group input-group-lg"><input name="search" type="text" class="form-control" aria-describedby="search_icon"><span class="input-group-addon" id="search_icon"><i class="fa fa-search" aria-hidden="true"></span></div></i></div>

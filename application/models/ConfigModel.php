@@ -37,7 +37,6 @@
 			$updateData = array(
 				"name" => $data["name"],
 				"email" => $data["email"],
-				"start_page" => '/dashboard'
 			);
 			if ($this->db->update('users', $updateData, array("id" => $id))) {
 				addFeeback(array('Gebruiker succesvol bijgewerkt'));

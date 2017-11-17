@@ -19,6 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input title="Voer hier de naam van het project in" pattern="^[\w !?.]*$" type="input" name="name" class="form-control" value="<?=$project['0']->name ?>" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">klant</label>
@@ -26,6 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input title="Voer hier de naam van de klant in" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="client" value="<?=$project['0']->client ?>" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">Docent</label>
@@ -33,6 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input title="Voer hier de naam van de docent in" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="teacher" value="<?=$project['0']->teacher ?>" required/>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">Github Url</label>
@@ -77,12 +80,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<textarea maxlength="500" name="description" class="form-control" rows="5" required><?=$project['0']->description ?></textarea>
 									<div class="input-group-addon">
 										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<input type="hidden" name="slug" value="<?=$project['0']->slug ?>">
 							<input type="submit" name="submit" class="btn btn-blue" value="Project Aanpassen" />
 
 						</form>
+						<i class="darkRed fa fa-star" aria-hidden="false"> = verplicht veld</i>
 
 					</div>
 				</div>
