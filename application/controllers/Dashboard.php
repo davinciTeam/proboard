@@ -29,6 +29,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function activation($hash = null)
     {
+
+      session_unset();
+       session_destroy();
       $this->load->model("ConfigModel", "config_model");
       $this->load->helper('form');
 
@@ -43,6 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function activationAction()
     {
+
+       
       $this->load->model("ConfigModel", "config_model");
 
       $this->load->library('form_validation');
@@ -51,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       $this->form_validation->set_rules('password_repeat', 'wachtwoord', 'required|callback_doublePasswordCheck',
         array('required' => 'Vul uw wachtwoord nog een keer in ter bevesteging',
-              'callback_doublePasswordCheck' => 'Watchtwoorden komen niet overheen'));
+              'callback_doublePasswordCheck' => 'Wachtwoorden komen niet overheen'));
 
       if ($this->form_validation->run()) {
         
