@@ -154,7 +154,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php }  ?>
 
    <?php if (!$admin) { ?> 
-    		<a href="/login" class="btn btn-blue">Inloggen</a> 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+    		        <a href="/login" class="btn btn-blue">Inloggen</a> 
+                </div>
+            </div>
+        </div>
+   
     <?php } ?>
   </section>
 </div>

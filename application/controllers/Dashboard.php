@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
 
       session_unset();
-       session_destroy();
+      session_destroy();
       $this->load->model("ConfigModel", "config_model");
       $this->load->helper('form');
 

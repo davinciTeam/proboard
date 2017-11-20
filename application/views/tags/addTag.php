@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<i class="fa fa-info" aria-hidden="true"></i>
 										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
-								</div>
+								</div><br>
 							<button type="submit" class="btn btn-blue">Tag Toevoegen</button>
 						</form>
 						<i class="darkRed fa fa-star" aria-hidden="false"> = verplicht veld</i>
