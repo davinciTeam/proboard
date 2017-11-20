@@ -17,16 +17,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label for="title">Naam</label>
 								<div class="input-group">
 									<input type="text" class="form-control" name="name" required/>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de nummers 0-9 toegestaan"></i>
+									<div class="input-group-addon" data-toggle="tooltip" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info" aria-hidden="true"></i>
 										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 								<label for="text">Beschrijving</label>
 								<div class="input-group">
 									<textarea maxlength="500" name="description" class="form-control" rows="5" required></textarea>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
+									<div class="input-group-addon" data-toggle="tooltip" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info" aria-hidden="true"></i>
 										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
