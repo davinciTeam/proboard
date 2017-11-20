@@ -17,53 +17,53 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label for="title">Projectnaam</label>
 								<div class="input-group">
 									<input title="Voer hier de naam van het project in" pattern="^[\w !?.]*$" type="input" name="name" class="form-control" value="<?=$project['0']->name ?>" required/>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info" aria-hidden="true" ></i>
 										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">klant</label>
 								<div class="input-group">
 									<input title="Voer hier de naam van de klant in" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="client" value="<?=$project['0']->client ?>" required/>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info"  aria-hidden="true"></i>
 										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">Docent</label>
 								<div class="input-group">
 									<input title="Voer hier de naam van de docent in" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="teacher" value="<?=$project['0']->teacher ?>" required/>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)"></i>
+									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info" aria-hidden="true"></i>
 										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">Github Url</label>
 								<div class="input-group">
 									<input title="Voer hier de repository url in" type="url" value="<?=$project['0']->git_url ?>" class="form-control" name="git_url" required/>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
+									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>
 								</div>
 							<label for="text">Trello Url</label>
 								<div class="input-group">
 									<input title="Voer hier de Trello url in" type="url" value="<?=$project['0']->trello_url ?>" class="form-control" name="trello_url" required/>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
+									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>
 								</div>
 							<label for="text">Test omgeving Url</label>
 								<div class="input-group">
 									<input title="Voer hier de url in van de test omgeving" type="url" class="form-control" value="<?=$project['0']->project_url ?>" name="project_url" required/>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
+									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>
 								</div>
 							<label for="text">Bug tracking Url</label>
 								<div class="input-group">
 									<input title="Voer hier de url in van de bug tracking" type="url" value="<?=$project['0']->bug_url ?>" class="form-control" name="bug_url" required/>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
+									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>
 								</div>	
 							<div class="form-group">
@@ -78,8 +78,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label for="text">Beschrijving</label>
 								<div class="input-group">
 									<textarea maxlength="500" name="description" class="form-control" rows="5" required><?=$project['0']->description ?></textarea>
-									<div class="input-group-addon">
-										<i class="fa fa-info" data-toggle="tooltip"  aria-hidden="true" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)"></i>
+									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
+										<i class="fa fa-info" aria-hidden="true"></i>
 										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>

@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li class="header">Navigatie</li>
           <li>
             <a href="/">
-              <span>dashboard</span> 
+              <span>Dashboard</span> 
             </a>
           </li>
           <li class="treeview">
