@@ -11,6 +11,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     		<?=feedback();?>
     	</div>
 		<?=form_open('dashboard/activationAction') ?>
+			<label>Gebruikers naam</label>
+			<div class="input-group">
+				<input class="form-control" type="text" value="<?=$user->name ?>" readonly>
+			</div>
 			<label>Wachtwoord</label> <i class="darkRed fa fa-star" aria-hidden="false"></i>
 			<div class="input-group">
 				<input class="form-control" type="password" name="password">

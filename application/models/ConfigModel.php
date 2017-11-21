@@ -55,6 +55,7 @@
 			}
 			
 			$updateData = array(
+				"username" => $data["username"],
 				"name" => $data["name"],
 				"email" => $data["email"],
 				"date_created" =>  date('Y-m-d H:i:s'),
@@ -87,7 +88,8 @@
 			$hash = $this->auth->getPasswordHash($data["password"], $user);
 
 			if ($this->db->update('users', array("password" => $hash, "active" => 1) , array("id" => $user->id))) {
-				addFeeback(array('U kunt nu inloggen'));
+				$this->load->library('Auth');
+				$this->auth->doLogin($user->username, $data["password"]);
 			}
 
 			return true;

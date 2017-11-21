@@ -144,7 +144,6 @@ class Auth {
 		$CI =& get_instance();
 		$CI->load->library('session');
 		$CI->session->sess_destroy();
-		header('Location: /dashboard');
 	}
 
 	protected function failedLogin($user, $CI)
