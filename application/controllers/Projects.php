@@ -124,8 +124,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         redirect('projects/Members/'.$this->input->post('projectSlug'));
 	}
 
-	// ----------------
-
 	public function Tags($slug = null)
 	{
 		$query = array(

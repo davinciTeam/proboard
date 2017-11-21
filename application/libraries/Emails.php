@@ -17,6 +17,7 @@ class Emails {
       $html = "<html>
                 <head>
                     <meta charset=\"utf-8\">
+                    <title>Email</title>
                     <style>
                         * {
                             text-align:center;

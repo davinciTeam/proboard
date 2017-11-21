@@ -163,7 +163,7 @@ class Projects_model extends CI_Model {
         }
 
         if ($this->db->where('project_id', $project['0']->id)->where('tag_id', $tag['0']->id)->delete('projects_tags')) {
-            addFeeback(array('Tag '. $tag['0']->name.' succesvol van project gehaald'));
+            addFeeback(array('Tag '. $tag['0']->name.' succesvol van project verwijderd'));
         } else {
             addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
         }
