@@ -32,7 +32,7 @@ class Login extends CI_Controller {
 	{
 		$this->load->library('Auth');
 		$this->auth->doLogout();
-		redirect('/');
+		header('Location: /');
 	}
 
 	/*public function install()
