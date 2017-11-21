@@ -51,8 +51,8 @@ class Users extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		$this->load->model("ConfigModel", "config_model");
-		$this->form_validation->set_rules('email', 'email', 'required|is_unique[users.email]',	
-		array('is_unique' => 'E-mail adres is al in gebruik'));
+		$this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]',	
+		array('is_unique' => 'E-mail adres is al in gebruik','valid_email' => 'Voer een geldig email adres in','required' => 'Dit veld is verplicht'));
 
 		if ($this->form_validation->run()) {
 
