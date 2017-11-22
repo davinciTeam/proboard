@@ -28,15 +28,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				"end_date" => $this->input->post('iteration_or_code_review_end').':00',
 				"slug" => $this->input->post('slug'),
 			);
-			$this->Appointment_model->addAppointment($data, $type);
- 		} else {
- 			header('Content-type:application/json');
-			echo json_encode(array('succes' => 'false'));
- 			exit;
+			if ($this->Appointment_model->addAppointment($data, $type)) {
+				header('Content-type:application/json');
+				echo json_encode(array('succes' => 'true'));
+				exit;
+			}
  		}
-		
-
-		//header('Content-type:application/json');
-		//echo json_encode(array('succes' => 'true'));
+ 		header('Content-type:application/json');
+		echo json_encode(array('succes' => 'false'));
 	}
 }

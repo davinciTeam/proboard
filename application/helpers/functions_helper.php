@@ -106,7 +106,7 @@
 	if (!function_exists('displayTime')) {
 		function displayTime($time) {
 			if ($time === '0000-00-00 00:00:00') {
-				return 'Niks ingepland';
+				return 'Geen afspraak';
 			} else if (date('Ymd') == date('Ymd', strtotime($time))) {
 				return date('l G:i', strtotime($time));
 			} else if (date('Ymd', strtotime("+1 week")) == date('Ymd', strtotime($time))) {
