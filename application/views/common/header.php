@@ -42,16 +42,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                     
-              <li class="dropdown notifications-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">U heeft 0 notificaties</li>
-                </ul>
-              </li>
-     
               <li class="name"><?=$this->session->userdata('name');?></li>
               <li><a href="/login/logout" class="btn logout"><i class="fa fa-power-off" aria-hidden="true"></i></a></li>
           
