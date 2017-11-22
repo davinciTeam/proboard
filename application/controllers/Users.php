@@ -74,6 +74,12 @@ class Users extends CI_Controller {
 	public function editUserAction()
 	{
 		$this->load->model("ConfigModel", "config_model");
+		$this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]',	
+		array('is_unique' => 'E-mail adres is al in gebruik','valid_email' => 'Voer een geldig email adres in','required' => 'Dit veld is verplicht'));
+		$this->form_validation->set_rules('username', 'Username', 'required',	
+		array('required' => 'Voer een gebruikersnaam in'));
+		$this->form_validation->set_rules('name', 'name', 'required',	
+		array('required' => 'Voer een naam in'));
 		
 		$saveData = array(
 			"name" => $this->input->post('name'),
