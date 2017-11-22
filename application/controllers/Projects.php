@@ -99,6 +99,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function Members($slug = null)
 	{
+
+		if (empty($slug)) {
+			redirect('projects');
+		} 
+
 		$query = array(
 	        'name' => $this->security->get_csrf_token_name(),
 	        'hash' => $this->security->get_csrf_hash(),
@@ -108,6 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if (empty($query['project'])) {
 			show_404();
 		} 
+
 		$this->load->helper('form');
 
 		render('projects/addMembers', $query);
@@ -146,6 +152,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function Tags($slug = null)
 	{
+		if (empty($slug)) {
+			redirect('projects');
+		}
 		$query = array(
 	        'name' => $this->security->get_csrf_token_name(),
 	        'hash' => $this->security->get_csrf_hash(),
@@ -155,6 +164,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if (empty($query['project'])) {
 			show_404();
 		} 
+
+		
 		$this->load->helper('form');
 
 		render('projects/addTags', $query);
@@ -193,10 +204,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function editProject($slug = null)
 	{
+		if (empty($slug)) {
+			redirect('projects');
+		} 
+
 		$this->load->helper('form');
 		
 		$query['project'] = $this->projects_model->getProject($slug);
-		
+
 		if (empty($query['project'])) {
 			show_404();
 		} 

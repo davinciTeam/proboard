@@ -29,6 +29,9 @@ class Users extends CI_Controller {
 
 	public function editUser($id = null)
 	{
+		if (empty($id)) {
+			redirect('users');
+		}
 		$this->load->model("ConfigModel", "config_model");
 
 		$data['user_data'] = $this->config_model->getUser($id);
