@@ -22,17 +22,17 @@
 		   					
 						<div class="form-group col-md-6">
 					        <label>Naam</label>
-					        <input type="text" class="form-control" placeholder="Naam" name="name">
+					        <input type="text" class="form-control" placeholder="Naam" name="name" required>
 					    </div>
 
 					    <div class="form-group col-md-6">
 					        <label>E-mail</label>
-					        <input type="emial" class="form-control" placeholder="E-mail" name="email">
+					        <input type="emial" class="form-control" placeholder="E-mail" name="email" required>
 					    </div>
 					
 					    <div class="form-group col-md-6">
 					        <label>Gebruikersnaam</label>
-					        <input type="text" class="form-control" placeholder="Gebruikersnaam" name="username">
+					        <input type="text" class="form-control" placeholder="Gebruikersnaam" name="username" required>
 					    </div>
 		    		</div>
 				
