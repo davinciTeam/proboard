@@ -29,7 +29,7 @@
 
 					    <div class="form-group col-md-6">
 					        <label>E-mail</label>
-					        <input type="text" class="form-control" placeholder="E-mail" value="<?=$user_data['0']->email?>" name="email">
+					        <input type="email" class="form-control" placeholder="E-mail" value="<?=$user_data['0']->email?>" name="email">
 					    </div>
 					
 					    <div class="form-group col-md-6">

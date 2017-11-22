@@ -27,7 +27,7 @@
 
 					    <div class="form-group col-md-6">
 					        <label>E-mail</label>
-					        <input type="text" class="form-control" placeholder="E-mail" name="email">
+					        <input type="emial" class="form-control" placeholder="E-mail" name="email">
 					    </div>
 					
 					    <div class="form-group col-md-6">
