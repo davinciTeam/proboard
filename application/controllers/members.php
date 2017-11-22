@@ -118,6 +118,10 @@ class Members extends CI_Controller {
 	}
 	public function editMember($slug = null)
 	{
+		if (empty($slug)) {
+			redirect('members');
+		} 
+
 		$this->load->helper('form');
 		
 		$query['member'] = $this->members_model->getMember($slug);
