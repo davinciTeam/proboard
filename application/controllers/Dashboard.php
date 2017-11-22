@@ -24,6 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         exit;
       }
 
+      $config['base_url'] = 'http://project-beheer/dashboard/index';
+      $config['total_rows'] =  $this->projects_model->AmountOfProjects();
+      $config['per_page'] = 10;
+
+      $this->load->library('pagination');
+      $this->pagination->initialize($config);
+
       render('dashboard/overview', $data);
     }
 

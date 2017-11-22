@@ -88,6 +88,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
   <?php if (empty(!$projects)) { ?>
+    <nav class="text-center" aria-label="Page navigation">
+      <ul id="pagination" class="pagination">
+        <?=$this->pagination->create_links() ?>
+      </ul>
+    </nav>
     <div class="row cards">
       <div class="col-md-<?php if ($admin) { ?>10<?php } else { ?>12<?php } ?>">
         <div class="table-responsive">

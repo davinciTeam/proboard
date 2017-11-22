@@ -40,28 +40,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							<label for="text">Github Url</label>
 								<div class="input-group">
-									<input title="Voer hier de repository url in" type="url" value="<?=$project['0']->git_url ?>" class="form-control" name="git_url" required/>
+									<input title="Voer hier de repository url in" type="url" value="<?=$project['0']->git_url ?>" class="form-control" name="git_url">
 									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>
 								</div>
 							<label for="text">Trello Url</label>
 								<div class="input-group">
-									<input title="Voer hier de Trello url in" type="url" value="<?=$project['0']->trello_url ?>" class="form-control" name="trello_url" required/>
+									<input title="Voer hier de Trello url in" type="url" value="<?=$project['0']->trello_url ?>" class="form-control" name="trello_url">
 									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>
 								</div>
 							<label for="text">Test omgeving Url</label>
 								<div class="input-group">
-									<input title="Voer hier de url in van de test omgeving" type="url" class="form-control" value="<?=$project['0']->project_url ?>" name="project_url" required/>
+									<input title="Voer hier de url in van de test omgeving" type="url" class="form-control" value="<?=$project['0']->project_url ?>" name="project_url">
 									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>
 								</div>
 							<label for="text">Bug tracking Url</label>
 								<div class="input-group">
-									<input title="Voer hier de url in van de bug tracking" type="url" value="<?=$project['0']->bug_url ?>" class="form-control" name="bug_url" required/>
+									<input title="Voer hier de url in van de bug tracking" type="url" value="<?=$project['0']->bug_url ?>" class="form-control" name="bug_url">
 									<div class="input-group-addon" data-toggle="tooltip"   title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>

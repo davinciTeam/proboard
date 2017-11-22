@@ -42,6 +42,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				'required' => 'U moet een ovnummer invullen',
 				'max_length' => 'De beschrijving mag maximaal 500 karakters lang zijn'
 			)
+		),
+		array(
+			'field' => 'git_url', 
+			'label' => 'Github Url',
+            'rules' => 'callback_url_check',
+		),
+		array(
+			'field' => 'trello_url', 
+			'label' => 'Trello Url',
+            'rules' => 'callback_url_check',
+		),
+		array(
+			'field' => 'bug_url', 
+			'label' => 'Test omgeving Url',
+            'rules' => 'callback_url_check',
+		),
+		array(
+			'field' => 'project_url', 
+			'label' => 'Bug tracking Url',
+            'rules' => 'callback_url_check',
 		)
 	);
 
@@ -171,11 +191,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         redirect('projects/Tags/'.$this->input->post('projectSlug'));
 	}
 
-
-
-	// ----------------
-
-
 	public function editProject($slug = null)
 	{
 		$this->load->helper('form');
@@ -227,33 +242,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 	}
 
-	public function regex_check()
+	public function url_check($url)
 	{
-
-		$urls = array($this->input->post('git_url'),
-			$this->input->post('trello_url'),
-			$this->input->post('bug_url'),
-			$this->input->post('project_url')
-	);
-
-		$validate_error = array();
-		foreach ($urls as $url) {
-			
-			if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)){			
-				$this->form_validation->set_message('regex_check', 'Voer een geldige url in');
-				// echo "false";
-				array_push($validate_error,1);
-			}else{
-				// echo "true";
-				array_push($validate_error,0);
-				// return true;
-			}
-		}//end foreach
-		// var_dump($validate_error);
-		if( in_array( "1" ,$validate_error)){
-		    $this->form_validation->set_message('regex_check', 'Voer een geldige url in');
-		    return false;
+		if (empty($url) || preg_match("/^\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]$/i", $url)) {	
+			return true;
 		}
+		$this->form_validation->set_message('url_check', 'Voer een geldige url in voor {field}');
+		return false;
 	}
 
 	public function addProjectAction()
@@ -261,11 +256,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->library('form_validation');
 		$this->load->library('Slug');
 		$this->form_validation->set_rules(self::$_validationRules);
-
-		$this->form_validation->set_rules('git_url','Git url' ,'callback_regex_check');
 		
-		
-
 		if ($this->form_validation->run()) {
 
 			$save = Array(
