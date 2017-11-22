@@ -74,6 +74,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       		<h1 class="db-space">Alle Afspraken</h1>
     	</div>
 	</div>
+    <div class="legenda">
+        <div class="row">
+            <div class="col-md-11">
+                <i class="fa fa-stop red-text" aria-hidden="true"></i> = Is al geweest.
+                <i class="fa fa-stop orange-text" aria-hidden="true"></i> = Is Vandaag.
+                <i class="fa fa-stop green-text" aria-hidden="true"></i> = Moet nog komen.
+            </div>
+        </div>
+    </div>
 
 
     <?php if (empty(!$projects)) { ?>
