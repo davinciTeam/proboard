@@ -39,6 +39,11 @@
     color:rgba(0, 255, 0, 1.0);
 }
 
+.orange-text{
+    color: rgba(255, 149, 26, 1.0);
+   
+}
+
 
 .blue-text{
     color:#3c8dbc;
@@ -119,4 +124,8 @@
 
 .logout{
     padding: 14px!important;
+}
+
+.legenda{
+    font-size: 20px;
 }
