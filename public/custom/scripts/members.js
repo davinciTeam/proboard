@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	var page = 0;
 	var searchParamaters = 
 	{
 		'active' : 'name',
@@ -44,7 +45,7 @@ $(document).ready(function(){
 		}
 
     	$.ajax({
-			url: "/members/overview/0/true",
+			url: "/members/overview/"+page+"/true",
 			data: {
 				field: $(this).attr('id'),
 				search: searchParamaters[$(this).attr('id')]
@@ -63,7 +64,7 @@ $(document).ready(function(){
 
         e.preventDefault();
 
-        var page = $(this).children();
+        page = $(this).children();
         page = ($(page['0']).attr('data-ci-pagination-page')-1)*10;
         var current = $('.active').children('a').attr('data-ci-pagination-page');
         var ci_pagination_page = page/10+1;
@@ -88,6 +89,7 @@ $(document).ready(function(){
         }
       
         window.history.pushState({}, 'Project-beheer', 'http://project-beheer/members/overview/'+page)
+        //http://www.proboard.dvc-icta.nl/members/overview
 
         $.ajax({
 			url: "/members/overview/"+page+"/true",

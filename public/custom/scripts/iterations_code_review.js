@@ -81,6 +81,57 @@ $(document).ready(function(){
         return html;
     }
 
+    $(".navigation-js").click(function(e){
+
+        e.preventDefault();
+
+        page = $(this).children();
+        page = ($(page['0']).attr('data-ci-pagination-page')-1)*10;
+        var current = $('.active').children('a').attr('data-ci-pagination-page');
+        var ci_pagination_page = page/10+1;
+
+        if ( $(this).children('a').attr('rel') === 'prev') {
+            if (current <= 1) return;
+            $('.active').removeClass('active');
+            $('a[data-ci-pagination-page="'+ci_pagination_page+'"][rel!="prev"]').parent('li').addClass('active')
+            $('a[rel=\'prev\']').attr('data-ci-pagination-page', ci_pagination_page-1)
+            $('a[rel=\'next\']').attr('data-ci-pagination-page', ci_pagination_page+1)
+
+        } else if ( $(this).children('a').attr('rel') === 'next' ) {
+            $('.active').removeClass('active');
+            $('a[data-ci-pagination-page="'+ci_pagination_page+'"][rel!="next"]').parent('li').addClass('active')
+            $('a[rel=\'next\']').attr('data-ci-pagination-page', ci_pagination_page+1)
+            $('a[rel=\'prev\']').attr('data-ci-pagination-page', ci_pagination_page-1)
+        } else {
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+            $('a[rel=\'prev\']').attr('data-ci-pagination-page', ci_pagination_page-1)
+            $('a[rel=\'next\']').attr('data-ci-pagination-page', ci_pagination_page+1)
+        }
+      
+        window.history.pushState({}, 'Project-beheer', 'http://project-beheer/dashboard/index/'+page)
+        //http://www.proboard.dvc-icta.nl/dashboard/index
+
+        $.ajax({
+            url: "/dashboard/index/"+page+"/true",
+            method: 'POST',
+            data: {
+                json: 'true',
+                csrf_token: token
+            },
+            success: function( result ) {
+                var html = generateProjects(result);
+
+                $('#projects').empty().append(html);
+                setEventHandelers();
+                regenerateToken();
+            },
+            fail :function() {
+                alert('Controlleer u internet verbiniding');
+            }
+        });
+    });
+
     function regenerateToken(callback = null) 
     {
         $.ajax({
