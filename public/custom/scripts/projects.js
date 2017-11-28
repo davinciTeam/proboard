@@ -30,11 +30,11 @@ $(document).ready(function(){
                     <td>'+result['projects'][project]['name']+'</td>\
                     <td>'+result['projects'][project]['client']+'</td>\
                     <td>'+result['projects'][project]['teacher']+'</td>\
-                    <td>\
-                        <a target="_blank" href="'+result['projects'][project]['git_url']+'">git link</a><br>\
-                        <a target="_blank" href="'+result['projects'][project]['trello_url']+'">trello link</a><br>\
-                        <a target="_blank" href="'+result['projects'][project]['project_url']+'">project url</a><br> \
-                        <a target="_blank" href="'+result['projects'][project]['bug_url']+'">bug url</a>\
+                    <td style="font-size:17px">\
+                        <a target="_blank" href="'+result['projects'][project]['git_url']+'"><i class="fa fa-github" aria-hidden="true"></i></a>\
+                        <a target="_blank" href="'+result['projects'][project]['trello_url']+'"><i class="fa fa-trello" aria-hidden="true"></i></a><br>\
+                        <a target="_blank" href="'+result['projects'][project]['project_url']+'"><i class="fa fa-globe" aria-hidden="true"></i></a> \
+                        <a target="_blank" href="'+result['projects'][project]['bug_url']+'"><i class="fa fa-bug" aria-hidden="true"></i></a>\
                     </td><td>'
 
                     if (result['projects'][project]['members']) {
