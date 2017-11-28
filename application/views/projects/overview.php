@@ -28,6 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<th>Projectnaam</th>
 					<th>Klant</th>
 					<th>Docent</th>
+					<th>Links</th>
 					<th>Leden</th>
 					<th>tags</th>
                     <th>Acties</th>
@@ -42,6 +43,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$project->name;?></td>
 					<td><?=$project->client;?></td>
 					<td><?=$project->teacher;?></td>
+					<td>				
+						<a target="_blank" href="<?=$project->git_url ?>">git link</a><br> 
+						<a target="_blank" href="<?=$project->trello_url ?>">trello link</a><br> 
+						<a target="_blank" href="<?=$project->project_url ?>">project url</a><br>  
+						<a target="_blank" href="<?=$project->bug_url ?>">bug url</a> 				
+					</td>
 					<td><?php foreach ($project->members as $member) { 
 						echo $member->name." ".$member->insertion." ".$member->lastname.",  "; } ?></td>
 					<td><?php foreach ($project->tags as $tag) { ?><span data-toggle="tooltip" title="<?=$tag->description ?>" class="label label-info"><?=$tag->name ?> </span> <?php } ?></td>

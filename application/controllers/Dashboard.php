@@ -16,20 +16,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
       $data['projects'] = $this->projects_model->getProjects($page, true);
       $data['today'] = date('Y-m-d');
-      $data['project_items'] = $this->appointment_model->getTodayAppointment($page, true);
 
       if ($this->input->post('json') == 'true') {
+        $data['amount_of_items'] = $this->projects_model->AmountOfProjects();
+        $data['admin'] = $this->session->permision; 
+
         header('Content-type:application/json');
         echo json_encode($data);
         exit;
       }
 
-      $config['base_url'] = 'http://project-beheer/dashboard/index';
-      $config['total_rows'] =  $this->projects_model->AmountOfProjects();
-      $config['per_page'] = 10;
-
-      $this->load->library('pagination');
-      $this->pagination->initialize($config);
+      $data['project_items'] = $this->appointment_model->getTodayAppointment($page, true);
 
       render('dashboard/overview', $data);
     }
@@ -81,5 +78,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function doublePasswordCheck()
     {
       return ($this->input->post('password') === $this->input->post('password_repeat'));
+    }
+
+    public function newToken()
+    {
+      header('Content-type:application/json');
+      echo json_encode(array('new_token' => $this->security->get_csrf_hash()));
     }
 }
