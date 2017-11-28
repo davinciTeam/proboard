@@ -14,30 +14,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	<div class="row">
 		    		<div class="col-md-10">
 					  	<?php echo form_open('projects/addProjectAction'); ?>
-					  		<i class="darkRed fa fa-star important-star" aria-hidden="false"></i>
+					  	
 							<label for="title">Projectnaam</label>
 								<div class="input-group">
 									<input title="Voer hier de projectnaam in" pattern="^[\w !?.]*$" type="input" class="form-control" name="name" required/>
 									<div class="input-group-addon" data-toggle="tooltip" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								
 								</div>
 
-							<i class="darkRed fa fa-star important-star" aria-hidden="false"></i>
+
 							<label for="text">klant</label>
 								<div class="input-group">
 									<input title="Voer hier de naam van de klant in" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="client" required/>
 									<div class="input-group-addon" data-toggle="tooltip" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
-							<i class="darkRed fa fa-star important-star" aria-hidden="false"></i>
 							<label for="text">Docent</label>
 								<div class="input-group">
 									<input title="Voer hier de naam van de docent in" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" class="form-control" name="teacher" required/>
 									<div class="input-group-addon" data-toggle="tooltip" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">Github Url</label>
@@ -68,12 +70,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>
 								</div>
-							<i class="darkRed fa fa-star important-star" aria-hidden="false"></i>
 							<label for="text">Beschrijving</label>
 								<div class="input-group">
 									<textarea maxlength="500" rows="5" name="description" class="form-control" required></textarea>
 									<div class="input-group-addon" data-toggle="tooltip" title="Alleen de letters a-z .0-9 en / - _ zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info"  aria-hidden="true"></i>
+										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<button type="submit" class="btn btn-blue">Project toevoegen</button>

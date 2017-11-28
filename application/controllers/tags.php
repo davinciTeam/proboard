@@ -3,28 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   class Tags extends CI_Controller {
 
-  	private static $_validationRules = array(
-		array(
-			'field' => 'name', 
-			'label' => 'Naam',
-            'rules' => 'required|max_length[50]|regex_match[/^[\w !?.\/]*$/]',
-            'errors' => array(
-				'required' => 'Vul een naam in voor de tag',
-				'max_length' => 'De naam van de tag mag maximaal 50 karakters lang zijn',
-				'regex_match' => 'Alleen de letters a-z .!?/ en spaties zijn toegestaan(niet hoofdlettergevoelig)'
-			)
-		),
-		array(
-			'field' => 'description', 
-			'label' => 'Beschrijving',
-            'rules' => 'required|max_length[500]',
-            'errors' => array(
-				'required' => 'u moet een beschrijving invullen',
-				'max_length' => 'De beschrijving mag maximaal 500 karakters lang zijn'
-			)
-		)
-	);
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -49,10 +27,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$query['tags'] = $this->tags_model->getTags($page);
 		
 		$config['base_url'] = 'http://project-beheer/tags/overview';
-		$config['total_rows'] =  $this->tags_model->AmountOfTags();
-		$config['per_page'] = 10;
+		// $config['total_rows'] =  $this->tags_model->AmountOfTags();
+		// $config['per_page'] = 10;
 
-		$this->pagination->initialize($config);
+		// $this->pagination->initialize($config);
 		
 		render('tags/overview', $query);
 	}
@@ -79,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules(self::$_validationRules);
+		// $this->form_validation->set_rules(self::$_validationRules);
 		$this->form_validation->set_rules('slug', '', 'required');
 
 		if ($this->form_validation->run()) {
@@ -111,7 +89,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->load->library('form_validation');
 		$this->load->library('Slug');
-		$this->form_validation->set_rules(self::$_validationRules);
+		// $this->form_validation->set_rules(self::$_validationRules);
+		$this->form_validation->set_rules('name', '', 'required');
 
 		// $this->form_validation->set_rules('git_url','regex_check');
 
