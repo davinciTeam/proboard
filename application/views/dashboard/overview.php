@@ -112,7 +112,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <th>tags</th>
                 <th>Datum iteratie</th>
                 <th>Datum code review</th>
-                <th>Opmerking</th>
+                <th>status</th>
               </tr>
             </thead>
             <tbody id="projects">

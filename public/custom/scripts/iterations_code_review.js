@@ -92,7 +92,15 @@ $(document).ready(function(){
                     if (result['admin']) html += '<input data-slug="'+result['projects'][project]['slug']+'" data-type="iteration" class="hidden form-control dateRange" type="text" name="daterange" value="'+result['today']+' - '+result['today']+'">'
                     html += 'Geen afspraak'
                 }
-                html += '</span></div></td><td><span class="glyphicon glyphicon-comment"></span></td></tr>';
+                if (today > iterationStart || today > codeReviewStart) {
+                    html += '<td><i title="Te laat" data-toggle="tooltip" class="fa fa-exclamation" aria-hidden="true"></i></td>'
+                } else if (today.getDay() == iterationStart.getDay() || today.getDay() == codeReviewStart.getDay()) {
+                    html += '<td><i title="Is Vandaag" data-toggle="tooltip" class="fa fa-clock-o" aria-hidden="true"></i></td>'
+                } else {
+                    html += '<td><i title="Moet nog komen" data-toggle="tooltip" class="fa fa-calendar" aria-hidden="true"></i></td>'
+                }
+
+                html += '</td></tr>';
             }
         } else {
             html += "<tr><td colspan='8' class='text-center'>Geen resultaten gevonden</td></tr>"
