@@ -35,8 +35,9 @@
 			// Save general user info (name, email, profile_id, division_id, startpage)
 
 			$updateData = array(
+				"username" => $data["username"],
 				"name" => $data["name"],
-				"email" => $data["email"],
+				"email" => $data["email"]
 			);
 			if ($this->db->update('users', $updateData, array("id" => $id))) {
 				addFeeback(array('Gebruiker succesvol bijgewerkt'));
