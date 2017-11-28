@@ -17,8 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php } ?>
 
 
-    <div class="container">
-      	<div class="row">
+  <div class="container">
+      <div class="row">
 	   		<div class="col-md-11 blue-text">
 	      		<h1>Afspraken van Vandaag</h1>
 	    	</div>
@@ -76,6 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       		<h1 class="db-space">Alle Afspraken</h1>
     	</div>
 	</div>
+  <div class="row">
     <div class="legenda">
         <div class="row">
             <div class="col-md-11">
@@ -85,14 +86,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
+  </div>
 
 
   <?php if (empty(!$projects)) { ?>
     <nav class="text-center" aria-label="Page navigation">
       <ul id="pagination" class="pagination">
-        <?=$this->pagination->create_links() ?>
+        
       </ul>
     </nav>
+
+    <div style="display:none" id="spinner"></div>
+
     <div class="row cards">
       <div class="col-md-<?php if ($admin) { ?>10<?php } else { ?>12<?php } ?>">
         <div class="table-responsive">
@@ -110,52 +115,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </tr>
             </thead>
             <tbody id="projects">
-            <?php foreach($projects as $project) { ?>
-              <tr class="<?=compareTime(array($project->iteration_start, $project->code_review_start)) ?>">
-                <td><?=$project->name ?> <span data-toggle="tooltip" title="<?=$project->description ?>" class="glyphicon glyphicon-comment"></span></td>
-                <td><?=$project->teacher ?></td>
-                <td><?=$project->client ?></td>
-                <td><?php foreach ($project->members as $member) { echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
-                <td><?php foreach ($project->tags as $tag) { ?><span data-toggle="tooltip" title="<?=$tag->description ?>" class="label label-info"><?=$tag->name ?> </span> <?php } ?></td>
-                <td>
-
-                  <?php if ($admin) { ?>
-                  <div class="input-group">
-                    <span class="edit glyphicon glyphicon-edit">
-                      <input data-slug="<?=$project->slug ?>" data-type="iteration" class="hidden form-control dateRange" type="text" name="daterange" 
-                      <?php if ($project->iteration_start !== '0000-00-00 00:00:00') { ?>
-                        value="<?=$project->iteration_start ?> - <?=$project->iteration_end ?>">
-                      <?php } else { ?>
-                        value="<?=$today ?> 00:00:00 - <?=$today ?> 00:00:00 ">
-                      <?php } ?>
-                      <?=displayTime($project->iteration_start) ?>
-                    </span>
-                  </div>
-                  <?php } else { ?>
-                    <?=displayTime($project->iteration_start) ?>
-                  <?php } ?>
-                </td>
-                <td>
-
-                  <?php if ($admin) { ?>
-                  <div class="input-group">
-                    <span class="edit glyphicon glyphicon-edit">
-                      <input data-slug="<?=$project->slug ?>" data-type="code_review" class="hidden form-control dateRange" type="text" name="daterange" 
-                      <?php if ($project->code_review_start !== '0000-00-00 00:00:00') { ?>
-                        value="<?=$project->code_review_start ?> - <?=$project->code_review_end ?>">
-                      <?php } else { ?>
-                        value="<?=$today ?> 00:00:00 - <?=$today ?> 00:00:00">
-                      <?php } ?>
-                    <?=displayTime($project->code_review_start) ?>
-                    </span>
-                  </div>
-                  <?php } else { ?>
-                    <?=displayTime($project->code_review_start) ?>
-                  <?php } ?>
-                </td>
-                <td><span class="glyphicon glyphicon-comment"></span></td>
-              </tr>
-            <?php } ?>
+            
             </tbody>
           </table>
         </div>

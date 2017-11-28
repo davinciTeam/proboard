@@ -129,3 +129,24 @@
 .legenda{
     font-size: 20px;
 }
+
+#spinner {
+  margin:0px auto;
+  border: 16px solid #009900;
+  border-radius: 50%;
+  border-top: 16px solid #4700b3;
+  width: 240px;
+  height: 240px;
+  -webkit-animation: animation 5s linear infinite;
+  animation: animation 5s linear infinite;
+}
+
+@-webkit-keyframes animation {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes animation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
