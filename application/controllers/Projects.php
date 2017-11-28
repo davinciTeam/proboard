@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			'label' => 'Beschrijving',
             'rules' => 'required|max_length[500]',
             'errors' => array(
-				'required' => 'U moet een ovnummer invullen',
+				'required' => 'u moet een beschrijving invullen',
 				'max_length' => 'De beschrijving mag maximaal 500 karakters lang zijn'
 			)
 		),
