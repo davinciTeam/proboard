@@ -24,7 +24,6 @@ $(document).ready(function(){
 
     function generateProjects(result)
     {
-        console.log(result)
         var html = '';
         var today = new Date();
         var iterationStart, iterationEnd ,codeReviewStart, codeReviewEnd;

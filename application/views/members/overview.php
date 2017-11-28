@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     	<?php if (!empty($members)) { ?>
 		<nav class="text-center" aria-label="Page navigation">
   			<ul id="pagination" class="pagination">
-    			<?=$this->pagination->create_links() ?>
+  				
     		</ul>
     	</nav>
       	<table class="disabled table table-striped table-center">

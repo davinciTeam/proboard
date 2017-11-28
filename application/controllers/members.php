@@ -67,10 +67,11 @@ class Members extends CI_Controller {
 	public function overview($page = null, $json = false)
 	{
 		$query['members'] = $this->members_model->getMembers($page, $this->input->post('search'));
+		$query['amount'] = $this->members_model->AmountOfMembers();
 
 		if ($json == 'true') {
 			header('Content-type:application/json');
-			echo json_encode($query['members']);
+			echo json_encode($query);
 			exit;
 		}
 
