@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$('#spinner').toggle()
 	var nav = false;
     var url = window.location.href.split('/');
     var page = ($.isNumeric( url[5] )) ? url[5] : 0;
@@ -12,7 +13,7 @@ $(document).ready(function(){
 	};
 
     $(".sorting").click(function(){
-
+    	$('#spinner').toggle()
     	$('#'+searchParamaters['active']).removeClass('currentSorting');
     	$(this).addClass('currentSorting').children('span').toggleClass("glyphicon-arrow-up").toggleClass("glyphicon-arrow-down")
     	
@@ -59,6 +60,8 @@ $(document).ready(function(){
 
 	        if (page > amount*10 || (current-1)*10 === page || page == amount*10) return;
 
+	        $('#spinner').toggle()
+
 	        if ( $(this).attr('rel') === 'prev') {
 	        	if (current <= 1) return;
 	        	$('.active').removeClass('active');
@@ -94,10 +97,12 @@ $(document).ready(function(){
 				search: searchParamaters[searchParamaters['active']]
 			},
 			success: function( result ) {
+				$('#spinner').toggle()
 				if (!nav) generateNave(result.amount)
 				generateHtml(result.members);
 			},
 			fail :function() {
+				$('#spinner').toggle()
 				alert('Controlleer u internet verbiniding');
 			}
 		});

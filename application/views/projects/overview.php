@@ -16,10 +16,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    		</div>
 	    	</div>
     	</div>
+
+
+    	<div id="spinner"></div>
+
     	<?php if (!empty($projects)) { ?>
     	<nav class="text-center" aria-label="Page navigation">
-  			<ul class="pagination">
-    			<?=$this->pagination->create_links() ?>
+  			<ul id="pagination" class="pagination">
+
     		</ul>
     	</nav>
       	<table class="table table-striped table-center">
@@ -35,38 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<th>Actief</th>
 				</tr>
 			</thead>
-			<tbody>
-			<?php
-			    foreach ($projects as $project) { 
-			?>
-			    <tr>
-					<td><?=$project->name;?></td>
-					<td><?=$project->client;?></td>
-					<td><?=$project->teacher;?></td>
-					<td>				
-						<a target="_blank" href="<?=$project->git_url ?>">git link</a><br> 
-						<a target="_blank" href="<?=$project->trello_url ?>">trello link</a><br> 
-						<a target="_blank" href="<?=$project->project_url ?>">project url</a><br>  
-						<a target="_blank" href="<?=$project->bug_url ?>">bug url</a> 				
-					</td>
-					<td><?php foreach ($project->members as $member) { 
-						echo $member->name." ".$member->insertion." ".$member->lastname.",  "; } ?></td>
-					<td><?php foreach ($project->tags as $tag) { ?><span data-toggle="tooltip" title="<?=$tag->description ?>" class="label label-info"><?=$tag->name ?> </span> <?php } ?></td>
-					<td class="actions"><a title="Leden beheren" href="/projects/Members/<?=$project->slug ?>"><i class="fa fa-users" aria-hidden="true"></i></a>
-					<a title="Tags beheren" href="/projects/tags/<?=$project->slug ?>"><i class="fa fa-tag" aria-hidden="true"></i></a>
-					<a title="Project Bewerken" href="/projects/editProject/<?=$project->slug ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-					<td><label><?php if($project->active == 1){
-						echo "<i class='fa fa-circle green-text' aria-hidden='true'></i>";
-					}else{
-						echo "<i class='fa fa-circle red-text' aria-hidden='true'></i>";
-					}?>
-					
-					</label></td>
-				</tr>
-			  	
-			<?php
-			    }
-			?>
+			<tbody id="projects">
 
 			</tbody>
 		</table>
@@ -82,3 +55,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
     </section>
 </div>
+<script src="/custom/scripts/projects.js"></script>

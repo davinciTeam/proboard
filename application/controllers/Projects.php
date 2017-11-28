@@ -87,12 +87,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->library('pagination');
 
 		$query['projects'] = $this->projects_model->getProjects($page);
+		$query['amount'] =  $this->projects_model->AmountOfProjects();
 		
-		$config['base_url'] = 'http://project-beheer/projects/overview';
-		$config['total_rows'] =  $this->projects_model->AmountOfProjects();
-		$config['per_page'] = 10;
+		if ($this->input->post('json') == 'true') {
+			header('Content-type:application/json');
+			echo json_encode($query);
+			exit;
+		}
 
-		$this->pagination->initialize($config);
 		
 		render('projects/overview', $query);
 	}

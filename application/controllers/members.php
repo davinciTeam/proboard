@@ -76,12 +76,6 @@ class Members extends CI_Controller {
 		}
 
 		$this->load->helper('form');
-		$this->load->library('pagination');
-		$config['base_url'] = 'http://project-beheer/members/overview';
-		$config['total_rows'] =  $this->members_model->AmountOfMembers();
-		$config['per_page'] = 10;
-
-		$this->pagination->initialize($config);
 
 		render('members/overview', $query);
 	}

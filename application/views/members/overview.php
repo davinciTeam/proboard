@@ -41,6 +41,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   				
     		</ul>
     	</nav>
+
+    	<div style="display:none" id="spinner"></div>
+
       	<table class="disabled table table-striped table-center">
   		
 			<thead>
@@ -55,27 +58,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</thead>
 			<tbody id="members">
 
-			<?php
-			    foreach ($members as $member) { 
-			?>
-			    <tr>
-					<td><?=$member->ovnumber;?></td>
-					<td><?=$member->name;?></td>
-					<td><?=$member->insertion;?></td>
-					<td><?=$member->lastname;?></td>
-					<td><a href="/members/editMember/<?=$member->slug; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-					<td>
-					<?php if ($member->active == 1) { ?>
-						<i class='fa fa-circle green-text' aria-hidden='true'></i>
-					<?php } else { ?>
-						<i class='fa fa-circle red-text' aria-hidden='true'></i>
-					<?php } ?>
-					</td>	
-				</tr>
-			  	
-			<?php
-			    }
-			?>
 			</tbody>
 		</table>
 		<?php } else { ?>
