@@ -48,11 +48,11 @@ $(document).ready(function(){
                     <td>'+result['projects'][project]['name']+' <span data-toggle="tooltip" title="'+result['projects'][project]['description']+'"class="glyphicon glyphicon-comment"></span></td>\
                     <td>'+result['projects'][project]['teacher']+'</td>\
                     <td>'+result['projects'][project]['client']+'</td>\
-                    <td class="white">\
-                        <a href="'+result['projects'][project]['git_url']+'">git url</a><br>\
-                        <a href="'+result['projects'][project]['trello_url']+'">trello url</a><br>\
-                        <a href="'+result['projects'][project]['project_url']+'">project url</a><br>\
-                        <a href="'+result['projects'][project]['bug_url']+'">bug url</a><br>\
+                    <td class="white" style="font-size:17px;">\
+                        <a href="'+result['projects'][project]['git_url']+'"><i class="fa fa-github" aria-hidden="true"></i></a><br>\
+                        <a href="'+result['projects'][project]['trello_url']+'"><i class="fa fa-trello" aria-hidden="true"></i></a><br>\
+                        <a href="'+result['projects'][project]['project_url']+'"><i class="fa fa-globe" aria-hidden="true"></i></a><br>\
+                        <a href="'+result['projects'][project]['bug_url']+'"><i class="fa fa-bug" aria-hidden="true"></i></a><br>\
                     </td><td>'
                 if (result['projects'][project]['members']) {
                     for (var member in result['projects'][project]['members']) {
