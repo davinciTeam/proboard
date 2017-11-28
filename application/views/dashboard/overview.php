@@ -107,6 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <th>Projectnaam</th>
                 <th>Klant</th>
                 <th>Docent</th>
+                <th>links</th>
                 <th>Leden</th>
                 <th>tags</th>
                 <th>Datum iteratie</th>

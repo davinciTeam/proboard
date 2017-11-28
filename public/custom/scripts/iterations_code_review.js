@@ -49,7 +49,12 @@ $(document).ready(function(){
                     <td>'+result['projects'][project]['name']+' <span data-toggle="tooltip" title="'+result['projects'][project]['description']+'"class="glyphicon glyphicon-comment"></span></td>\
                     <td>'+result['projects'][project]['teacher']+'</td>\
                     <td>'+result['projects'][project]['client']+'</td>\
-                    <td>'
+                    <td class="white">\
+                        <a href="'+result['projects'][project]['git_url']+'">git url</a><br>\
+                        <a href="'+result['projects'][project]['trello_url']+'">trello url</a><br>\
+                        <a href="'+result['projects'][project]['project_url']+'">project url</a><br>\
+                        <a href="'+result['projects'][project]['bug_url']+'">bug url</a><br>\
+                    </td><td>'
                 if (result['projects'][project]['members']) {
                     for (var member in result['projects'][project]['members']) {
                         html += result['projects'][project]['members'][member]['name']+" "+result['projects'][project]['members'][member]['insertion']+" "+result['projects'][project]['members'][member]['lastname']+" ";
