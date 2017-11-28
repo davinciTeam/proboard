@@ -14,20 +14,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	<div class="row">
 		    		<div class="col-md-10">
 					  	<?php echo form_open('members/editMemberAction'); ?>
+					  		<i class="darkRed fa fa-star important-star" aria-hidden="false"></i>
 							<label for="title">OV-Nummer</label>
 								<div class="input-group">
 									<input type="number" class="form-control" name="ovnumber" value="<?=$member['0']->ovnumber ?>" required/>
 									<div class="input-group-addon" title="Alleen de nummers 0-9 toegestaan" data-toggle="tooltip">
 										<i class="fa fa-info" aria-hidden="true"></i>
-										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
+							<i class="darkRed fa fa-star important-star" aria-hidden="false"></i>
 							<label for="text">Voornaam</label>
 								<div class="input-group">
 									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="name" class="form-control" value="<?=$member['0']->name ?>" required/>
 									<div class="input-group-addon" data-toggle="tooltip" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true" ></i>
-										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 							<label for="text">Tussenvoegsel</label>
@@ -37,12 +37,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<i class="fa fa-info" aria-hidden="true"></i>
 									</div>
 								</div>
+							<i class="darkRed fa fa-star important-star" aria-hidden="false"></i>
 							<label for="text">Achternaam</label>
 								<div class="input-group">
 									<input title="Alleen de letters a-z, en spaties zijn toegestaan(niet hoofdlettergevoelig)" pattern="^[\w öóáäéýúíÄËÿüïöÖÜǧ]*$" type="input" name="lastname" class="form-control" value="<?=$member['0']->lastname ?>" required/>
 									<div class="input-group-addon" data-toggle="tooltip" title="Alleen de letters a-z .!? en spaties zijn toegestaan(niet hoofdlettergevoelig)">
 										<i class="fa fa-info" aria-hidden="true"></i>
-										<i class="darkRed fa fa-star" aria-hidden="false"></i>
 									</div>
 								</div>
 
