@@ -39,7 +39,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   								<th>Leden</th>
   								<th>Datum code review</th>
   								<th>Datum iteratie</th>
-  								<th>Opmerking</th>
   							</tr>
   						</thead>
   						<tbody>
@@ -52,7 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               						echo $member->name." ".$member->insertion." ".$member->lastname." "; } ?></td>
   				          		<td><?=displayTime($project_item->iteration_start) ?></td>
   				          		<td><?=displayTime($project_item->code_review_start) ?></td>
-  				          		<td><span class="glyphicon glyphicon-comment"></span></td>
   				          	</tr>
   		    			<?php } ;?>
     				</tbody>
