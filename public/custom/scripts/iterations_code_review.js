@@ -85,10 +85,10 @@ $(document).ready(function(){
                 if (result['admin']) html += '<div class="input-group"><span class="edit glyphicon glyphicon-edit">'
 
                 if (result['projects'][project]['code_review_start'] !== '0000-00-00 00:00:00') {
-                    if (result['admin']) html += '<input data-slug="'+result['projects'][project]['slug']+'" data-type="iteration" class="hidden form-control dateRange" type="text" name="daterange" value="'+result['projects'][project]['code_review_start']+' - '+result['projects'][project]['code_review_end']+'">'
+                    if (result['admin']) html += '<input data-slug="'+result['projects'][project]['slug']+'" data-type="code_review" class="hidden form-control dateRange" type="text" name="daterange" value="'+result['projects'][project]['code_review_start']+' - '+result['projects'][project]['code_review_end']+'">'
                     html += result['projects'][project]['code_review_start'];
                 } else {
-                    if (result['admin']) html += '<input data-slug="'+result['projects'][project]['slug']+'" data-type="iteration" class="hidden form-control dateRange" type="text" name="daterange" value="'+result['today']+' - '+result['today']+'">'
+                    if (result['admin']) html += '<input data-slug="'+result['projects'][project]['slug']+'" data-type="code_review" class="hidden form-control dateRange" type="text" name="daterange" value="'+result['today']+' - '+result['today']+'">'
                     html += 'Geen afspraak'
                 }
                 if (today > iterationStart || today > codeReviewStart) {
@@ -159,6 +159,9 @@ $(document).ready(function(){
                     },
                     method: 'POST',
                     success: function(result) {
+                        if (!result.succes) {
+                            alert('de iteratie/code review overlappen')
+                        }
                         regenerateToken(
                             function() {
                                 search();
@@ -167,6 +170,7 @@ $(document).ready(function(){
                     },
                     fail :function() {
                         $('#spinner').toggle()
+
                         alert('Controlleer u internet verbiniding');
                     }
                 });
