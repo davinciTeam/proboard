@@ -159,9 +159,7 @@ $(document).ready(function(){
                     },
                     method: 'POST',
                     success: function(result) {
-                        if (!result.succes) {
-                            alert('de iteratie/code review overlappen')
-                        }
+                       
                         regenerateToken(
                             function() {
                                 search();
