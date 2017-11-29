@@ -39,12 +39,12 @@ $(document).ready(function(){
 
         for (i = 1; i <= amount; i++)  {
             if (i === (page/10+1)) {
-                html += '<li rel="start" data-ci-pagination-page="'+i+'" class="active navigation-js"><a href="http://project-beheer/dashboard/index/">'+i+'</a></li>'
+                html += '<li rel="start" data-ci-pagination-page="'+i+'" class="active navigation-js"><a href="/members/index/">'+i+'</a></li>'
             } else {
-                html += '<li data-ci-pagination-page="'+i+'" class="navigation-js"><a href="http://project-beheer/dashboard/index/'+i+'0">'+i+'</a></li>'
+                html += '<li data-ci-pagination-page="'+i+'" class="navigation-js"><a href="/members/index/'+i+'0">'+i+'</a></li>'
             } 
             if (i == amount) {
-                html += '<li rel="next" data-ci-pagination-page="'+i+'" class="navigation-js"><a href="http://project-beheer/dashboard/index/'+i+'0">&gt;</a></li>'
+                html += '<li rel="next" data-ci-pagination-page="'+i+'" class="navigation-js"><a href="/members/index/'+i+'0">&gt;</a></li>'
             } 
         }
         
@@ -111,16 +111,15 @@ $(document).ready(function(){
     function generateHtml(result) {
 		var html = "";
 	
-		for (var i = 0; i < 10; i++) {
-			if (!result[i]) break;
+		for (var key in result ) {
 			html += "\
 			<tr>\
-				<td>"+result[i].ovnumber+"</td>\
-				<td>"+result[i].name+"</td>\
-				<td>"+result[i].insertion+"</td>\
-				<td>"+result[i].lastname+"</td>\
-				<td><a href=\"/members/editMember/" + result[i].slug +'"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>';
-			if (result[i].active == '1') {
+				<td>"+result[key].ovnumber+"</td>\
+				<td>"+result[key].name+"</td>\
+				<td>"+result[key].insertion+"</td>\
+				<td>"+result[key].lastname+"</td>\
+				<td><a href=\"/members/editMember/" + result[key].slug +'"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>';
+			if (result[key].active == '1') {
 				html += "<td><i class='fa fa-circle green-text' aria-hidden='true'></i></td>"
 			} else {
 				html += "<td><i class='fa fa-circle red-text' aria-hidden='true'></td>"

@@ -65,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </form>
 
 
-    <a href="http://project-beheer/dashboard">dashboard</a><br>
+    <a href="/dashboard">dashboard</a><br>
 
   </div>
 
