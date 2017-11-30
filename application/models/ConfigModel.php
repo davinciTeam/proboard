@@ -1,9 +1,9 @@
 <?php
 	class ConfigModel extends CI_Model  {
 
-
-		public function getUserByUsername($f_username){
-			$query = $this->db->get_where('users', array("username" => $f_username, "active" => 1));
+		public function getUserByUsername($username)
+		{
+			$query = $this->db->get_where('users', array("username" => $username, "active" => 1));
 			if($query->num_rows() != 0){
 				return $query->row();
 			} else {
@@ -11,116 +11,88 @@
 			}
 		}
 
-		public function getUser($f_id){
-			$query = $this->db->get_where("users", array("active" => 1, "id" => $f_id));
-			return $query->row();
+		public function getUser($id)
+		{
+			return $this->db->get_where("users", array("active" => 1, "id" => $id))->result();
 		}
 
-		public function deleteUser($f_id){
-			if($f_id > 0){
-				$this->db->update('users', array("active" => 0), array("id" => $f_id));
-
+		public function deleteUser($id)
+		{
+			if ($id > 0) {
+				$this->db->update('users', array("active" => 0), array("id" => $id));
 			}
 		}
 
-		public function getUsers(){
+		public function getUsers()
+		{
 			$this->db->order_by('name', 'ASC');
 			$query = $this->db->get_where('users', array("active" => 1));
 			return $query->result();
 		}
 
-		public function getProfiles(){
-			$this->db->order_by("name");
-			$query = $this->db->get('profiles');
-			return $query->result();
-		}
-
-		public function saveProfile($f_name){
-			$this->db->insert('profiles', array("name" => $f_name));
-		}
-
-		public function getRights($f_id = 0){
-			$this->db->select("rights.*, rights_tree.profile_id");
-			$this->db->order_by("name");
-			$this->db->join('rights_tree', 'rights.id = rights_tree.rights_id AND rights_tree.profile_id = ' . $f_id, 'left');
-			$query = $this->db->get_where('rights', array("parent_id" => 0));
-			return $query->result();
-			
-		}
-
-		public function clearRights($f_id = 0){
-			$this->db->delete('rights_tree', array("profile_id" => $f_id));
-		}
-
-		public function insertRights($data){
-			$this->db->insert('rights_tree', $data);
-		}
-
-		public function updateUser($data, $f_id){
+		public function updateUser($data, $id)
+		{
 			// Save general user info (name, email, profile_id, division_id, startpage)
-			if($this->session->userdata('profile_id') == 1){
-				$updateData = array(
-					"name" => $data["name"],
-					"email" => $data["email"],
-					"start_page" => !empty($data["start_page"]) ?  $data["start_page"] : '/dashboard'
-				);
-				$this->db->update('users', $updateData, array("id" => $f_id));
-				// Check for duplicate username
-				$query = $this->db->get_where('users', array("id <>" => $f_id, "username" => $data["username"]));
-				if($query->num_rows() == 0){
-					$this->db->update('users', array("username" => $data["username"]), array("id" => $f_id));
-				} else {
-					return "DUPLICATE USERNAME";
-				}
-				if($data["password"] != "*************************"){
-					$this->load->library('Auth');
-					$user = $this->getUser($f_id);
-					$hash = $this->auth->getPasswordHash($data["password"], $user);
-					$this->db->update('users', array("password" => $hash) , array("id" => $f_id));
-				}
-			} else {
-				if($f_id == $this->session->userdata('user_id')) {
-					$updateData = array(
-						"name" => $data["name"],
-						"email" => $data["email"],
-						"slogan" => $data["slogan"]
-					);
-					$this->db->update('users', $updateData, array("id" => $f_id));
-					if($data["password"] != "*************************"){
-						$this->load->library('Auth');
-						$user = $this->getUser($f_id);
-						$hash = $this->auth->getPasswordHash($data["password"], $user);
-						$this->db->update('users', array("password" => $hash) , array("id" => $f_id));
-					}
-				}
+
+			$updateData = array(
+				"username" => $data["username"],
+				"name" => $data["name"],
+				"email" => $data["email"]
+			);
+			if ($this->db->update('users', $updateData, array("id" => $id))) {
+				addFeeback(array('Gebruiker succesvol bijgewerkt'));
 			}
 			
-			return $f_id;
+			return $id;
 		}
-		public function insertUser($data){
+		public function insertUser($data)
+		{
 			$this->load->library('Auth');
+
+			$hash = md5(uniqid());
+
+			while ($this->getUserByActivationHash($hash)) {
+				$hash = md5(uniqid());
+			}
+			
 			$updateData = array(
+				"username" => $data["username"],
 				"name" => $data["name"],
 				"email" => $data["email"],
 				"date_created" =>  date('Y-m-d H:i:s'),
-				"profile_id" => $data["profile_id"],
-				"active" => 1, 
-				"start_page" => !empty($data["start_page"]) ?  $data["start_page"] : '/dashboard'
+				"active" => 0, 
+				"activation_hash" => $hash
 			);
-			$this->db->insert('users', $updateData);
-			$f_id =  $this->db->insert_id();
-			$query = $this->db->get_where('users', array("id <>" => $f_id, "username" => $data["username"]));
-			if($query->num_rows() == 0){
-				$this->db->update('users', array("username" => $data["username"]), array("id" => $f_id));
-			} else {
-				return "DUPLICATE USERNAME";
+
+			if ($this->db->insert('users', $updateData)) {
+				addFeeback(array('Gebruiker succesvol aangemaakt'));
 			}
-			$user = $this->getUser($f_id);
-			$hash = $this->auth->getPasswordHash($data["password"], $user);
-			$this->db->update('users', array("password" => $hash), array("id" => $f_id));
-			return $f_id; 
+			
+			$this->load->library('Emails');
+			$this->emails->register($updateData["name"], $updateData["email"], $updateData["activation_hash"]);
+
+			return $id; 
 		}
 
+		public function getUserByActivationHash($hash)
+		{
+			return $this->db->from("users")->where("activation_hash", $hash)->get()->row();
+		}
 
-	} 
-?>	
+		public function setUserPassword($data, $hash) {
+			$user = $this->getUserByActivationHash($hash);
+			if (!$user) {
+				addFeeback('Er is een onbekende fout opgetreden', 'negative');
+				return false;
+			}
+
+			$hash = $this->auth->getPasswordHash($data["password"], $user);
+
+			if ($this->db->update('users', array("password" => $hash, "active" => 1) , array("id" => $user->id))) {
+				$this->load->library('Auth');
+				$this->auth->doLogin($user->username, $data["password"]);
+			}
+
+			return true;
+		}
+	}

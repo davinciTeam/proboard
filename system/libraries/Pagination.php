@@ -86,7 +86,7 @@ class CI_Pagination {
 	 *
 	 * @var	int
 	 */
-	protected $num_links = 2;
+	protected $num_links = 10;
 
 	/**
 	 * Items per page
@@ -165,28 +165,28 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $first_tag_open = '';
+	protected $first_tag_open = '<li class="navigation-js">';
 
 	/**
 	 * First tag close
 	 *
 	 * @var	string
 	 */
-	protected $first_tag_close = '';
+	protected $first_tag_close = '</li>';
 
 	/**
 	 * Last tag open
 	 *
 	 * @var	string
 	 */
-	protected $last_tag_open = '';
+	protected $last_tag_open = '<li class="navigation-js">';
 
 	/**
 	 * Last tag close
 	 *
 	 * @var	string
 	 */
-	protected $last_tag_close = '';
+	protected $last_tag_close = '</li>';
 
 	/**
 	 * First URL
@@ -202,56 +202,56 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $cur_tag_open = '<strong>';
+	protected $cur_tag_open = '<li class="navigation-js active">';
 
 	/**
 	 * Current tag close
 	 *
 	 * @var	string
 	 */
-	protected $cur_tag_close = '</strong>';
+	protected $cur_tag_close = '</li>';
 
 	/**
 	 * Next tag open
 	 *
 	 * @var	string
 	 */
-	protected $next_tag_open = '';
+	protected $next_tag_open = '<li class="navigation-js">';
 
 	/**
 	 * Next tag close
 	 *
 	 * @var	string
 	 */
-	protected $next_tag_close = '';
+	protected $next_tag_close = '</li>';
 
 	/**
 	 * Previous tag open
 	 *
 	 * @var	string
 	 */
-	protected $prev_tag_open = '';
+	protected $prev_tag_open = '<li  class="navigation-js">';
 
 	/**
 	 * Previous tag close
 	 *
 	 * @var	string
 	 */
-	protected $prev_tag_close = '';
+	protected $prev_tag_close = '</li>';
 
 	/**
 	 * Number tag open
 	 *
 	 * @var	string
 	 */
-	protected $num_tag_open = '';
+	protected $num_tag_open = '<li  class="navigation-js">';
 
 	/**
 	 * Number tag close
 	 *
 	 * @var	string
 	 */
-	protected $num_tag_close = '';
+	protected $num_tag_close = '</li>';
 
 	/**
 	 * Page query string flag
@@ -571,7 +571,7 @@ class CI_Pagination {
 		}
 
 		// Render the "Previous" link.
-		if ($this->prev_link !== FALSE && $this->cur_page !== 1)
+		if ($this->prev_link !== FALSE)
 		{
 			$i = ($this->use_page_numbers) ? $uri_page_number - 1 : $uri_page_number - $this->per_page;
 
@@ -606,8 +606,9 @@ class CI_Pagination {
 				{
 					if ($this->cur_page === $loop)
 					{
-						// Current page
-						$output .= $this->cur_tag_open.$loop.$this->cur_tag_close;
+						$append = $this->prefix.$i.$this->suffix;
+						$output .= $this->cur_tag_open.'<a href="'.$base_url.$append.'"'.$attributes.'>'
+							.$loop.'</a>'.$this->cur_tag_close;
 					}
 					elseif ($i === $base_page)
 					{
@@ -626,7 +627,7 @@ class CI_Pagination {
 		}
 
 		// Render the "next" link
-		if ($this->next_link !== FALSE && $this->cur_page < $num_pages)
+		if ($this->next_link !== FALSE)
 		{
 			$i = ($this->use_page_numbers) ? $this->cur_page + 1 : $this->cur_page * $this->per_page;
 

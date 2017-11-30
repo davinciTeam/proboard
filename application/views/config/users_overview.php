@@ -3,15 +3,16 @@
 ?>
 	<div class="content-wrapper">
         <section class="content-header ">
+          <div class="col-md-12">
+            <?=RenderBreadCrum()?>
+          </div>
+          <div class="col-md-12">
+            <?=feedback();?>
+          </div>
           <h1>
             Gebruikers
             <small>Overzicht	</small>
           </h1>
-          <ol class="breadcrumb">
-            <li><a href="/dashboard/dashboard"><i class="fa fa-cogs"></i> Home</a></li>
-            <li><a href="/config/config">Configuratie</a></li>
-            <li class="active">Gebruikers</li>
-          </ol>
         </section>
 
 		
@@ -21,21 +22,16 @@
               <div class="box box-success">
                 <div class="box-header">
                   <h3 class="box-title">Gebruikers</h3>
-                  <button class="btn btn-success pull-right" onClick="javascript: window.location = '/config/editUser';">Nieuw</button>
+                  <button class="btn btn-success pull-right" onClick="javascript: window.location = '/Users/newUser';">Nieuw</button>
                 </div>
                 <div class="box-body">
 
-                  <?php
-                    if($deleted){?>
+                  <?php if ($deleted) { ?>
                           <div class="callout callout-success" onClick="javascript: jQuery('.callout').slideUp();" >
                             <h4>Verwijderd</h4>
                             <p>De gebruiker is met succes verwijderd</p>
                           </div>
-                  <?php }
-                  ?>
-
-
-                  
+                  <?php } ?>
                     <table id="users" class="table userTable table-bordered table-hover dataTable">
                       <thead>
                         <tr>
@@ -45,38 +41,27 @@
                         </tr>
                       </thead>
                       <tbody>  
-                       <?php
-                    foreach($users as $user){
-                  ?>
+                      <?php foreach($users as $user) {?>
                         <tr>
                           <td><img src="<?=!empty($user->profile_image) ? $user->profile_image : '/custom/images/users/default.png'?>" width="45" class="img-circle" alt="<?=$user->name?>"></td>
                           <td><?=$user->name?></td>
                           <td>
                              <!-- edit / delete buttons -->
 
-                             <a href="/config/editUser/<?=$user->id?>" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                             <a href="/config/deleteUser/<?=$user->id?>" class="btn btn-danger removeBtn"><i class="fa fa-trash"></i></a>
+                             <a href="/Users/editUser/<?=$user->id?>" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                             <a href="/Users/deleteUser/<?=$user->id?>" class="btn btn-danger removeBtn"><i class="fa fa-trash"></i></a>
                           </td>
                         </tr>
-                  <?php
-                  }
-                  ?>
-
-
-
+                      <?php }?>
                       </tbody>
                     </table>
-                 
-
                 </div>
               </div>
             </div>
 
           </div>
     </section>
-
-
-    </div>
+  </div>
 
     <script type="text/javascript">
     jQuery(document).ready(function(){

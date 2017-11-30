@@ -150,7 +150,6 @@ class CI_Form_validation {
 	}
 
 	// --------------------------------------------------------------------
-
 	/**
 	 * Set Rules
 	 *
@@ -480,9 +479,11 @@ class CI_Form_validation {
 
 		// Did we end up with any errors?
 		$total_errors = count($this->_error_array);
+		
 		if ($total_errors > 0)
 		{
 			$this->_safe_form_data = TRUE;
+			addFeeback($this->_error_array, 'negative');//set errors
 		}
 
 		// Now we need to re-set the POST data with the new, processed data

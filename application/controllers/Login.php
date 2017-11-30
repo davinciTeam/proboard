@@ -7,34 +7,39 @@ class Login extends CI_Controller {
 	{
 		parent::__construct();
 	    $this->load->library('session');	
+	    $this->load->helper('form');
 	}
 
 	public function index()
 	{
-
-		if ($this->input->server('REQUEST_METHOD') == 'POST'){
-			$this->load->library('Auth');
-			$this->auth->doLogin($this->input->post('login_string'), $this->input->post('login_pass'));
-		}
-
-		if(!empty($this->session->user_id)){
+		if (!empty($this->session->user_id)) {
 			header('location: ' . $this->session->start_page);
-			exit();
 		}
-
+		
 		$this->load->view('login', array("error" => $this->session->error));	
 		$this->session->error = array();
 	}
 
-	public function logout(){
+
+	public function loginAction()
+	{
 		$this->load->library('Auth');
-		$this->auth->doLogout();
+		$this->auth->doLogin($this->input->post('login_string'), $this->input->post('login_pass'));
+
 	}
 
-	public function install(){
+	public function logout()
+	{
+		$this->load->library('Auth');
+		$this->auth->doLogout();
+		header('Location: /dashboard');
+	}
+
+	/*public function install()
+	{
 		$this->load->library('Auth');
 		$this->auth->installSystem();
 		header('Location: /login');
-	}
+	}*/
 
 }

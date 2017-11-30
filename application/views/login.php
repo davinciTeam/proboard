@@ -1,3 +1,6 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -39,8 +42,8 @@
           }
         }
       ?>
-
-      <form action="login" method="post">
+  
+      <?php echo form_open("/login/loginAction") ?>
         <div class="form-group has-feedback">
           <input type="text" class="form-control" name="login_string" id="login_string" autocomplete="off" placeholder="Gebruikersnaam">
           <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -62,7 +65,7 @@
       </form>
 
 
-    <a href="#">Ik ben mijn wachtwoord vergeten</a><br>
+    <a href="/dashboard">dashboard</a><br>
 
   </div>
 
