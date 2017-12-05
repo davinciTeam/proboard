@@ -1,7 +1,15 @@
 <template>
   <div class="dashboard">
-    <div class="container">
-        <table class="table table-striped">
+    <div class="bg-light container">
+      <div class="row"> 
+        <div class="col-md-12">
+            <i class="fa fa-stop bg-danger" aria-hidden="true"></i> = Is al geweest.
+            <i class="fa fa-stop bg-warning" aria-hidden="true"></i> = Is Vandaag.
+            <i class="fa fa-stop bg-danger" aria-hidden="true"></i> = Moet nog komen.
+        </div>
+      </div>
+      <div class="row">
+        <table class="table-bordered table table-striped">
           <thead>
             <tr>
               <th>Projectnaam</th>
@@ -17,12 +25,13 @@
               <td>{{ project['name'] }}<span data-toggle="tooltip" title="test" class="glyphicon glyphicon-comment"></span></td>
               <td>{{ project['client'] }}</td>
               <td>{{ project['teacher'] }}</td>
-              <td><p v-for="member in project['members']"> {{ member['name'] }} {{ member['insertion'] }} {{ member['lastname'] }},</p></td>
+              <td><p v-for="member in project['members']"> {{ member['name'] }} {{ member['insertion'] }} {{ member['lastname'] }}</p></td>
               <td>{{ project['iteration_start'] }}</td>
               <td>{{ project['code_review_start'] }}</td>
             </tr>
           </tbody>
         </table>
+      </div>
     </div>
   </div>
 </template>
