@@ -1,12 +1,34 @@
 <template>
-  <div class="container">
-    <h1>{{ msg }}</h1>
-    <div class="row">
-      <div class="col-md-12">
-        One of three columns
-      </div>
-      <div id="app">
-        {{ template }}
+  <div class="UserOverview">
+    <div class="container">
+      <h1></h1>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>Gebruikersnaam</th>
+                <th>Email adres</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Actief</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="user in users_data['body']['users']">
+                <td>{{ user['name'] }}</td>
+                <td>{{ user['email'] }}</td>
+                <td>Edit</td>
+                <td>Delete</td>
+                <td><i v-if="user['active'] == '1'" class="ion-android-done text-success"></i><i v-else class="ion-close-round text-danger"></i></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        <div id="app">
+         
+        </div>
       </div>
     </div>
   </div>
@@ -15,24 +37,22 @@
 <script>
 
 export default {
-  name: 'UsersOverview',
+  name: 'UserOverview',
   data () {
     return {
-      msg: 'Gebruikers overzicht',
-      template:'<thead><tr><th>Gebruikersnaam</th><th>Email adres</th><th>Edit</th><th>Delete</th></tr></thead>'
+      users_data: 'UserOverview'
     }
   },
-  methods: {
-    ajaxCall: function()
-    {
-      this.$http.get('http://proboard/dashboard').then(response => {
+  created: function () {
+    // `this` points to the vm instance
+    this.$http.get('http://proboard/Users').then(response => {
 
-      this.msg = 'test';
+      this.users_data = response;
+      console.log(this.users_data['body']['users'])
 
-      }, response => {
-        this.msg = 'failed';
-      })
-    }
+    }, response => {
+      this.users_data = 'failed';
+    })
   }
 }
 </script>
