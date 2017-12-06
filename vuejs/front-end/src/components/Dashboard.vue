@@ -2,12 +2,13 @@
   <div class="dashboard">
     <div class="bg-light container">
       <div class="row"> 
+        <h4>Legenda</h4>
         <div class="col-md-12">
-            <i class="fa fa-stop bg-danger" aria-hidden="true"></i> = Is al geweest.
-            <i class="fa fa-stop bg-warning" aria-hidden="true"></i> = Is Vandaag.
-            <i class="fa fa-stop bg-danger" aria-hidden="true"></i> = Moet nog komen.
+            <i class="ion-stop text-danger" aria-hidden="true"></i> = Is al geweest.
+            <i class="ion-stop text-warning" aria-hidden="true"></i> = Is Vandaag.
+            <i class="ion-stop text-success" aria-hidden="true"></i> = Moet nog komen.
         </div>
-      </div>
+      </div> 
       <div class="row">
         <table class="table-bordered table table-striped">
           <thead>
@@ -22,7 +23,7 @@
           </thead>
           <tbody>
             <tr v-for="project in projects['body']['projects']">
-              <td>{{ project['name'] }}<span data-toggle="tooltip" title="test" class="glyphicon glyphicon-comment"></span></td>
+              <td>{{ project['name'] }}<span :title="project['description']" class="size-14 ion-android-textsms"></span></td>
               <td>{{ project['client'] }}</td>
               <td>{{ project['teacher'] }}</td>
               <td><p v-for="member in project['members']"> {{ member['name'] }} {{ member['insertion'] }} {{ member['lastname'] }}</p></td>
@@ -51,9 +52,11 @@ export default {
 
       this.projects = response;
 
+
     }, response => {
       this.projects = 'failed';
     })
   }
 }
 </script>
+

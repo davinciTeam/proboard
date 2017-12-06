@@ -8,9 +8,10 @@ Vue.use(Router)
 Vue.use(VueResource)
 
 export default new Router({
+  linkActiveClass: 'active',
   routes: [
 	{
-      path: '/',
+      path: '/dashboard/:page?',
       name: 'dashboard',
       component: Dashboard
     },
