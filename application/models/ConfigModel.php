@@ -26,7 +26,7 @@
 		public function getUsers()
 		{
 			$this->db->order_by('name', 'ASC');
-			$query = $this->db->get_where('users', array("active" => 1));
+			$query = $this->db->get_where('users');
 			return $query->result();
 		}
 
