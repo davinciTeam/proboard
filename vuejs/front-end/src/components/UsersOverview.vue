@@ -1,7 +1,18 @@
 <template>
   <div class="UserOverview">
     <div class="container">
-      <h1></h1>
+      <div class="row">
+        <nav>       
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" href="#/dashboard">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#/users">Link</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <table class="table table-bordered table-hover">

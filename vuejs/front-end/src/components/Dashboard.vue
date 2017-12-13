@@ -1,6 +1,18 @@
 <template>
   <div class="dashboard">
     <div class="bg-light container">
+      <div class="row">
+        <nav>       
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="#/dashboard">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#/users">Link</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
       <div class="row"> 
         <h4>Legenda</h4>
         <div class="col-md-12">
@@ -21,7 +33,7 @@
               <th>Datum iteratie</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody>        
             <tr v-for="project in projects['body']['projects']">
               <td>{{ project['name'] }}<span :title="project['description']" class="size-14 ion-android-textsms"></span></td>
               <td>{{ project['client'] }}</td>
@@ -59,4 +71,5 @@ export default {
   }
 }
 </script>
+
 
