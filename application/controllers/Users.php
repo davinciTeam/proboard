@@ -5,14 +5,21 @@ class Users extends CI_Controller {
    	{
    		parent::__construct();
         $this->load->library('Auth');
-     	$this->auth->check('1');
+     	
         $this->load->library('session');
         $this->load->helper('form');
    	}
    	
 	public function index()
 	{
-		redirect('Users/users');
+		$this->load->model("ConfigModel", "config_model");
+		/* Users overview */
+		$users = $this->config_model->getUsers();
+		$users_data = array(
+			"users" => $users
+		);
+		// render('config/users_overview', $users_data);
+		echo_json($users_data);
 	}
 
 	public function users()
@@ -21,10 +28,11 @@ class Users extends CI_Controller {
 		/* Users overview */
 		$users = $this->config_model->getUsers();
 		$users_data = array(
-			"users" => $users,
-			"deleted" => !empty($this->input->get('deleted')) ? 1 : 0
+			"users" => $users
+			
 		);
-		render('config/users_overview', $users_data);
+		// render('config/users_overview', $users_data);
+		echo_json($users_data);
 	}
 
 	public function editUser($id = null)
