@@ -29,8 +29,8 @@
               <tr v-for="user in users_data['body']['users']">
                 <td>{{ user['name'] }}</td>
                 <td>{{ user['email'] }}</td>
-                <td>Edit</td>
-                <td>Delete</td>
+                <td><i class="ion-edit"></i></td>
+                <td><i class="ion-trash-a"></i></td>
                 <td><i v-if="user['active'] == '1'" class="ion-android-done text-success"></i><i v-else class="ion-close-round text-danger"></i></td>
               </tr>
               
