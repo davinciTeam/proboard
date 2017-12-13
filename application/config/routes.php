@@ -52,5 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Viewjs';
 //$route['(:any)']['GET'] = 'Viewjs';
 
+$route['api/login']['POST'] = 'Login/index_post';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

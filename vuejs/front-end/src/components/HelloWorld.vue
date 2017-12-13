@@ -28,13 +28,21 @@ export default {
   methods: {
     ajaxCall: function()
     {
-      this.$http.get('http://proboard/dashboard').then(response => {
+/*      this.$http.get('http://proboard/dashboard').then(response => {
 
       this.msg = 'test';
 
       }, response => {
         this.msg = 'failed';
-      })
+      })*/
+      this.$http.jsonp('http://google.com').then(response => {
+        // get body data
+        console.log(response.body)
+      }, response => { // error callback 
+        console.log('test');
+      });
+
+
     }
   }
 }

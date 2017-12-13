@@ -4,6 +4,7 @@ class Auth {
 
 	public function __construct()
     {
+
 		$CI =& get_instance();
 		$CI->load->library('session');
 		$this->_key = $CI->config->item('encryption_key');
@@ -71,73 +72,85 @@ class Auth {
 	public function doLogin($f_username, $f_password)
 	{
 		$CI =& get_instance();
-		$CI->load->helper('url');
-		$CI->load->database();
-		$CI->load->library('user_agent');
-		$CI->load->library('session');
-		$CI->load->model('ConfigModel', 'config_model');
-		$user = $CI->config_model->getUserByUsername($f_username);
-		if (is_object($user)) {
+		$query = $CI->db->where('users', $f_username);
 
-			if ($user->failed_logins >= $this->maxAttempts) {
-
-				if (time() + (60*60)  <= $user->last_failed_login) {
-					$user->failed_logins = 0;
-
-					$CI->db->where('id', $user->id);
-					$CI->db->update('users', array(
-				        'failed_logins' => 0,
-					));
-				} else {
-
-					array_push($_SESSION["error"], "U kunt maximaal " . $this->maxAttempts . " keer per uur proberen in te loggen.", 					"Restende tijd tot u weer kan proberen in te loggen over " . 	date('i', $user->last_failed_login - time()) . " minuten" );
-					redirect('/login');
-					exit;
-				}
-			}
-
-			if ((time() + (30))  <= $user->last_failed_login) {
-				$this->failedLogin($user, $CI);
-			}
-
-			$hash = $this->getPasswordHash($f_password, $user);
-			if ($hash == $user->password) {
-				$this->getChecksum();
-				$query = $CI->db->get_where('user_activities', array("user_id" => $user->id));
-
-				if ($query->num_rows() == 0) {
-					$CI->db->insert('user_activities', array("user_id" => $user->id, "checksum" => $this->f_checksum, "date_modify" => date('Y-m-d H:i:s')));
-				} else {
-					$CI->db->update('user_activities', array("checksum" => $this->f_checksum, "date_modify" => date('Y-m-d H:i:s')), array("user_id" => $user->id));
-				}
-			
-				$sessiondata = array(
-					"name" => $user->name,
-					"user_id" => $user->id,
-					"profile_id" => $user->profile_id,
-					"profile_image" =>  !empty($user->profile_image) ? $user->profile_image : '/custom/images/users/default.png',
-					"menu_state" => $user->menu_state,
-					"start_page" => !empty($user->start_page) ? $user->start_page : '/dashboard' ,
-					"email" => $user->email,
-					"permision" => !empty($user->admin) ? $user->admin : '0'
-				);
-
-				$CI->session->set_userdata($sessiondata);
-
-				if ($user->start_page) {
-					redirect($user->start_page);
-				} else {
-					redirect("/dashboard");
-				}
-			} else {
-				array_push($_SESSION["error"], "Gebruikersnaam en/of wachtwoord onjuist");
-				$this->failedLogin($user, $CI);
-			}
-		} else {
-			array_push($_SESSION["error"], "Gebruikersnaam en/of wachtwoord onjuist");
-			redirect('/login');
-		}		
+		return $query;
 	}
+
+	// public function doLogin($f_username, $f_password)
+	// {
+	// 	$CI =& get_instance();
+	// 	$CI->load->helper('url');
+	// 	$CI->load->database();
+	// 	$CI->load->library('user_agent');
+	// 	$CI->load->library('session');
+	// 	$CI->load->model('ConfigModel', 'config_model');
+	// 	$user = $CI->config_model->getUserByUsername($f_username);
+	// 	if (is_object($user)) {
+
+	// 		if ($user->failed_logins >= $this->maxAttempts) {
+
+	// 			if (time() + (60*60)  <= $user->last_failed_login) {
+	// 				$user->failed_logins = 0;
+
+	// 				$CI->db->where('id', $user->id);
+	// 				$CI->db->update('users', array(
+	// 			        'failed_logins' => 0,
+	// 				));
+	// 			} else {
+
+	// 				array_push($_SESSION["error"], "U kunt maximaal " . $this->maxAttempts . " keer per uur proberen in te loggen.", 					"Restende tijd tot u weer kan proberen in te loggen over " . 	date('i', $user->last_failed_login - time()) . " minuten" );
+	// 				redirect('/login');
+	// 				exit;
+	// 			}
+	// 		}
+
+	// 		if ((time() + (30))  <= $user->last_failed_login) {
+	// 			$this->failedLogin($user, $CI);
+	// 		}
+
+	// 		$hash = $this->getPasswordHash($f_password, $user);
+	// 		if ($hash == $user->password) {
+	// 			$this->getChecksum();
+	// 			$query = $CI->db->get_where('user_activities', array("user_id" => $user->id));
+
+	// 			if ($query->num_rows() == 0) {
+	// 				$CI->db->insert('user_activities', array("user_id" => $user->id, "checksum" => $this->f_checksum, "date_modify" => date('Y-m-d H:i:s')));
+	// 			} else {
+	// 				$CI->db->update('user_activities', array("checksum" => $this->f_checksum, "date_modify" => date('Y-m-d H:i:s')), array("user_id" => $user->id));
+	// 			}
+			
+	// 			$sessiondata = array(
+	// 				"name" => $user->name,
+	// 				"user_id" => $user->id,
+	// 				"profile_id" => $user->profile_id,
+	// 				"profile_image" =>  !empty($user->profile_image) ? $user->profile_image : '/custom/images/users/default.png',
+	// 				"menu_state" => $user->menu_state,
+	// 				"start_page" => !empty($user->start_page) ? $user->start_page : '/dashboard' ,
+	// 				"email" => $user->email,
+	// 				"permision" => !empty($user->admin) ? $user->admin : '0'
+	// 			);
+
+	// 			$CI->session->set_userdata($sessiondata);
+
+	// 			return $sessiondata;
+
+	// 			// if ($user->start_page) {
+	// 			// 	redirect($user->start_page);
+	// 			// } else {
+	// 			// 	redirect("/dashboard");
+	// 			// }
+	// 		} 
+	// 	// 	else {
+	// 	// 		array_push($_SESSION["error"], "Gebruikersnaam en/of wachtwoord onjuist");
+	// 	// 		$this->failedLogin($user, $CI);
+	// 	// 	}
+	// 	// } else {
+	// 	// 	array_push($_SESSION["error"], "Gebruikersnaam en/of wachtwoord onjuist");
+	// 	// 	redirect('/login');
+	// 	// }
+	// 	}		
+	// }
 
 	public function doLogout()
 	{

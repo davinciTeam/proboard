@@ -21,7 +21,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div id="app" class="container">
   
   </div>
-  <script src="/vue_js/vue.js"></script>
-  <script src="vue_js/vue_js_aplication"></script>
+  <script type=text/javascript src=dist/static/js/manifest.d0e0a89db64d302198ba.js></script>
+  <script type=text/javascript src=dist/static/js/vendor.bc7241e80a72afef5fdd.js></script>
+  <script type=text/javascript src=dist/static/js/app.70f8fd5dd80469e66bed.js></script>
   </body>
 </html>
