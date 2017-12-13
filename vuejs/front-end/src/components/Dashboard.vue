@@ -5,10 +5,10 @@
         <nav>       
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="#/dashboard">Active</a>
+              <a class="nav-link active" href="#/dashboard">dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/users">Link</a>
+              <a class="nav-link" href="#/users">gebruikers</a>
             </li>
           </ul>
         </nav>
@@ -63,7 +63,6 @@ export default {
     this.$http.get('http://proboard/dashboard').then(response => {
 
       this.projects = response;
-
 
     }, response => {
       this.projects = 'failed';

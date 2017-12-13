@@ -5,10 +5,10 @@
         <nav>       
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link" href="#/dashboard">Active</a>
+              <a class="nav-link" href="#/dashboard">dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#/users">Link</a>
+              <a class="nav-link active" href="#/users">gebruikers</a>
             </li>
           </ul>
         </nav>
