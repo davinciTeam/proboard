@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import vueResource from 'vue-resource'
+import VueResource from 'vue-resource'
 import login from '@/components/auth/login'
 import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'

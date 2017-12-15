@@ -49,3 +49,4 @@ uploads
 
 vendor
 public/test.php
+package-lock.json
