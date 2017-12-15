@@ -25,12 +25,12 @@
         <table class="table-bordered table table-striped">
           <thead>
             <tr>
-              <th>Projectnaam</th>
-              <th>Klant</th>
-              <th>Docent</th>
+              <th v-on:click="sort" data-field="name" class="ion-arrow-up-a">Projectnaam</th>
+              <th v-on:click="sort" data-field="client" class="ion-arrow-up-a">Klant</th>
+              <th v-on:click="sort" data-field="teacher" class="ion-arrow-up-a">Docent</th>
               <th>Leden</th>
-              <th>Datum code review</th>
-              <th>Datum iteratie</th>
+              <th v-on:click="sort" data-field="iteration_start" class="ion-arrow-up-a">Datum iteratie</th>
+              <th v-on:click="sort" data-field="code_review_start" class="ion-arrow-up-a">Datum code review</th>
             </tr>
           </thead>
           <tbody>        
@@ -50,12 +50,13 @@
 </template>
               
 <script>
-
 export default {
   name: 'dashboard',
   data () {
     return {
-      projects: 'loading'
+      projects: 'loading',
+      order: 'DESC',
+      sorting: 'name'
     }
   },
   created: function () {
@@ -67,6 +68,25 @@ export default {
     }, response => {
       this.projects = 'failed';
     })
+  },
+  methods: {
+    sort: function(event) {
+      this.sorting = event.originalTarget.nextElementSibling.attributes[0].value
+      this.$http.get('http://proboard/dashboard?order='+this.order+'&sort='+this.sorting).then(response => {
+    
+        if (this.order === 'DESC') {
+          this.order = 'ASC'
+        } else if (event.originalTarget.nextElementSibling.attributes[0].value != this.sorting || this.order === 'ASC') {
+          this.order = 'DESC'
+        }
+
+        this.projects = response;
+        
+
+      }, response => {
+        this.projects = 'failed';
+      })
+    }
   }
 }
 </script>

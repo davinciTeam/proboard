@@ -11,7 +11,7 @@ class Projects_model extends CI_Model {
 
     public function getProjects($offset = null, $sort = false)
     {
-        $search = $this->input->post('searchParamaters');
+        $search = $this->input->get('searchParamaters');
         if (!empty($search)) {
 
             $search = '%'.$search.'%';       
@@ -27,9 +27,11 @@ class Projects_model extends CI_Model {
             $this->db->limit(10);
         }
 
-        if ($sort) {
-            $this->db->order_by('iteration_start', 'DESC');
-            $this->db->order_by('code_review_start', 'DESC');
+        if ( ($this->input->get('order') === 'ASC' || $this->input->get('order') === 'DESC')
+         && $this->input->get('sort') && in_array($this->input->get('sort'), $this->db->list_fields('projects'))) {
+
+            $this->db->order_by($this->input->get('sort'), $this->input->get('order'));
+            
         }
 
         $queryResult = $this->db->from('projects')->get()->result();
