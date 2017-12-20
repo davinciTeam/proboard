@@ -1,5 +1,5 @@
 <template>
-  <div class="UserOverview">
+  <div class="userOverview">
     <div class="container">
       <div class="row">
         <nav>       
@@ -19,9 +19,9 @@
             <thead class="thead-dark">
               <tr>
                 <th>Gebruikersnaam</th>
-                <th>Email adres</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Email-adres</th>
+                <th>Wijzigen</th>
+                <th>Verwijderen</th>
                 <th>Actief</th>
               </tr>
             </thead>
