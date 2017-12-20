@@ -15,10 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function index($page = null)
     {
 
-      $data['projects'] = $this->projects_model->getProjects($page, true);
-      $data['today'] = date('Y-m-d');
-      $data['amount_of_items'] = $this->projects_model->AmountOfProjects();
-      $data['admin'] = $this->session->permision; 
+      $data['projects'] = $this->projects_model->getProjects($page);
       $data['project_items'] = $this->appointment_model->getTodayAppointment($page, true);
 
       echo_json($data);

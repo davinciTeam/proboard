@@ -72,13 +72,19 @@ export default {
 
       this.projects = response;
 
+
+      for (var x in this.projects['body']['projects']) {
+        this.projects['body']['projects'][x]['iteration_start'] = new Date(this.projects['body']['projects'][x]['iteration_start']).toDateString();
+        this.projects['body']['projects'][x]['code_review_start'] = new Date(this.projects['body']['projects'][x]['code_review_start']).toDateString();
+      }
+
     }, response => {
 
     })
   },
   methods: {
     sort: function(event) {
-      if (this.sorting !== event.originalTarget.attributes[0].value || this.sorted === 'DESC') {
+      if (this.sorting !== event.originalTarget.attributes[0].value) {
         this.sorted = 'ASC';
         this.sorting = event.originalTarget.attributes[0].value
         
