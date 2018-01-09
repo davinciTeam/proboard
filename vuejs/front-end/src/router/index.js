@@ -3,11 +3,12 @@ import Router from 'vue-router'
 import VueResource from 'vue-resource'
 import login from '@/components/auth/Login'
 import logout from '@/components/auth/Logout'
-import login from '@/components/auth/login'
 import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'
 import AddUser from '@/components/AddUser'
+import BootstrapVue from 'bootstrap-vue'
 
+Vue.use(BootstrapVue);
 Vue.use(Router)
 Vue.use(VueResource)
 
