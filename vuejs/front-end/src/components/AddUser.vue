@@ -1,5 +1,5 @@
 <template>
-  <div class="userOverview">
+  <div class="AddUser">
     <div class="container">
       <div class="row">
         <nav>       
@@ -39,7 +39,7 @@
 <script>
 
 export default {
-  name: 'UserOverview',
+  name: 'AddUser',
   data () {
     return {
       users_data: 'UserOverview'
