@@ -49,8 +49,8 @@ uploads
 
 node_modules
 vendor
-public/test.php
 public/js
 public/app.js
 public/mix-manifest.json
 vuejs/front-end
+package-lock.json

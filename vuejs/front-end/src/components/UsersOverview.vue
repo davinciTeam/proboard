@@ -1,5 +1,5 @@
 <template>
-  <div class="UserOverview">
+  <div class="userOverview">
     <div class="container">
       <div class="row">
         <nav>       
@@ -19,9 +19,9 @@
             <thead class="thead-dark">
               <tr>
                 <th>Gebruikersnaam</th>
-                <th>Email adres</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Email-adres</th>
+                <th>Wijzigen</th>
+                <th>Verwijderen</th>
                 <th>Actief</th>
               </tr>
             </thead>
@@ -29,8 +29,8 @@
               <tr v-for="user in users_data['body']['users']">
                 <td>{{ user['name'] }}</td>
                 <td>{{ user['email'] }}</td>
-                <td><i class="ion-edit"></i></td>
-                <td><i class="ion-trash-a"></i></td>
+                <td><a href="#"><i class="ion-edit"></i></a></td>
+                <td><a href="#"><i class="ion-trash-a"></i></a></td>
                 <td><i v-if="user['active'] == '1'" class="ion-android-done text-success"></i><i v-else class="ion-close-round text-danger"></i></td>
               </tr>
               

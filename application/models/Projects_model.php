@@ -5,16 +5,20 @@ class Projects_model extends CI_Model {
     {
         parent::__construct();
         $this->load->database();
-        //Get database class availeble
     }
 
+    /**
+     * Get the projects
+     *  
+     * optional offsert int
+     * 
+     * @return an array of projects
+     */
 
-    public function getProjects($offset = null, $sort = false)
+    public function getProjects($offset = null)
     {
-        $search = $this->input->post('searchParamaters');
-        if (!empty($search)) {
-
-            $search = '%'.$search.'%';       
+        if ($this->input->get('searchParamaters')) {
+            $search = '%'.$this->input->get('searchParamaters').'%';       
             foreach($this->db->list_fields('projects') as $fieldName) {
                 if ($fieldName === 'id' || $fieldName === 'active') continue;
                 $this->db->or_where($fieldName. ' LIKE', $search);
@@ -25,11 +29,6 @@ class Projects_model extends CI_Model {
             $this->db->limit(10, $offset);
         } else {
             $this->db->limit(10);
-        }
-
-        if ($sort) {
-            $this->db->order_by('iteration_start', 'DESC');
-            $this->db->order_by('code_review_start', 'DESC');
         }
 
         $queryResult = $this->db->from('projects')->get()->result();
@@ -83,6 +82,13 @@ class Projects_model extends CI_Model {
         }
         return $data; // return the data
     } // end members
+
+    /**
+     * Adds a project
+     *
+     * input data array
+     * @return  object
+     */
 
     public function addProject($data)
     {
