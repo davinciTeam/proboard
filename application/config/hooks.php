@@ -11,3 +11,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	https://codeigniter.com/user_guide/general/hooks.html
 |
 */
+
+/*
+| PEAR hook
+|
+|
+*/
+
+$hook['pre_controller'][] = array(
+	'class' => 'Pear_hook',
+	'function' => 'index',
+	'filename' => 'pear_hook.php',
+	'filepath' => 'hooks'
+);

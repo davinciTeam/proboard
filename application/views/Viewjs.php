@@ -16,13 +16,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
   <div id="app" class="container">
   
   </div>
-  <script type=text/javascript src=dist/static/js/manifest.d0e0a89db64d302198ba.js></script>
-  <script type=text/javascript src=dist/static/js/vendor.bc7241e80a72afef5fdd.js></script>
-  <script type=text/javascript src=dist/static/js/app.70f8fd5dd80469e66bed.js></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type=text/javascript src=js/main.js></script>
+  <script type=text/javascript src=app.js></script>
   </body>
 </html>

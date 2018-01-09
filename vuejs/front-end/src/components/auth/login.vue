@@ -1,50 +1,56 @@
 <template>
 	<div class="login">
     <div class="container">
-      <form class="form-signin">
+      <div class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <label for="inputUsername" class="sr-only">Email address</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="username" required="" autofocus="" v-model="username">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" v-model="password">
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button v-on:click="loginWithUsernameAndPassword" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+        <button v-on:click="login" class="btn btn-lg btn-primary btn-block">Sign in</button>
+      </div>
 
     </div>
 	</div>
 </template>
 
 <script>
+  import router from '@/router';
+  import store from '@/store';
+  import {loginWithUsernameAndPassword} from '../../utils/auth';
+
   export default {
     name: 'login',
+
     data () {
       return {
-        BasePath: 'http://proboard/',
-        username: 'admin',
-        password: 'admin'
+        loader: false,
+        infoError: false,
+        username: '',
+        password: ''
+      }
+    },
+
+    beforeCreate () {
+      if (store.state.isLogged) {
+        router.push('/');
       }
     },
     methods: {
-      loginWithUsernameAndPassword: function(e) {
-        // in the future must be moved to a separate file
-        e.preventDefault();
-        // this.$http.post(this.BasePath+'api/login', {login_string: this.username, login_pass: this.password}).then(response => {
-        //   alert('success?');
-        //   console.log(response);
-        // }).catch(err => {
-        //   console.log(err);
-        // });
-
-        this.$http.jsonp(this.BasePath+'api/login').then(response => {
-        // get body data
-        console.log(response.body)
-        }, response => { // error callback 
-          console.log('test');
+      login (e) {
+        // e.preventDefault();
+        loginWithUsernameAndPassword(this.username, this.password).then(token => {
+          // localStorage.setItem('token', token.jwt);
+          // router.push('/dashboard');
+          console.log(token);
+        }).catch(err => {
+          console.log(err);
+          this.password = '';
         });
       }
     }

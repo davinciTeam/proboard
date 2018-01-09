@@ -53,6 +53,7 @@ $route['default_controller'] = 'Viewjs';
 $route['/dashboard']['GET'] = 'index';
 $route['/users']['GET'] = 'index';
 
-$route['api/login']['POST'] = 'Login/index_post';
+$route['api/login'] = 'login/index_post';
+$route['verifyJWT'] = 'login/verifyJWT';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

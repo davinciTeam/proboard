@@ -6,8 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
    		parent::__construct();
       $this->load->library('Auth');
-    	$this->auth->check('0');
-      $this->load->library('session');
+    	// $this->auth->check('0');
       $this->load->model('projects_model');    
       $this->load->model('appointment_model');    
     }
@@ -18,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $data['projects'] = $this->projects_model->getProjects($page, true);
       $data['today'] = date('Y-m-d');
       $data['amount_of_items'] = $this->projects_model->AmountOfProjects();
-      $data['admin'] = $this->session->permision; 
+      // $data['admin'] = $this->session->permision; 
       $data['project_items'] = $this->appointment_model->getTodayAppointment($page, true);
 
       echo_json($data);

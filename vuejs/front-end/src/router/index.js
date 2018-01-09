@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import vueResource from 'vue-resource'
-import login from '@/components/auth/login'
+import VueResource from 'vue-resource'
+import login from '@/components/auth/Login'
+import logout from '@/components/auth/Logout'
 import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'
 
@@ -10,11 +11,17 @@ Vue.use(VueResource)
 
 export default new Router({
   linkActiveClass: 'active',
+  mode: 'history',
   routes: [
     {
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: logout
     },
     {
       path: '/dashboard/:page?',
