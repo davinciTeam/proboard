@@ -5,7 +5,7 @@
         <nav>       
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link" href="#/dashboard">dashboard</a>
+              <a class="nav-link" href="#/">dashboard</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="#/users">gebruikers</a>
@@ -29,18 +29,26 @@
               <tr v-for="user in users_data['body']['users']">
                 <td>{{ user['name'] }}</td>
                 <td>{{ user['email'] }}</td>
-                <td><i class="ion-edit"></i></td>
-                <td><i class="ion-trash-a"></i></td>
-                <td><i v-if="user['active'] == '1'" class="ion-android-done text-success"></i><i v-else class="ion-close-round text-danger"></i></td>
+                <td><b-button variant="primary" @click="openModalEditUser(user['name'], user['email'])"><icon name="pencil"></icon></b-button></td>
+                <td><icon name="trash"></icon></td>
+                <td><icon name="check" class="text-success" v-if="user['active'] == '1'"></icon><icon v-else name="times" class="text-danger" ></icon></td>
               </tr>
               
             </tbody>
           </table>
         </div>
+
         <div id="app">
          
         </div>
       </div>
+
+    </div>
+    <div>
+      <b-modal ref="editUser" id="edit_user" title="Gebruiker bewerken">
+        <b-form-input v-model="name" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
+        <b-form-input v-model="email" type="text" placeholder="Vul een email in"></b-form-input>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -51,7 +59,9 @@ export default {
   name: 'UserOverview',
   data () {
     return {
-      users_data: 'UserOverview'
+      users_data: 'UserOverview',
+      email: '',
+      name: ''
     }
   },
   created: function () {
@@ -64,6 +74,16 @@ export default {
     }, response => {
       this.users_data = 'failed';
     })
+  },
+  methods: {
+    openModalEditUser (name, email) {
+      this.email = email
+      this.name = name
+      this.$refs.editUser.show()
+    },
+    closeModalEditUser () {
+      this.$refs.editUser.hide()
+    }
   }
 }
 </script>

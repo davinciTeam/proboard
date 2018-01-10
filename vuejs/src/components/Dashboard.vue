@@ -5,7 +5,7 @@
         <nav>       
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="#/dashboard">dashboard</a>
+              <a class="nav-link active" href="#/">dashboard</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#/users">gebruikers</a>
@@ -16,9 +16,9 @@
       <div class="row"> 
         <h4>Legenda</h4>
         <div class="col-md-12">
-            <i class="ion-stop text-danger" aria-hidden="true"></i> = Is al geweest.
-            <i class="ion-stop text-warning" aria-hidden="true"></i> = Is Vandaag.
-            <i class="ion-stop text-success" aria-hidden="true"></i> = Moet nog komen.
+            <icon name="stop" class="text-danger" aria-hidden="true"></icon> = Is al geweest.
+            <icon name="stop" class="text-warning" aria-hidden="true"></icon> = Is Vandaag.
+            <icon name="stop" class="text-success" aria-hidden="true"></icon> = Moet nog komen.
         </div>
       </div> 
       <div class="row">
@@ -35,7 +35,7 @@
           </thead>
           <tbody>        
             <tr v-for="project in projects['body']['projects']">
-              <td>{{ project['name'] }}<span :title="project['description']" class="size-14 ion-android-textsms"></span></td>
+              <td>{{ project['name'] }}<b-btn variant="light" v-b-popover.hover="project['description']" title="Beschrijving"><icon name="comment" title=""></icon></b-btn></td>
               <td>{{ project['client'] }}</td>
               <td>{{ project['teacher'] }}</td>
               <td><p v-for="member in project['members']"> {{ member['name'] }} {{ member['insertion'] }} {{ member['lastname'] }}</p></td>
