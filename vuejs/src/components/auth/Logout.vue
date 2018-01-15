@@ -6,9 +6,11 @@
     name: 'logout',
     mounted () {
       localStorage.removeItem('token');
-      this.logout().then( () => {
-        // router.push('login');
-      });
+      localStorage.removeItem('user');
+      this.logout().then(setTimeout(() => {
+        router.push('login');
+      }, 100));
+      
     },
     methods: {
       ...mapActions({logout: 'logout'})

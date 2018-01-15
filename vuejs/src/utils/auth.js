@@ -1,5 +1,3 @@
-import Vue from 'vue';
-import {Http} from 'vue-resource';
 import Axios from 'axios';
 
 const BaseUrl = 'http://proboard/';
@@ -20,4 +18,22 @@ function loginWithUsernameAndPassword(username, password) {
   });
 }
 
-export {loginWithUsernameAndPassword}
+function checkLogin(user) {
+  const currentTime = Math.floor(new Date() / 1000);
+  let isLogged = false;
+
+  if (user !== null && typeof user != 'undefined') {
+    if (user.exp <= currentTime) {
+      isLogged = false;
+      console.log('test');
+    } else if(user.exp > currentTime) {
+      isLogged = true;
+      console.log('test2');
+    }
+  }
+
+  console.log(isLogged);
+  return isLogged;
+}
+
+export {loginWithUsernameAndPassword, checkLogin}

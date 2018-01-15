@@ -1,7 +1,7 @@
 <template>
 	<div class="login">
     <div class="container">
-      <div class="form-signin">
+      <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputUsername" class="sr-only">Email address</label>
         <input type="text" id="inputUsername" class="form-control" placeholder="username" required="" autofocus="" v-model="username">
@@ -13,7 +13,7 @@
           </label>
         </div>
         <button v-on:click="login" class="btn btn-lg btn-primary btn-block">Sign in</button>
-      </div>
+      </form>
       <div v-if="infoError" class="alert alert-danger" role="alert">
         <strong>{{errorMessage}}</strong>
       </div>
@@ -23,8 +23,8 @@
 
 <script>
   import router from '@/router';
-  import store from '@/store';
-  import {loginWithUsernameAndPassword} from '../../utils/auth';
+  import { mapGetters, mapActions } from 'vuex';
+  import { loginWithUsernameAndPassword, checkLogin} from '../../utils/auth';
 
   export default {
     name: 'login',
@@ -38,19 +38,36 @@
       }
     },
 
-    beforeCreate () {
-      if (store.state.isLogged) {
-        router.push('/dashboard');
-      }
+    created () {
+      // if (this.$store.isLogged()) {
+      //   setTimeout(() => {
+      //     router.push('/dashboard');
+      //   }, 2000);
+      // }
+      console.log(this.getUser);
+    },
+    computed: {
+      ...mapGetters()
     },
     methods: {
+      jwtDecode(token) {
+        const data = token.split(".");
+        return atob(data[1]);
+      },
       login (e) {
-        // e.preventDefault();
+        e.preventDefault();
         loginWithUsernameAndPassword(this.username, this.password).then(token => {
+          const user = this.jwtDecode(token.jwt);
+
           localStorage.setItem('token', token.jwt);
-          store.commit('LOGIN_USER'); //!!!!!!IMPORTANT
-          router.push('/dashboard');
+          localStorage.setItem('user', user);
+
+
+
+          this.$store.dispatch('login', {user: user, token: token.jwt}); //!!!!!!IMPORTANTCHANGE
+          // router.push('/dashboard');
         }).catch(err => {
+          console.log(err); // IMPORTANTCHANGE
           this.infoError = true;
           this.password = '';
         });
