@@ -40,11 +40,13 @@ export default new Router({
     	component: UsersOverview
     },
     {
-    //the dashboard should always be last in routes since otherwise it would override other routes
-    //routes get priority by the order defined
-      path: '/:page?',
+      path: '/',
       name: 'dashboard',
       component: Dashboard
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })
