@@ -6,6 +6,7 @@ import logout from '@/components/auth/Logout'
 import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'
 import BootstrapVue from 'bootstrap-vue'
+import { checkLogin } from '@/utils/auth'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -20,7 +21,7 @@ Vue.use(BootstrapVue);
 Vue.use(Router)
 Vue.use(VueResource)
 
-export default new Router({
+const router = new Router({
   linkActiveClass: 'active',
   // mode: 'history',
   routes: [
@@ -37,7 +38,10 @@ export default new Router({
     {
     	path: '/users',
     	name: 'UsersOverview',
-    	component: UsersOverview
+    	component: UsersOverview,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/',
@@ -50,3 +54,22 @@ export default new Router({
     }
   ]
 })
+
+
+
+router.beforeEach((to, from, next) => {
+ if (to.matched.some(record => record.meta.requiresAuth)) {
+   if (!checkLogin()) {
+     next({
+       path: '/login',
+       query: { redirect: to.fullPath }
+     });
+   } else {
+     next();
+   }
+ } else {
+   next();
+ }
+});
+
+export default router;
