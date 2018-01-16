@@ -6,20 +6,27 @@ class Users extends CI_Controller {
    		parent::__construct();
         $this->load->library('Auth');
      	
-        $this->load->library('session');
         $this->load->helper('form');
    	}
    	
 	public function index()
 	{
-		$this->load->model("ConfigModel", "config_model");
-		/* Users overview */
-		$users = $this->config_model->getUsers();
-		$users_data = array(
-			"users" => $users
-		);
+		$token = $this->input->cookie('token');
+		try {
+			$decodedToken = $this->auth->verifyToken($token);
+
+			$this->load->model("ConfigModel", "config_model");
+			/* Users overview */
+			$users = $this->config_model->getUsers();
+			$response = array(
+				"users" => $users
+			);
+		} catch ( Exception $e ) {
+			$response = $e->getMessage();
+		}
+		
 		// render('config/users_overview', $users_data);
-		echo_json($users_data);
+		echo_json($response);
 	}
 
 	public function users()
