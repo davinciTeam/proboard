@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import Cookies from 'js-cookie';
 
 const BaseUrl = 'http://proboard/';
 
@@ -23,6 +24,10 @@ function jwtDecode(token) {
   return atob(data[1]);
 }
 
+function setAppCookie() {
+  Cookies.set('token', localStorage.getItem('token'))
+}
+
 function checkLogin() {
   const currentTime = Math.floor(new Date() / 1000);
   let isLogged = false;
@@ -43,4 +48,4 @@ function checkLogin() {
   return isLogged;
 }
 
-export {loginWithUsernameAndPassword, checkLogin}
+export {loginWithUsernameAndPassword, checkLogin, setAppCookie}

@@ -33,7 +33,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in users_data['body']['users']">
+              <tr v-for="user in users_data['users']">
                 <td>{{ user['name'] }}</td>
                 <td>{{ user['email'] }}</td>
                 <td><b-button variant="primary" @click="openModalEditUser(user['name'], user['email'])"><icon name="pencil"></icon></b-button></td>
@@ -53,9 +53,10 @@
 
     </div>
     <div>
-      <b-modal ref="editUser" id="edit_user" title="Gebruiker bewerken">
+      <b-modal hide-footer=true ref="editUser" id="edit_user" title="Gebruiker bewerken">
         <b-form-input v-model="name" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
         <b-form-input v-model="email" type="text" placeholder="Vul een email in"></b-form-input>
+        <b-button variant="success" @click="closeModalEditUser">Opslaan</b-button>
       </b-modal>
     </div>
     <div>
@@ -72,34 +73,36 @@
 
 <script>
 
+import {GetAllUsers, editUser} from '../utils/users';
+
 export default {
   name: 'UserOverview',
   data () {
     return {
-      users_data: 'UserOverview',
+      users_data: '',
       email: '',
       name: '',
-      debug: true
+      debug: true,
+      id: ''
     }
   },
-  created: function () {
-    // `this` points to the vm instance
-    this.$http.get('http://proboard/Users').then(response => {
-
-      this.users_data = response;
-      console.log(this.users_data['body']['users'])
-
-    }, response => {
-      this.users_data = 'failed';
+  created() {
+    GetAllUsers().then(response => {
+      this.users_data = response.data
+    }).catch(err => {
+      console.log(err);
     })
   },
   methods: {
-    openModalEditUser (name, email) {
+    openModalEditUser (name, email, id) {
       this.email = email
       this.name = name
+      this.id = id
       this.$refs.editUser.show()
     },
     closeModalEditUser () {
+      
+
       this.$refs.editUser.hide()
     },
 

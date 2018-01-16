@@ -6,11 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function __construct()
 	{
 		parent::__construct();
-		//load auth en check, session
-		$this->load->library('Auth');
-		$this->auth->check('1');
-		$this->load->library('session');
-		//Load url_helper
+      	$this->load->library('Auth');
 		$this->load->model('Appointment_model');
 	}
 	

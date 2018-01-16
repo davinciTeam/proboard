@@ -6,7 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
    		parent::__construct();
       $this->load->library('Auth');
-    	// $this->auth->check('0');
       $this->load->model('projects_model');    
       $this->load->model('appointment_model');    
     }

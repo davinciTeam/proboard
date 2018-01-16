@@ -1,6 +1,13 @@
 <?php
 	class ConfigModel extends CI_Model  {
 
+		public function __construct()
+	    {
+	        parent::__construct();
+	        $this->load->database();
+	        //Get database class availeble
+	    }
+
 		public function getUserByUsername($username)
 		{
 			$query = $this->db->get_where('users', array("username" => $username, "active" => 1));

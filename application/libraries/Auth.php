@@ -51,7 +51,7 @@ class Auth {
 			if($hash == $user->password) {
 				$tokenId 	= base64_encode(mcrypt_create_iv(32)); // Create an unique identifier
 				$issuedAt	= time();
-				$notBefore	= $issuedAt + 1; // Adding 1 second before it can be used.
+				$notBefore	= $issuedAt; // Adding 1 second before it can be used.
 				$expire		= $notBefore + $this->timeBeforeExpire; // amount of time before expirering.
 
 				// $serverName = $CI->config->get('serverName'); // !!!!!IMPORTANT 
