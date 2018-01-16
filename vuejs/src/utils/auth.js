@@ -8,7 +8,7 @@ function loginWithUsernameAndPassword(username, password) {
       login_string: username,
       login_pass: password
     };
-    const url = `${BaseUrl}login/`;
+    const url = `${BaseUrl}api/login/`;
     Axios.post(url, data).then(response => {
       let token = response.data;
       resolve(token);

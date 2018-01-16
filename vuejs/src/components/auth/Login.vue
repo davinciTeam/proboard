@@ -54,6 +54,7 @@
           }
           
         }).catch(err => {
+          console.log(err);
           this.infoError = true;
           this.password = '';
         });

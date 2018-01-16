@@ -29,7 +29,7 @@
               <tr v-for="user in users_data['users']">
                 <td>{{ user['name'] }}</td>
                 <td>{{ user['email'] }}</td>
-                <td><b-button variant="primary" @click="openModalEditUser(user['name'], user['email'])"><icon name="pencil"></icon></b-button></td>
+                <td><b-button variant="primary" @click="openModalEditUser(user['name'], user['email'], user['id'])"><icon name="pencil"></icon></b-button></td>
                 <td><icon name="trash"></icon></td>
                 <td><icon name="check" class="text-success" v-if="user['active'] == '1'"></icon><icon v-else name="times" class="text-danger" ></icon></td>
               </tr>
@@ -45,7 +45,7 @@
 
     </div>
     <div>
-      <b-modal hide-footer=true ref="editUser" id="edit_user" title="Gebruiker bewerken">
+      <b-modal ref="editUser" id="edit_user" title="Gebruiker bewerken">
         <b-form-input v-model="name" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
         <b-form-input v-model="email" type="text" placeholder="Vul een email in"></b-form-input>
         <b-button variant="success" @click="closeModalEditUser">Opslaan</b-button>
@@ -80,11 +80,12 @@ export default {
       this.email = email
       this.name = name
       this.id = id
+      console.log(this.id)
       this.$refs.editUser.show()
     },
     closeModalEditUser () {
       
-
+      editUser(this.id, this.name, this.email)
       this.$refs.editUser.hide()
     }
   }
