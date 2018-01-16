@@ -39,7 +39,7 @@ const router = new Router({
     	name: 'UsersOverview',
     	component: UsersOverview,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
