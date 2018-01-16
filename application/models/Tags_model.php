@@ -29,9 +29,9 @@ class Tags_model extends CI_Model {
     {
         // Add tag into database
         if ($this->db->insert('tags', $data)) {
-            addFeeback(array('Nieuwe tag aangemaakt'));
+
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+
         }
     }
 
@@ -42,9 +42,9 @@ class Tags_model extends CI_Model {
             'active' => $data['active'],
             'description' => $data['description'])
         )) {
-            addFeeback(array('Tag succesvol bewerkt'));
+
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+            
         }       
     }
 
