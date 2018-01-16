@@ -40,7 +40,7 @@ const router = new Router({
     	name: 'UsersOverview',
     	component: UsersOverview,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {

@@ -13,6 +13,13 @@
           </ul>
         </nav>
       </div>
+      <div class="bar">
+        <div class="container">
+          <div class="row">
+            <b-button variant="primary" @click="openModalAddUser"><icon name="plus"></icon></b-button>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <table class="table table-bordered table-hover">
@@ -36,6 +43,7 @@
               
             </tbody>
           </table>
+          
         </div>
 
         <div id="app">
@@ -50,6 +58,15 @@
         <b-form-input v-model="email" type="text" placeholder="Vul een email in"></b-form-input>
       </b-modal>
     </div>
+    <div>
+      <b-modal ref="addUser" id="add_user" title="Gebruiker Toevoegen">
+        <b-form-input v-model="name" id="name" name="email" type="text" placeholder="Vul een naam in"></b-form-input>
+        <b-form-input v-model="username" id="username" name="username" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
+        <b-form-input class="form-control" value="" v-model="email" id="name" name="email" type="text" placeholder="Vul een email in"></b-form-input>
+        <button id="update" @click="NewUserAction">Update</button>
+        
+      </b-modal>
+    </div>
   </div>
 </template>
 
@@ -61,7 +78,8 @@ export default {
     return {
       users_data: 'UserOverview',
       email: '',
-      name: ''
+      name: '',
+      debug: true
     }
   },
   created: function () {
@@ -83,6 +101,30 @@ export default {
     },
     closeModalEditUser () {
       this.$refs.editUser.hide()
+    },
+
+    openModalAddUser(name,email){
+      
+      this.$refs.addUser.show()
+    },
+    closeModalAddUser(){
+      this.$refs.AddUser.hide()
+    },
+    NewUserAction() {
+      $.ajax({
+        type:'POST',
+        data: {
+          email: this.email,
+          name: this.name,
+          username: this.username
+        },
+        url:'/users/NewUserAction',
+        success:function(data) {
+          // alert(this.data);
+          alert("Gebruiker is toegevoegd");
+        }
+        });
+     
     }
   }
 }
