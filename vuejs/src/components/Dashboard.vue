@@ -30,8 +30,8 @@
               <td>{{ project['client'] }}</td>
               <td>{{ project['teacher'] }}</td>
               <td><p v-for="member in project['members']"> {{ member['name'] }} {{ member['insertion'] }} {{ member['lastname'] }}</p></td>
-              <td>{{ project['iteration_start'] }}</td>
-              <td>{{ project['code_review_start'] }}</td>
+              <td><p v-if="project['iteration_start'] != '0000-00-00 00:00:00'">{{ project['iteration_start'] }}<p v-else>Geen afspraak ingepland</p></td>
+              <td><p v-if="project['code_review_start'] != '0000-00-00 00:00:00'">{{ project['code_review_start'] }}<p v-else>Geen afspraak ingepland</p></td>
             </tr>
           </tbody>
         </table>

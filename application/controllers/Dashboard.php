@@ -23,19 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function activation($hash = null)
     {
-      $this->load->library('Auth');
-      $this->auth->doLogout();
-
       $this->load->model("ConfigModel", "config_model");
-      $this->load->helper('form');
-
       $data['user'] = $this->config_model->getUserByActivationHash($hash);
-
-      if (!$data['user']) {
-        redirect('/');
-      }
-      
-      render('config/activation', $data);
     }
 
     public function activationAction()
@@ -60,9 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $this->config_model->setUserPassword($data, $this->input->post('activation_hash'));
 
       } else if ($this->input->post('activation_hash')) {
-        redirect('dashboard/activation/'.$this->input->post('activation_hash'));
+        
       }
-      redirect('dashboard');
+      
     }
 
     public function doublePasswordCheck()

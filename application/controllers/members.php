@@ -56,7 +56,7 @@ class Members extends CI_Controller {
 	
 	public function index()
 	{
-		redirect('members/overview');
+
 	}
 
 	public function overview($page = null, $json = false)
@@ -69,20 +69,13 @@ class Members extends CI_Controller {
 			echo json_encode($data);
 			exit;
 		}
-
-		$this->load->helper('form');
-
-		render('members/overview', $data);
 	}
 
 	public function addMember()
 	{
-		$this->load->helper('form');
-
 		$data['data'] = $this->members_model->getMembers();
-		render('members/addMembers', $data);
-		
 	}
+
 	public function addMemberAction()
 	{
 		$this->load->library('form_validation');
@@ -100,28 +93,15 @@ class Members extends CI_Controller {
 				"lastname" => $this->input->post('lastname')
 			);
 			$this->members_model->addMember($saveData);
-			redirect('members/');
+			
 		} else {
-			redirect('members/addMember');
+
 		}
 		
 	}
 	public function editMember($slug = null)
 	{
-		if (empty($slug)) {
-			redirect('members');
-		} 
-
-		$this->load->helper('form');
-		
 		$query['member'] = $this->members_model->getMember($slug);
-		
-		if (empty($query['member'])) {
-			show_404();
-		} 
-
-		render('members/editMember', $query);
-
 	}
 
 	public function editMemberAction()
@@ -144,10 +124,8 @@ class Members extends CI_Controller {
 			);		
 			$this->members_model->editMember($data);
 		} else if ($this->input->post('slug')) {
-			redirect('members/editMember/'.$this->input->post('slug'));
+
 		}
-		redirect('members/');
-		
 	}
 
 	public function import($fileData)
@@ -189,15 +167,13 @@ class Members extends CI_Controller {
             } 
            
             if (!empty($errors)) {
-                addFeeback($errors, 'negative');
+                
                 return false;
             }
             $this->members_model->import($fileData);
         } else {
-        	addFeeback(array($this->upload->display_errors()), 'negative');
-        }
-        addFeeback(array('import gelukt'));
 
-		redirect('members/');
+        }
+
 	}
 }
