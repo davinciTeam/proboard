@@ -5,8 +5,6 @@ class Users extends CI_Controller {
    	{
    		parent::__construct();
         $this->load->library('Auth');
-     	
-        $this->load->helper('form');
    	}
    	
 	public function index()
