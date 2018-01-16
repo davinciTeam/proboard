@@ -53,7 +53,7 @@ class Users extends CI_Controller {
 			show_404();
 		}
 
-		render('config/user_edit', $data);
+		// render('config/user_edit', $data);
 	}
 
 	public function NewUser()
@@ -125,5 +125,15 @@ class Users extends CI_Controller {
 			$this->config_model->deleteUser($f_id);
 			header('Location: /Users/users');
 		}
+	}
+	public function activateUser()
+	{
+        
+		$data = array(
+		'password' => $this->input->post('password'),
+		'active' => 1
+		);
+
+		$this->config_model->setUserPassword($data, $this->input->post('activation_hash'));
 	}
 }
