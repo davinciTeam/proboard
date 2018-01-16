@@ -55,7 +55,7 @@ export default {
   name: 'dashboard',
   data () {
     return {
-      projects: 'loading'
+      projects: {}
     }
   },
   created: function () {

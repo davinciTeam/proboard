@@ -50,10 +50,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Viewjs';
-$route['/dashboard']['GET'] = 'index';
-$route['/users']['GET'] = 'index';
+$route['api/dashboard']['GET'] = 'dashboard/index';
+$route['api/users']['GET'] = 'users/index';
+$route['api/users/edit/(:num)']['POST'] = 'users/edit/$num';
 
-$route['api/login'] = 'login/index_post';
+$route['api/login']['POST'] = 'login/index_post';
 $route['verifyJWT'] = 'login/verifyJWT';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
