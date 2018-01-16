@@ -2,16 +2,7 @@
   <div class="UserOverview">
     <div class="container">
       <div class="row">
-        <nav>       
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link" href="#/">dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#/users">gebruikers</a>
-            </li>
-          </ul>
-        </nav>
+        <navigation></navigation>
       </div>
       <div class="bar">
         <div class="container">

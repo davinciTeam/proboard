@@ -2,16 +2,7 @@
   <div class="dashboard">
     <div class="bg-light container">
       <div class="row">
-        <nav>       
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#/">dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#/users">gebruikers</a>
-            </li>
-          </ul>
-        </nav>
+        <navigation></navigation>
       </div>
       <div class="row"> 
         <h4>Legenda</h4>

@@ -6,6 +6,7 @@ import logout from '@/components/auth/Logout'
 import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'
 import BootstrapVue from 'bootstrap-vue'
+import Nav from '@/components/menu/nav'
 import { checkLogin, setAppCookie } from '@/utils/auth'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -15,6 +16,7 @@ import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
  
 Vue.component('icon', Icon)
+Vue.component('navigation', Nav)
 
 Vue.use(BootstrapVue);
 Vue.use(Router)
