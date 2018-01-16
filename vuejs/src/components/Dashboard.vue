@@ -25,7 +25,7 @@
             </tr>
           </thead>
           <tbody>        
-            <tr v-for="project in projects['body']['projects']">
+            <tr v-for="project in projects['projects']">
               <td>{{ project['name'] }}<b-btn variant="light" v-b-popover.hover="project['description']" title="Beschrijving"><icon name="comment" title=""></icon></b-btn></td>
               <td>{{ project['client'] }}</td>
               <td>{{ project['teacher'] }}</td>
@@ -42,6 +42,8 @@
               
 <script>
 
+import {GetDashboardInfo} from '../utils/dashboard';
+
 export default {
   name: 'dashboard',
   data () {
@@ -49,14 +51,11 @@ export default {
       projects: {}
     }
   },
-  created: function () {
-    // `this` points to the vm instance
-    this.$http.get('http://proboard/dashboard').then(response => {
-
-      this.projects = response;
-
-    }, response => {
-      this.projects = 'failed';
+  created() {
+    GetDashboardInfo().then(response => {
+      this.projects = response.data
+    }).catch(err => {
+      console.log(err);
     })
   }
 }
