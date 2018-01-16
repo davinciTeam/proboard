@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Axios from 'axios';
 
 const BaseUrl = 'http://proboard/';
