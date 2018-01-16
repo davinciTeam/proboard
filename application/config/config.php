@@ -535,4 +535,4 @@ $config['jwt_key'] = base64_encode('test');
 
 $config['jwt_algorithm'] = 'HS256';
 
-$config['jwt_expire'] = 30;
+$config['jwt_expire'] = 3600;

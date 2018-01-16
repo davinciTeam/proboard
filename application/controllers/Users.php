@@ -1,10 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Users extends CI_Controller {
+
 	public function __construct()
    	{
    		parent::__construct();
         $this->load->library('Auth');
+		$this->load->model("ConfigModel", "config_model");
    	}
    	
 	public function index()
@@ -12,21 +14,15 @@ class Users extends CI_Controller {
 		$token = $this->input->cookie('token');
 		try {
 			$decodedToken = $this->auth->verifyToken($token);
-
-			$this->load->model("ConfigModel", "config_model");
-			/* Users overview */
-			$users = $this->config_model->getUsers();
-			$response = array(
-				"users" => $users
-			);
+			$response["users"] = $this->config_model->getUsers();
 		} catch ( Exception $e ) {
 			$response = $e->getMessage();
 		}
 		
-		// render('config/users_overview', $users_data);
 		echo_json($response);
 	}
 
+<<<<<<< HEAD
 	public function users()
 	{
 		$this->load->model("ConfigModel", "config_model");
@@ -63,49 +59,50 @@ class Users extends CI_Controller {
 		render('config/user_new');
 	}
 
+=======
+>>>>>>> 3931739afffac4d71730f8096f79b0cea54be40e
 	public function NewUserAction()
 	{
-		$this->load->library('form_validation');
-		$this->load->model("ConfigModel", "config_model");
-		$this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]',	
-		array('is_unique' => 'E-mail adres is al in gebruik','valid_email' => 'Voer een geldig email adres in','required' => 'Dit veld is verplicht'));
-		$this->form_validation->set_rules('username', 'Username', 'required',	
-		array('required' => 'Voer een gebruikersnaam in'));
-		$this->form_validation->set_rules('name', 'name', 'required',	
-		array('required' => 'Voer een naam in'));
+		//$this->load->library('form_validation');
+		// $this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]',	
+		// array('is_unique' => 'E-mail adres is al in gebruik','valid_email' => 'Voer een geldig email adres in','required' => 'Dit veld is verplicht'));
+		// $this->form_validation->set_rules('username', 'Username', 'required',	
+		// array('required' => 'Voer een gebruikersnaam in'));
+		// $this->form_validation->set_rules('name', 'name', 'required',	
+		// array('required' => 'Voer een naam in'));
 
-		if ($this->form_validation->run()) {
+		// if ($this->form_validation->run()) {
+			$saveData = array(
+				"name" =>  $this->input->post('name'),
+				"username" => $this->input->post('username'),
+				"email" => $this->input->post('email')
+			);
+			$this->config_model->insertUser($saveData);
+		//}
+	}
 
+	public function edit($id)
+	{
+		//$this->load->library('form_validation');
+		//$this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]',	
+		//array('is_unique' => 'E-mail adres is al in gebruik','valid_email' => 'Voer een geldig email adres in','required' => 'Dit veld is verplicht'));
+		//$this->form_validation->set_rules('username', 'Username', 'required',	
+		//array('required' => 'Voer een gebruikersnaam in'));
+		//$this->form_validation->set_rules('name', 'name', 'required',	
+		//array('required' => 'Voer een naam in'));
+		
+		//if ($this->form_validation->run()) {
 			$saveData = array(
 				"name" => $this->input->post('name'),
 				"username" => $this->input->post('username'),
-				"email" => $this->input->post('email'),
+				"email" => $this->input->post('email')
 			);
-			$this->config_model->insertUser($saveData);
-		}
 
-		redirect('Users/users');
-	}
-
-	public function editUserAction()
-	{
-		$this->load->library('form_validation');
-		$this->load->model("ConfigModel", "config_model");
-		$this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]',	
-		array('is_unique' => 'E-mail adres is al in gebruik','valid_email' => 'Voer een geldig email adres in','required' => 'Dit veld is verplicht'));
-		$this->form_validation->set_rules('username', 'Username', 'required',	
-		array('required' => 'Voer een gebruikersnaam in'));
-		$this->form_validation->set_rules('name', 'name', 'required',	
-		array('required' => 'Voer een naam in'));
-		
-		$saveData = array(
-			"name" => $this->input->post('name'),
-			"username" => $this->input->post('username'),
-			"email" => $this->input->post('email')
-		);
-
-		$newId = $this->config_model->updateUser($saveData, $this->input->post('id'));
-		redirect('/Users/editUser/' . $newId);
+		//}
+		var_dump($_POST);
+		var_dump($_GET);
+		var_dump($_REQUEST);
+		//$newId = $this->config_model->updateUser($saveData, $id);
 	}
 
 	public function saveProfile()

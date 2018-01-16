@@ -32,23 +32,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->model('tags_model');
 	}
 
-	public function index()
+	public function index($page = null)
 	{
-		redirect('tags/overview');
+		$query['tags'] = $this->tags_model->getTags($page);
 	}
 	
 	public function overview($page = null)
 	{
-		$this->load->library('pagination');
-
 		$query['tags'] = $this->tags_model->getTags($page);
-		
-		$config['base_url'] = 'http://project-beheer/tags/overview';
-		$config['total_rows'] =  $this->tags_model->AmountOfTags();
-		$config['per_page'] = 10;
-
-		$this->pagination->initialize($config);
-		
 		render('tags/overview', $query);
 	}
 

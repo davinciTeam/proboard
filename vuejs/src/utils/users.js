@@ -4,10 +4,8 @@ const BaseUrl = 'http://proboard/';
 
 function GetAllUsers() {
   return new Promise((resolve, reject) => {
-  
     const url = `${BaseUrl}api/users`;
     Axios.get(url).then(response => {
-      console.log(response)
       resolve(response);
     }).catch(err => {
       reject(err);
@@ -23,7 +21,7 @@ function editUser(id, name, email) {
     };
     const url = `${BaseUrl}api/users/`+id;
     Axios.post(url, data).then(response => {
-     
+      resolve(response)
     }).catch(err => {
       reject(err);
     });

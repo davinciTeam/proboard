@@ -13,6 +13,13 @@
           </ul>
         </nav>
       </div>
+      <div class="bar">
+        <div class="container">
+          <div class="row">
+            <b-button variant="primary" @click="openModalAddUser"><icon name="plus"></icon></b-button>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <table class="table table-bordered table-hover">
@@ -29,13 +36,14 @@
               <tr v-for="user in users_data['users']">
                 <td>{{ user['name'] }}</td>
                 <td>{{ user['email'] }}</td>
-                <td><b-button variant="primary" @click="openModalEditUser(user['name'], user['email'])"><icon name="pencil"></icon></b-button></td>
+                <td><b-button variant="primary" @click="openModalEditUser(user['name'], user['email'], user['id'])"><icon name="pencil"></icon></b-button></td>
                 <td><icon name="trash"></icon></td>
                 <td><icon name="check" class="text-success" v-if="user['active'] == '1'"></icon><icon v-else name="times" class="text-danger" ></icon></td>
               </tr>
               
             </tbody>
           </table>
+          
         </div>
 
         <div id="app">
@@ -45,10 +53,19 @@
 
     </div>
     <div>
-      <b-modal hide-footer=true ref="editUser" id="edit_user" title="Gebruiker bewerken">
+      <b-modal ref="editUser" id="edit_user" title="Gebruiker bewerken">
         <b-form-input v-model="name" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
         <b-form-input v-model="email" type="text" placeholder="Vul een email in"></b-form-input>
         <b-button variant="success" @click="closeModalEditUser">Opslaan</b-button>
+      </b-modal>
+    </div>
+    <div>
+      <b-modal ref="addUser" id="add_user" title="Gebruiker Toevoegen">
+        <b-form-input v-model="name" id="name" name="email" type="text" placeholder="Vul een naam in"></b-form-input>
+        <b-form-input v-model="username" id="username" name="username" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
+        <b-form-input class="form-control" value="" v-model="email" id="name" name="email" type="text" placeholder="Vul een email in"></b-form-input>
+        <button id="update" @click="NewUserAction">Update</button>
+        
       </b-modal>
     </div>
   </div>
@@ -65,6 +82,7 @@ export default {
       users_data: '',
       email: '',
       name: '',
+      debug: true,
       id: ''
     }
   },
@@ -80,12 +98,37 @@ export default {
       this.email = email
       this.name = name
       this.id = id
+      console.log(this.id)
       this.$refs.editUser.show()
     },
     closeModalEditUser () {
       
-
+      editUser(this.id, this.name, this.email)
       this.$refs.editUser.hide()
+    },
+
+    openModalAddUser(name,email){
+      
+      this.$refs.addUser.show()
+    },
+    closeModalAddUser(){
+      this.$refs.AddUser.hide()
+    },
+    NewUserAction() {
+      $.ajax({
+        type:'POST',
+        data: {
+          email: this.email,
+          name: this.name,
+          username: this.username
+        },
+        url:'/users/NewUserAction',
+        success:function(data) {
+          // alert(this.data);
+          alert("Gebruiker is toegevoegd");
+        }
+        });
+     
     }
   }
 }

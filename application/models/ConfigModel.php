@@ -47,7 +47,7 @@
 				"email" => $data["email"]
 			);
 			if ($this->db->update('users', $updateData, array("id" => $id))) {
-				addFeeback(array('Gebruiker succesvol bijgewerkt'));
+
 			}
 			
 			return $id;
@@ -72,13 +72,13 @@
 			);
 
 			if ($this->db->insert('users', $updateData)) {
-				addFeeback(array('Gebruiker succesvol aangemaakt'));
+
 			}
-			
+			$this->db->insert('users', $updateData);	
 			$this->load->library('Emails');
 			$this->emails->register($updateData["name"], $updateData["email"], $updateData["activation_hash"]);
 
-			return $id; 
+			// return $id; 
 		}
 
 		public function getUserByActivationHash($hash)
@@ -89,15 +89,15 @@
 		public function setUserPassword($data, $hash) {
 			$user = $this->getUserByActivationHash($hash);
 			if (!$user) {
-				addFeeback('Er is een onbekende fout opgetreden', 'negative');
 				return false;
 			}
 
 			$hash = $this->auth->getPasswordHash($data["password"], $user);
 
 			if ($this->db->update('users', array("password" => $hash, "active" => 1) , array("id" => $user->id))) {
-				$this->load->library('Auth');
-				$this->auth->doLogin($user->username, $data["password"]);
+				//TODO:log the user in 
+				//$this->load->library('Auth');
+				//$this->auth->doLogin($user->username, $data["password"]);
 			}
 
 			return true;

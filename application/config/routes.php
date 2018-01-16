@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Viewjs';
 $route['api/dashboard']['GET'] = 'dashboard/index';
 $route['api/users']['GET'] = 'users/index';
-$route['api/users/edit/(:num)']['POST'] = 'users/edit/$num';
+$route['api/users/(:num)']['POST'] = 'users/edit/$1';
 
 $route['api/login']['POST'] = 'login/index_post';
 $route['verifyJWT'] = 'login/verifyJWT';
