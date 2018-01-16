@@ -39,8 +39,7 @@ class Users extends CI_Controller {
 				"email" => $this->input->post('email')
 			);
 			$this->config_model->insertUser($saveData);
-		}
-		// }
+		//}
 	}
 
 	public function edit($id)
