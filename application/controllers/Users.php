@@ -11,29 +11,36 @@ class Users extends CI_Controller {
    	
 	public function index()
 	{
-		$users_data["users"] = $this->config_model->getUsers();
-		echo_json($users_data);
+		$token = $this->input->cookie('token');
+		try {
+			$decodedToken = $this->auth->verifyToken($token);
+			$response["users"] = $this->config_model->getUsers();
+		} catch ( Exception $e ) {
+			$response = $e->getMessage();
+		}
+		
+		echo_json($response);
 	}
 
 	public function NewUserAction()
 	{
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]',	
-		array('is_unique' => 'E-mail adres is al in gebruik','valid_email' => 'Voer een geldig email adres in','required' => 'Dit veld is verplicht'));
-		$this->form_validation->set_rules('username', 'Username', 'required',	
-		array('required' => 'Voer een gebruikersnaam in'));
-		$this->form_validation->set_rules('name', 'name', 'required',	
-		array('required' => 'Voer een naam in'));
+		//$this->load->library('form_validation');
+		// $this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]',	
+		// array('is_unique' => 'E-mail adres is al in gebruik','valid_email' => 'Voer een geldig email adres in','required' => 'Dit veld is verplicht'));
+		// $this->form_validation->set_rules('username', 'Username', 'required',	
+		// array('required' => 'Voer een gebruikersnaam in'));
+		// $this->form_validation->set_rules('name', 'name', 'required',	
+		// array('required' => 'Voer een naam in'));
 
-		if ($this->form_validation->run()) {
-
+		// if ($this->form_validation->run()) {
 			$saveData = array(
-				"name" => $this->input->post('name'),
+				"name" =>  $this->input->post('name'),
 				"username" => $this->input->post('username'),
-				"email" => $this->input->post('email'),
+				"email" => $this->input->post('email')
 			);
 			$this->config_model->insertUser($saveData);
 		}
+		// }
 	}
 
 	public function edit($id)

@@ -6,7 +6,7 @@ import logout from '@/components/auth/Logout'
 import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'
 import BootstrapVue from 'bootstrap-vue'
-import { checkLogin } from '@/utils/auth'
+import { checkLogin, setAppCookie } from '@/utils/auth'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -59,6 +59,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
  if (to.matched.some(record => record.meta.requiresAuth)) {
    if (!checkLogin()) {
+    setAppCookie();
      next({
        path: '/login',
        query: { redirect: to.fullPath }

@@ -23,7 +23,7 @@
 
 <script>
   import router from '@/router';
-  import {loginWithUsernameAndPassword, checkLogin} from '@/utils/auth';
+  import {loginWithUsernameAndPassword, checkLogin, setAppCookie} from '@/utils/auth';
 
   export default {
     name: 'login',
@@ -47,12 +47,12 @@
         e.preventDefault();
         loginWithUsernameAndPassword(this.username, this.password).then(token => {
           localStorage.setItem('token', token.jwt);
+          setAppCookie();
           if (this.$route.query.redirect) {
             router.push(this.$route.query.redirect);
           } else {
             router.push('/');
           }
-          
         }).catch(err => {
           console.log(err);
           this.infoError = true;

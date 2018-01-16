@@ -74,11 +74,11 @@
 			if ($this->db->insert('users', $updateData)) {
 
 			}
-			
+			$this->db->insert('users', $updateData);	
 			$this->load->library('Emails');
 			$this->emails->register($updateData["name"], $updateData["email"], $updateData["activation_hash"]);
 
-			return $id; 
+			// return $id; 
 		}
 
 		public function getUserByActivationHash($hash)
