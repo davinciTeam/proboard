@@ -60,7 +60,6 @@ class Users extends CI_Controller {
 				"email" => $data['email']
 			);			
 			$this->config_model->updateUser($saveData, $id);
-		
 		}
 
 		return false;
