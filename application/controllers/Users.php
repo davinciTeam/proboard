@@ -22,20 +22,6 @@ class Users extends CI_Controller {
 		echo_json($response);
 	}
 
-<<<<<<< HEAD
-	public function users()
-	{
-		$this->load->model("ConfigModel", "config_model");
-		/* Users overview */
-		$users = $this->config_model->getUsers();
-		$users_data = array(
-			"users" => $users
-			
-		);
-		// render('config/users_overview', $users_data);
-		echo_json($users_data);
-	}
-
 	public function editUser($id = null)
 	{
 		if (empty($id)) {
@@ -59,8 +45,6 @@ class Users extends CI_Controller {
 		render('config/user_new');
 	}
 
-=======
->>>>>>> 3931739afffac4d71730f8096f79b0cea54be40e
 	public function NewUserAction()
 	{
 		//$this->load->library('form_validation');
