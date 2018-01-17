@@ -23,7 +23,7 @@ class Auth {
 	private $timeBeforeExpire = 0;		// Amount of time before the JWT expires.
 	
 
-	private function getPasswordHash($f_password, $f_user)
+	public function getPasswordHash($f_password, $f_user)
 	{
 		// Create a var with an empty string.
 		$f_hash = "";

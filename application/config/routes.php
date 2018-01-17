@@ -53,6 +53,8 @@ $route['default_controller'] = 'Viewjs';
 $route['api/dashboard']['GET'] = 'dashboard/index';
 $route['api/users']['GET'] = 'users/index';
 $route['api/users/(:num)']['POST'] = 'users/edit/$1';
+$route['api/users/activateUser/(:any)']['POST'] = 'users/activateUser_post/$1';
+$route['api/users/activateUser/(:any)']['GET'] = 'users/activateUser_get/$1';
 
 $route['api/login']['POST'] = 'login/index_post';
 $route['verifyJWT'] = 'login/verifyJWT';

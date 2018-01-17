@@ -91,15 +91,19 @@
 			if (!$user) {
 				return false;
 			}
+			if ($user->password == null || $user->password == '') {
+				$hash = $this->auth->getPasswordHash($data["password"], $user);
 
-			$hash = $this->auth->getPasswordHash($data["password"], $user);
+				if ($this->db->update('users', array("password" => $hash, "active" => 1) , array("id" => $user->id))) {
+					//TODO:log the user in 
+					//$this->load->library('Auth');
+					//$this->auth->doLogin($user->username, $data["password"]);
+				}
 
-			if ($this->db->update('users', array("password" => $hash, "active" => 1) , array("id" => $user->id))) {
-				//TODO:log the user in 
-				//$this->load->library('Auth');
-				//$this->auth->doLogin($user->username, $data["password"]);
+				return true;
+			} else {
+				return false;
 			}
 
-			return true;
 		}
 	}

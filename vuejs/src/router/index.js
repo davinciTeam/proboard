@@ -5,6 +5,7 @@ import login from '@/components/auth/Login'
 import logout from '@/components/auth/Logout'
 import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'
+import activation from '@/components/Activation'
 import BootstrapVue from 'bootstrap-vue'
 import { checkLogin, setAppCookie } from '@/utils/auth'
 
@@ -41,6 +42,11 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/activateUser/:hash',
+      name: 'activateUser',
+      component: activation
     },
     {
       path: '/',

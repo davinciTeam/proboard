@@ -81,8 +81,10 @@ class Users extends CI_Controller {
 				"username" => $this->input->post('username'),
 				"email" => $this->input->post('email')
 			);
+		get_input_params();
 
 		//}
+		var_dump($saveData);
 		var_dump($_POST);
 		var_dump($_GET);
 		var_dump($_REQUEST);
@@ -107,14 +109,37 @@ class Users extends CI_Controller {
 			header('Location: /Users/users');
 		}
 	}
-	public function activateUser()
+	public function activateUser_get($hash) 
 	{
-        
+		if (!empty($hash)) {
+			$user = $this->config_model->getUserByActivationHash($hash);
+			if ($user != false) {
+				if ($user->password == null || $user->password == '') {
+					$response = [
+						'username' => $user->username
+					];
+				} else {
+					$response = false;
+				}
+				
+			} else {
+				$response = false;
+			}
+		} else {
+			$response = false;
+		}
+		echo_json($response);
+		
+	}
+	public function activateUser_post($hash)
+	{
+        $input = get_input_params();
 		$data = array(
-		'password' => $this->input->post('password'),
+		'password' => $input['password'],
 		'active' => 1
 		);
 
-		$this->config_model->setUserPassword($data, $this->input->post('activation_hash'));
+		$status = $this->config_model->setUserPassword($data, $hash);
+		echo_json($status);
 	}
 }
