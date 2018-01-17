@@ -45,20 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function editTag($slug = null)
 	{
-		if (empty($slug)) {
-			redirect('tags');
-		} 
-
-		$this->load->helper('form');
-		
 		$query['tags'] = $this->tags_model->getTag($slug);
-		
-		if (empty($query['tags'])) {
-			show_404();
-		} 
-
-		render('tags/editTag', $query);
-
 	}
 
 	public function editTagAction()
@@ -77,18 +64,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			);
 			$this->tags_model->editTag($data);
 		} else if ($this->input->post('slug')) {
-			redirect('tags/editTag/'.$this->input->post('slug'));
+
 		} 
-		redirect('tags/');
+		
 	}
 
 	public function addTag()
 	{
-		$this->load->helper('form');
-		
 		$data['data'] = $this->tags_model->getTags();
-		render('tags/addTag', $data);
-		
 	}
 
 	
@@ -110,9 +93,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				"description" => $this->input->post('description')
 			);
 			$this->tags_model->addTag($save);
-			redirect('tags/');
+			
 		} else {
-			redirect('tags/addTag');
+			
 		}
 	}
 }

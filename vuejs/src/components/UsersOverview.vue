@@ -2,16 +2,7 @@
   <div class="UserOverview">
     <div class="container">
       <div class="row">
-        <nav>       
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link" href="#/">dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#/users">gebruikers</a>
-            </li>
-          </ul>
-        </nav>
+        <navigation></navigation>
       </div>
       <div class="bar">
         <div class="container">
@@ -45,18 +36,14 @@
           </table>
           
         </div>
-
-        <div id="app">
-         
-        </div>
       </div>
 
     </div>
     <div>
-      <b-modal ref="editUser" id="edit_user" title="Gebruiker bewerken">
-        <b-form-input v-model="name" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
-        <b-form-input v-model="email" type="text" placeholder="Vul een email in"></b-form-input>
-        <b-button variant="success" @click="closeModalEditUser">Opslaan</b-button>
+      <b-modal hide-footer=true ref="editUser" id="edit_user" title="Gebruiker bewerken">
+        <label>gebruikersnaam</label><b-form-input v-model="name" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
+        <label>email</label><b-form-input v-model="email" type="text" placeholder="Vul een email in"></b-form-input>
+        <b-button class="mx-auto" variant="success" @click="closeModalEditUser">Opslaan</b-button>
       </b-modal>
     </div>
     <div>

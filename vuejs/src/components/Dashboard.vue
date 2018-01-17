@@ -2,16 +2,7 @@
   <div class="dashboard">
     <div class="bg-light container">
       <div class="row">
-        <nav>       
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#/">dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#/users">gebruikers</a>
-            </li>
-          </ul>
-        </nav>
+        <navigation></navigation>
       </div>
       <div class="row"> 
         <h4>Legenda</h4>
@@ -34,13 +25,13 @@
             </tr>
           </thead>
           <tbody>        
-            <tr v-for="project in projects['body']['projects']">
+            <tr v-for="project in projects['projects']">
               <td>{{ project['name'] }}<b-btn variant="light" v-b-popover.hover="project['description']" title="Beschrijving"><icon name="comment" title=""></icon></b-btn></td>
               <td>{{ project['client'] }}</td>
               <td>{{ project['teacher'] }}</td>
               <td><p v-for="member in project['members']"> {{ member['name'] }} {{ member['insertion'] }} {{ member['lastname'] }}</p></td>
-              <td>{{ project['iteration_start'] }}</td>
-              <td>{{ project['code_review_start'] }}</td>
+              <td><p v-if="project['iteration_start'] != '0000-00-00 00:00:00'">{{ project['iteration_start'] }}<p v-else>Geen afspraak ingepland</p></td>
+              <td><p v-if="project['code_review_start'] != '0000-00-00 00:00:00'">{{ project['code_review_start'] }}<p v-else>Geen afspraak ingepland</p></td>
             </tr>
           </tbody>
         </table>
@@ -51,6 +42,8 @@
               
 <script>
 
+import {GetDashboardInfo} from '../utils/dashboard';
+
 export default {
   name: 'dashboard',
   data () {
@@ -58,14 +51,11 @@ export default {
       projects: {}
     }
   },
-  created: function () {
-    // `this` points to the vm instance
-    this.$http.get('http://proboard/dashboard').then(response => {
-
-      this.projects = response;
-
-    }, response => {
-      this.projects = 'failed';
+  created() {
+    GetDashboardInfo().then(response => {
+      this.projects = response.data
+    }).catch(err => {
+      console.log(err);
     })
   }
 }

@@ -7,11 +7,6 @@
         <input type="text" id="inputUsername" class="form-control" placeholder="username" required="" autofocus="" v-model="username">
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" v-model="password">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
         <button v-on:click="login" class="btn btn-lg btn-primary btn-block">Sign in</button>
       </form>
       <div v-if="infoError" class="alert alert-danger" role="alert">

@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function index()
 	{
-		redirect('projects/overview');
+
 	}
 	
 	public function overview($page = null)
@@ -89,31 +89,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			echo json_encode($query);
 			exit;
 		}
-
-		
-		render('projects/overview', $query);
 	}
 
 	public function Members($slug = null)
 	{
-
-		if (empty($slug)) {
-			redirect('projects');
-		} 
-
 		$query = array(
 	        'name' => $this->security->get_csrf_token_name(),
 	        'hash' => $this->security->get_csrf_hash(),
 	        'project' => $this->projects_model->getProject($slug)
 		);
-
-		if (empty($query['project'])) {
-			show_404();
-		} 
-
-		$this->load->helper('form');
-
-		render('projects/addMembers', $query);
 	}
 
 
@@ -129,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if ($this->form_validation->run()) {
   	      $this->projects_model->addMember($this->input->post('slug'), $this->input->post('name'));
     	}
-        redirect('projects/Members/'.$this->input->post('slug'));
+       
 	}
 
 	public function deleteMembersAction()
@@ -144,28 +128,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if ($this->form_validation->run()) {
 			$this->projects_model->deleteMember($this->input->post('projectSlug'), $this->input->post('MemberSlug'));
 		}
-        redirect('projects/Members/'.$this->input->post('projectSlug'));
+
 	}
 
 	public function Tags($slug = null)
 	{
-		if (empty($slug)) {
-			redirect('projects');
-		}
 		$query = array(
 	        'name' => $this->security->get_csrf_token_name(),
 	        'hash' => $this->security->get_csrf_hash(),
 	        'project' => $this->projects_model->getProject($slug)
 		);
-
-		if (empty($query['project'])) {
-			show_404();
-		} 
-
-		
-		$this->load->helper('form');
-
-		render('projects/addTags', $query);
 	}
 
 
@@ -181,7 +153,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if ($this->form_validation->run()) {
   	      $this->projects_model->addTags($this->input->post('slug'), $this->input->post('name'));
     	}
-        redirect('projects/Tags/'.$this->input->post('slug'));
 	}
 
 	public function deleteTagsAction()
@@ -196,25 +167,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if ($this->form_validation->run()) {
 			$this->projects_model->deleteTag($this->input->post('projectSlug'), $this->input->post('tagSlug'));
 		}
-        redirect('projects/Tags/'.$this->input->post('projectSlug'));
 	}
 
 	public function editProject($slug = null)
 	{
-		if (empty($slug)) {
-			redirect('projects');
-		} 
-
-		$this->load->helper('form');
-		
 		$query['project'] = $this->projects_model->getProject($slug);
-
-		if (empty($query['project'])) {
-			show_404();
-		} 
-
-		render('projects/editProject', $query);
-
 	}
 
 	public function editProjectAction()
@@ -240,18 +197,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			);
 			$this->projects_model->editProject($data);
 		} else if ($this->input->post('slug')) {
-			redirect('projects/editProject/'.$this->input->post('slug'));
-		} 
-		redirect('projects/');
+			
+		}
 	}
 
 	public function addProject()
 	{
-		$this->load->helper('form');
-		
 		$data['data'] = $this->projects_model->getProjects();
-		render('projects/addProject', $data);
-		
 	}
 
 	public function url_check($url)
@@ -284,9 +236,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				"description" => $this->input->post('description')
 			);
 			$this->projects_model->addProject($save);
-			redirect('projects/');
+			
 		} else {
-			redirect('projects/addProject');
+			
 		}
 	}
 }

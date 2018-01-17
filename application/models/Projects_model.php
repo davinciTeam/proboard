@@ -93,9 +93,9 @@ class Projects_model extends CI_Model {
     public function addProject($data)
     {
         if ($this->db->insert('projects', $data)) {
-            addFeeback(array('Succesvol project aangemaakt'));
+            
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+
         }
     }
 
@@ -105,7 +105,7 @@ class Projects_model extends CI_Model {
         $project = $this->getProject($slug);
 
         if (!$project) {
-            addFeeback(array('Geen project gevonden'), 'negative');
+           
             return false;
             exit;
         }
@@ -114,16 +114,16 @@ class Projects_model extends CI_Model {
 
         if ($member) {
             if ($this->db->from('project_members')->where('member_id', $member['0']->id)->where('project_id', $project['0']->id)->get()->result()) {
-                addFeeback(array('Student al aanwezig in project'), 'negative');
+              
                 return false;
                 exit;
             }
 
             $result = $this->db->insert('project_members', 
             array('member_id' => $member['0']->id, 'project_id' => $project['0']->id));
-            addFeeback(array('Student succesvol toegevoegd'));
+           
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+           
             $result = false;
         }
 
@@ -139,7 +139,7 @@ class Projects_model extends CI_Model {
         $project = $this->getProject($slug);
 
         if (!$project) {
-            addFeeback(array('Geen project gevonden'), 'negative');
+
             return false;
             exit;
         }
@@ -148,16 +148,12 @@ class Projects_model extends CI_Model {
 
         if ($tag) {
             if ($this->db->from('projects_tags')->where('tag_id', $tag['0']->id)->where('project_id', $project['0']->id)->get()->result()) {
-                addFeeback(array('Tag al toegewezen aan project'), 'negative');
+               
                 return false;
                 exit;
             }
-
-            $result = $this->db->insert('projects_tags', 
-                array('tag_id' => $tag['0']->id, 'project_id' => $project['0']->id));
-            addFeeback(array('Tag succesvol toegewezen'));
+            $result = $this->db->insert('projects_tags', array('tag_id' => $tag['0']->id, 'project_id' => $project['0']->id)); 
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
             $result = false;
         }
 
@@ -170,16 +166,14 @@ class Projects_model extends CI_Model {
         $tag = $this->db->get_where('tags', array('slug' => $tagSlug))->result();    
  
         if (!$project || !$tag) {
-            if (!$project) addFeeback(array('Geen project gevonden'), 'negative');
-            if (!$tag) addFeeback(array('Tag niet gevonden'), 'negative');
             return false;
             exit;
         }
 
         if ($this->db->where('project_id', $project['0']->id)->where('tag_id', $tag['0']->id)->delete('projects_tags')) {
-            addFeeback(array('Tag '. $tag['0']->name.' succesvol van project verwijderd'));
+
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+
         }
        
         return $result;
@@ -191,16 +185,15 @@ class Projects_model extends CI_Model {
         $member = $this->db->get_where('members', array('slug' => $memberSlug))->result();    
  
         if (!$project || !$member) {
-            if (!$project) addFeeback(array('Geen project gevonden'), 'negative');
-            if (!$member) addFeeback(array('Student niet gevonden'), 'negative');
+
             return false;
             exit;
         }
 
         if ($this->db->where('project_id', $project['0']->id)->where('member_id', $member['0']->id)->delete('project_members')) {
-            addFeeback(array('Student '. $member['0']->name." ".$member['0']->insertion." ".$member['0']->lastname.' succesvol van project gehaald'));
+           
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+
         }
        
         return $result;
@@ -245,9 +238,9 @@ class Projects_model extends CI_Model {
             'trello_url' => $data['trello_url'],
             'description' => $data['description'])
         )) {
-            addFeeback(array('Project succesvol bewerkt'));
+
         }  else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+            
         }    
     }
 }

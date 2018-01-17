@@ -34,9 +34,9 @@ class Members_model extends CI_Model {
     {
         // Add member into database
         if ($this->db->insert('members', $data)) {
-            addFeeback(array('Nieuwe student aangemaakt'));
+
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+
         }
     }
 
@@ -49,9 +49,9 @@ class Members_model extends CI_Model {
             'active' => $data['active'],
             'ovnumber' => $data['ovnumber'])
         )) {
-            addFeeback(array('Student succesvol bewerkt'));
+
         } else {
-            addFeeback(array('Er is een onbekende fout opgetreden'), 'negative');
+            
         }       
     }
 
