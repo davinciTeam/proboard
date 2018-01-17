@@ -33,9 +33,9 @@
     },
     data () {
       return {
-        username: '' || username,
+        username: '',
         password: '',
-        hash: '' || hash
+        hash: this.$route.params.hash
       }
     },
     methods: {
