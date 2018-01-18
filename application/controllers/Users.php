@@ -28,22 +28,22 @@ class Users extends CI_Controller {
 	{
 		//$data = get_input_params();
 
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]');
-		$this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('name', 'name', 'required');
+		// $this->load->library('form_validation');
+		// $this->form_validation->set_rules('email', 'email', 'required|valid_email');
+		// $this->form_validation->set_rules('username', 'Username', 'required');
+		// $this->form_validation->set_rules('name', 'name', 'required');
 
 		$data = get_input_params();
-		$this->form_validation->set_data($data);
+		// $this->form_validation->set_data($data);
 
-		if ($this->form_validation->run()) {
+		// if ($this->form_validation->run()) {
 			$saveData = array(
 				"name" =>  $data['name'],
 				"username" => $data['username'],
 				"email" => $data['email']
 			);
 			$this->config_model->insertUser($saveData);
-		}
+		// }
 	}
 
 	public function edit($id)

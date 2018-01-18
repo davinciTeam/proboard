@@ -35,9 +35,9 @@ function NewUserAction(username, name, email) {
       email: email,
       username: username
     };
-    alert(data.name);
-    alert(data.email);
-    alert(data.username);
+    // alert(data.name);
+    // alert(data.email);
+    // alert(data.username);
     const url = `${BaseUrl}api/users/NewUserAction`;
     Axios.post(url, data).then(response => {
       resolve(response)

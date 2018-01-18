@@ -101,7 +101,7 @@ export default {
     closeModalAddUser(){
       NewUserAction(this.email, this.name, this.username)
       // alert(this.email, this.name, this.username);
-      this.$refs.AddUser.hide()
+      this.$refs.addUser.hide()
     }
     // NewUserAction() {
     //   $.ajax({
