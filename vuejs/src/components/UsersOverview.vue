@@ -100,28 +100,11 @@ export default {
     },
     closeModalAddUser(){
       NewUserAction(this.email, this.name, this.username)
-      // alert(this.email, this.name, this.username);
       this.email = "";
       this.name = "";
       this.username = "";
       this.$refs.addUser.hide()
     }
-    // NewUserAction() {
-    //   $.ajax({
-    //     type:'POST',
-    //     data: {
-    //       email: this.email,
-    //       name: this.name,
-    //       username: this.username
-    //     },
-    //     url:'/users/NewUserAction',
-    //     success:function(data) {
-    //       // alert(this.data);
-    //       alert("Gebruiker is toegevoegd");
-    //     }
-    //     });
-     
-    // }
   }
 }
 </script>
