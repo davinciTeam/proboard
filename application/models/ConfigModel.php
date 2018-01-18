@@ -108,4 +108,5 @@
 	    {
 	    	return !(bool)$this->db->get_where("users", array("id <>" => $id, 'email' => $email))->result();
 	    }
+
 	}
