@@ -35,10 +35,11 @@ class Users extends CI_Controller {
 		//$this->form_validation->set_data($data);
 
 		//if ($this->form_validation->run()) {
+		$data = get_input_params();
 			$saveData = array(
-				"name" =>  $this->input->post('name'),
-				"username" => $this->input->post('username'),
-				"email" => $this->input->post('email')
+				"name" =>  $data['name'],
+				"username" => $data['username'],
+				"email" => $data['email']
 			);
 			$this->config_model->insertUser($saveData);
 		//}

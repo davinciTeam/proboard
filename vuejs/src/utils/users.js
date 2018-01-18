@@ -28,4 +28,23 @@ function editUser(id, name, email) {
   });
 }
 
-export {GetAllUsers, editUser}
+function NewUserAction(username, name, email) {
+  return new Promise((resolve, reject) => {
+    const data = {
+      name: name,
+      email: email,
+      username: username
+    };
+    alert(data.name);
+    alert(data.email);
+    alert(data.username);
+    const url = `${BaseUrl}api/users/NewUserAction`;
+    Axios.post(url, data).then(response => {
+      resolve(response)
+    }).catch(err => {
+      reject(err);
+    });
+  });
+}
+
+export {GetAllUsers, editUser, NewUserAction}

@@ -47,11 +47,11 @@
       </b-modal>
     </div>
     <div>
-      <b-modal ref="addUser" id="add_user" title="Gebruiker Toevoegen">
+      <b-modal hide-footer=true ref="addUser" id="add_user" title="Gebruiker Toevoegen">
         <b-form-input v-model="name" id="name" name="email" type="text" placeholder="Vul een naam in"></b-form-input>
         <b-form-input v-model="username" id="username" name="username" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
         <b-form-input class="form-control" value="" v-model="email" id="name" name="email" type="text" placeholder="Vul een email in"></b-form-input>
-        <button id="update" @click="NewUserAction">Update</button>
+        <b-button class="mx-auto" variant="success" @click="closeModalAddUser">Toevoegen</b-button>
         
       </b-modal>
     </div>
@@ -60,7 +60,7 @@
 
 <script>
 
-import {GetAllUsers, editUser} from '../utils/users';
+import {GetAllUsers, editUser, NewUserAction} from '../utils/users';
 
 export default {
   name: 'UserOverview',
@@ -94,29 +94,31 @@ export default {
       this.$refs.editUser.hide()
     },
 
-    openModalAddUser(name,email){
+    openModalAddUser(){
       
       this.$refs.addUser.show()
     },
     closeModalAddUser(){
+      NewUserAction(this.email, this.name, this.username)
+      // alert(this.email, this.name, this.username);
       this.$refs.AddUser.hide()
-    },
-    NewUserAction() {
-      $.ajax({
-        type:'POST',
-        data: {
-          email: this.email,
-          name: this.name,
-          username: this.username
-        },
-        url:'/users/NewUserAction',
-        success:function(data) {
-          // alert(this.data);
-          alert("Gebruiker is toegevoegd");
-        }
-        });
-     
     }
+    // NewUserAction() {
+    //   $.ajax({
+    //     type:'POST',
+    //     data: {
+    //       email: this.email,
+    //       name: this.name,
+    //       username: this.username
+    //     },
+    //     url:'/users/NewUserAction',
+    //     success:function(data) {
+    //       // alert(this.data);
+    //       alert("Gebruiker is toegevoegd");
+    //     }
+    //     });
+     
+    // }
   }
 }
 </script>
