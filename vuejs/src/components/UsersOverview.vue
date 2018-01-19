@@ -85,25 +85,35 @@ export default {
       this.email = email
       this.name = name
       this.id = id
-      console.log(this.id)
       this.$refs.editUser.show()
     },
-    closeModalEditUser () {
-      
-      editUser(this.id, this.name, this.email)
-      this.$refs.editUser.hide()
+    closeModalEditUser () {     
+      editUser(this.id, this.name, this.email).then(response => {
+        this.users_data['users'].filter(this.startsWith(this.id, this.name, this.email));
+        this.$refs.editUser.hide()
+      }).catch(err => {
+        console.log(err);
+        return;
+      })
     },
-
     openModalAddUser(){
-      
       this.$refs.addUser.show()
     },
     closeModalAddUser(){
-      NewUserAction(this.email, this.name, this.username)
+      NewUserAction(this.email, this.name, this.username);
       this.email = "";
       this.name = "";
       this.username = "";
       this.$refs.addUser.hide()
+    },
+    startsWith(providedId, name, email) {
+      return function(users) {
+        if (users['id'] === providedId) {
+          users['name'] = name;
+          users['email'] = email;
+          return;
+        }
+      }
     }
   }
 }
