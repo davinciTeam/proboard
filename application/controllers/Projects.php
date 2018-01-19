@@ -74,28 +74,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function index()
 	{
-
+		$data['projects'] = $this->projects_model->getProjects();
+		echo_json($data);
 	}
 	
-	public function overview($page = null)
-	{
-		$this->load->library('pagination');
-
-		$query['projects'] = $this->projects_model->getProjects($page);
-		$query['amount'] =  $this->projects_model->AmountOfProjects();
-		
-		if ($this->input->post('json') == 'true') {
-			header('Content-type:application/json');
-			echo json_encode($query);
-			exit;
-		}
-	}
-
 	public function Members($slug = null)
 	{
 		$query = array(
-	        'name' => $this->security->get_csrf_token_name(),
-	        'hash' => $this->security->get_csrf_hash(),
 	        'project' => $this->projects_model->getProject($slug)
 		);
 	}

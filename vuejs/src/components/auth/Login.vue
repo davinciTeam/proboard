@@ -1,6 +1,9 @@
 <template>
 	<div class="login">
     <div class="container">
+      <div class="row">
+        <navigation></navigation>
+      </div>
       <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputUsername" class="sr-only">Email address</label>
