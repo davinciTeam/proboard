@@ -68,7 +68,12 @@ export default {
   name: 'MembersOverview',
   data () {
     return {
-      members: {}
+      members: {},
+      ovnumber: '',
+      name: '',
+      insertion: '',
+      lastname: '',
+      slug: ''
     }
   },
   created() {
@@ -80,19 +85,19 @@ export default {
   },
 
   methods: {
-    openModalEditMember ($ovnumber, $name, $insertion, $lastname, $slug) {
+    openModalEditMember (ovnumber, name, insertion, lastname, slug) {
       this.ovnumber = ovnumber
       this.name = name
       this.insertion = insertion
       this.lastname = lastname
       this.slug = slug
       console.log(this.slug)
-      this.$refs.editUser.show()
+      this.$refs.editMember.show()
     },
     closeModalEditMember () {
       
-    //   editUser(this.id, this.name, this.email)
-    //   this.$refs.editUser.hide()
+      editMember(this.ovnumber, this.name, this.insertion, this.lastname, this.slug)
+      this.$refs.editMember.hide()
     },
 
     openModalAddUser(){

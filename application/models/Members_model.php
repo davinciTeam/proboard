@@ -43,16 +43,24 @@ class Members_model extends CI_Model {
     public function editMember($data)
     {
         //Set where clause for update query
-        if ($this->db->where('slug', $data['slug'])->update('members', array('name' => $data['name'],
-            'insertion' => $data['insertion'],
-            'lastname' => $data['lastname'],
-            'active' => $data['active'],
-            'ovnumber' => $data['ovnumber'])
-        )) {
+        // if ($this->db->where('slug', $data['slug'])->update('members', array('name' => $data['name'],
+        //     'insertion' => $data['insertion'],
+        //     'lastname' => $data['lastname'],
+        //     'active' => $data['active'],
+        //     'ovnumber' => $data['ovnumber'])
+        // )) {
 
-        } else {
+        // } else {
             
-        }       
+        // }   
+        $updateData = array(
+            "ovnumber" => $data["ovnumber"],
+            "name" => $data["name"],
+            "insertion" => $data["insertion"],
+            "lastname" =>  $data["lastname"],
+            "active" => 1
+        );  
+        $this->db->where('slug', $data['slug'])->update('members', $updateData);  
     }
 
 

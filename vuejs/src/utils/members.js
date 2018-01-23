@@ -14,20 +14,23 @@ function GetAllMembers() {
   });
 }
 
-function editMember() {//Edit member
-  // return new Promise((resolve, reject) => {
+function editMember(ovnumber, name, insertion, lastname, slug) {//Edit member
+  return new Promise((resolve, reject) => {
   // //Set Data
-  // const data = {
-  //     name: name,
-  //     email: email
-  //   };
-  //   const url = `${BaseUrl}api/users/`+id;//set Url and add Slug/id for specified user
-  //   Axios.post(url, data).then(response => {// Do a post request
-  //     resolve(response)
-  //   }).catch(err => {
-  //     reject(err);
-  //   });
-  // });
+    const data = {
+      ovnumber: ovnumber,
+      name: name,
+      insertion: insertion,
+      slug: slug,
+      lastname: lastname
+    };
+    const url = `${BaseUrl}api/members/editMemberAction/`;//set Url and add Slug/id for specified user
+     Axios.post(url, data).then(response => {// Do a post request
+       resolve(response)
+    }).catch(err => {
+       reject(err);
+     });
+  });
 }
 
 function NewMemberAction() { //Add new member

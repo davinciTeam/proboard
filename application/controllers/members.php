@@ -94,28 +94,31 @@ class Members extends CI_Controller {
 		$query['member'] = $this->members_model->getMember($slug);
 	}
 
-	public function editMemberAction()
+	public function editMemberAction($slug)
 	{
-		$this->load->library('form_validation');
+		// $this->load->library('form_validation');
 
-		$this->form_validation->set_rules(self::$_validationRules);
-		$this->form_validation->set_rules('slug', '', 'required',
-		array('required' => 'Er is een onbekende fout opgetreden'));
+		// $this->form_validation->set_rules(self::$_validationRules);
+		// $this->form_validation->set_rules('slug', '', 'required',
+		// array('required' => 'Er is een onbekende fout opgetreden'));
+		$this->slug = $slug;
+		$data = get_input_params();
 
-		if ($this->form_validation->run()) {
 
-			$data = Array(
-				"ovnumber" => $this->input->post('ovnumber'),
-				"name" => $this->input->post('name'),
-				"insertion" => $this->input->post('insertion'),
-				"slug" => $this->input->post('slug'),
-				"active" => $this->input->post('active'),
-				"lastname" => $this->input->post('lastname')
+		// if ($this->form_validation->run()) {
+
+			$updateData = Array(
+				"ovnumber" => $data['ovnumber'],
+				"name" => $data['name'],
+				"insertion" => $data['insertion'],
+				"slug" => $data['slug'],
+				"lastname" => $data['lastname']
+				// "active" => $this->input->post('active'),
 			);		
-			$this->members_model->editMember($data);
-		} else if ($this->input->post('slug')) {
+			$this->members_model->editMember($updateData, $slug);
+		// } else if ($this->input->post('slug')) {
 
-		}
+		// }
 	}
 
 	public function import($fileData)
