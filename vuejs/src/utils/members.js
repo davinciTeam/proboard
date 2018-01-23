@@ -1,10 +1,11 @@
 import Axios from 'axios';
 
-const BaseUrl = 'http://proboard/';
+const BaseUrl = 'http://proboard/';//Set base url
 
 function GetAllMembers() {
   return new Promise((resolve, reject) => {
-    const url = `${BaseUrl}members`;
+    const url = `${BaseUrl}members`;//Use base url To complete te full url
+    //Get request to `Url` 
     Axios.get(url).then(response => {
       resolve(response);
     }).catch(err => {
@@ -15,12 +16,13 @@ function GetAllMembers() {
 
 function editMember() {//Edit member
   // return new Promise((resolve, reject) => {
-  //   const data = {
+  // //Set Data
+  // const data = {
   //     name: name,
   //     email: email
   //   };
-  //   const url = `${BaseUrl}api/users/`+id;
-  //   Axios.post(url, data).then(response => {
+  //   const url = `${BaseUrl}api/users/`+id;//set Url and add Slug/id for specified user
+  //   Axios.post(url, data).then(response => {// Do a post request
   //     resolve(response)
   //   }).catch(err => {
   //     reject(err);

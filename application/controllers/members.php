@@ -56,13 +56,9 @@ class Members extends CI_Controller {
 	
 	public function index()
 	{
+		//Get data and return it
 		$data['members'] = $this->members_model->getMembers();
-		$data['amount'] = $this->members_model->AmountOfMembers();
-
-		// if ($json == 'true') {
-		// 	header('Content-type:application/json');
-			echo_json($data);
-
+		echo_json($data);
 	}
 
 	public function addMember()
