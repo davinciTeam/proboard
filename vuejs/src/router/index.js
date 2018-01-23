@@ -5,6 +5,7 @@ import login from '@/components/auth/Login'
 import logout from '@/components/auth/Logout'
 import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'
+import MembersOverview from '@/components/MembersOverview'
 import activation from '@/components/Activation'
 import BootstrapVue from 'bootstrap-vue'
 import Nav from '@/components/menu/nav'
@@ -49,6 +50,14 @@ const router = new Router({
       path: '/activateUser/:hash',
       name: 'activateUser',
       component: activation
+    },
+    {
+      path: '/members',
+      name: 'MembersOverview',
+      component: MembersOverview,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/',
