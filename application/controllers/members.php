@@ -65,17 +65,17 @@ class Members extends CI_Controller {
 
 	}
 
-	public function overview()
-	{
-		$data['members'] = $this->members_model->getMembers($page, $this->input->post('search'));
-		$data['amount'] = $this->members_model->AmountOfMembers();
+	// public function overview()
+	// {
+	// 	$data['members'] = $this->members_model->getMembers($page, $this->input->post('search'));
+	// 	$data['amount'] = $this->members_model->AmountOfMembers();
 
-		// if ($json == 'true') {
-		// 	header('Content-type:application/json');
-			echo json_encode($data);
-		// 	exit;
-		// }
-	}
+	// 	// if ($json == 'true') {
+	// 	// 	header('Content-type:application/json');
+	// 		echo json_encode($data);
+	// 	// 	exit;
+	// 	// }
+	// }
 
 	public function addMember()
 	{
