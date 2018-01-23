@@ -50,7 +50,7 @@
       <b-modal hide-footer=true ref="addUser" id="add_user" title="Gebruiker Toevoegen">
         <b-form-input v-model="name" id="name" name="email" type="text" placeholder="Vul een naam in"></b-form-input>
         <b-form-input v-model="username" id="username" name="username" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
-        <b-form-input class="form-control" value="" v-model="email" id="name" name="email" type="text" placeholder="Vul een email in"></b-form-input>
+        <b-form-input class="form-control" value="" v-model="email" id="email" name="email" type="text" placeholder="Vul een email in"></b-form-input>
         <b-button class="mx-auto" variant="success" @click="closeModalAddUser">Toevoegen</b-button>
         
       </b-modal>
