@@ -30,14 +30,11 @@
                 <td><b-button variant="primary" @click="openModalEditUser(user['name'], user['email'], user['id'])"><icon name="pencil"></icon></b-button></td>
                 <td><icon name="trash"></icon></td>
                 <td><icon name="check" class="text-success" v-if="user['active'] == '1'"></icon><icon v-else name="times" class="text-danger" ></icon></td>
-              </tr>
-              
+              </tr>   
             </tbody>
           </table>
-          
         </div>
       </div>
-
     </div>
     <div>
       <b-modal hide-footer=true ref="editUser" id="edit_user" title="Gebruiker bewerken">
@@ -52,7 +49,6 @@
         <b-form-input v-model="username" id="username" name="username" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
         <b-form-input class="form-control" value="" v-model="email" id="email" name="email" type="text" placeholder="Vul een email in"></b-form-input>
         <b-button class="mx-auto" variant="success" @click="closeModalAddUser">Toevoegen</b-button>
-        
       </b-modal>
     </div>
   </div>
@@ -85,25 +81,35 @@ export default {
       this.email = email
       this.name = name
       this.id = id
-      console.log(this.id)
       this.$refs.editUser.show()
     },
-    closeModalEditUser () {
-      
-      editUser(this.id, this.name, this.email)
-      this.$refs.editUser.hide()
+    closeModalEditUser () {     
+      editUser(this.id, this.name, this.email).then(response => {
+        this.users_data['users'].filter(this.startsWith(this.id, this.name, this.email));
+        this.$refs.editUser.hide()
+      }).catch(err => {
+        console.log(err);
+        return;
+      })
     },
-
     openModalAddUser(){
-      
       this.$refs.addUser.show()
     },
     closeModalAddUser(){
-      NewUserAction(this.email, this.name, this.username)
+      NewUserAction(this.email, this.name, this.username);
       this.email = "";
       this.name = "";
       this.username = "";
       this.$refs.addUser.hide()
+    },
+    startsWith(providedId, name, email) {
+      return function(users) {
+        if (users['id'] === providedId) {
+          users['name'] = name;
+          users['email'] = email;
+          return;
+        }
+      }
     }
   }
 }

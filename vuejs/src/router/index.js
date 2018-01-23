@@ -7,8 +7,9 @@ import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'
 import MembersOverview from '@/components/MembersOverview'
 import activation from '@/components/Activation'
+import ProjectsOverview from '@/components/ProjectsOverview'
 import BootstrapVue from 'bootstrap-vue'
-import Nav from '@/components/menu/nav'
+import Nav from '@/components/menu/navigation'
 import { checkLogin, setAppCookie } from '@/utils/auth'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -20,10 +21,11 @@ import Icon from 'vue-awesome/components/Icon'
 Vue.component('icon', Icon)
 Vue.component('navigation', Nav)
 
-Vue.use(BootstrapVue);
+Vue.use(BootstrapVue)
 Vue.use(Router)
 Vue.use(VueResource)
 
+const AppName = 'proboard '
 const router = new Router({
   linkActiveClass: 'active',
   // mode: 'history',
@@ -31,7 +33,10 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: login,
+      meta: {
+        title: 'inloggen'
+      }
     },
     {
       path: '/logout',
@@ -43,13 +48,26 @@ const router = new Router({
     	name: 'UsersOverview',
     	component: UsersOverview,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: 'gebruikers'
       }
     },
     {
       path: '/activateUser/:hash',
       name: 'activateUser',
-      component: activation
+      component: activation,
+      meta: {
+        title: 'activatie'
+      }
+    },
+    {
+      path: '/projects',
+      name: 'projects',
+      component: ProjectsOverview,
+      meta: {
+        requiresAuth: true,
+        title: 'projecten'
+      }
     },
     {
       path: '/members',
@@ -60,20 +78,22 @@ const router = new Router({
       }
     },
     {
-      path: '/',
+      path: '/dashboard',
       name: 'dashboard',
-      component: Dashboard
+      component: Dashboard,
+      meta: {
+        title: 'dashboard'
+      }
     },
     {
       path: '*',
-      redirect: '/'
+      redirect: '/dashboard'
     }
   ]
 })
 
-
-
 router.beforeEach((to, from, next) => {
+ document.title = AppName+to.meta.title
  if (to.matched.some(record => record.meta.requiresAuth)) {
    if (!checkLogin()) {
     setAppCookie();
