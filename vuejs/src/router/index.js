@@ -5,6 +5,7 @@ import login from '@/components/auth/Login'
 import logout from '@/components/auth/Logout'
 import Dashboard from '@/components/Dashboard'
 import UsersOverview from '@/components/UsersOverview'
+import MembersOverview from '@/components/MembersOverview'
 import activation from '@/components/Activation'
 import ProjectsOverview from '@/components/ProjectsOverview'
 import BootstrapVue from 'bootstrap-vue'
@@ -66,6 +67,14 @@ const router = new Router({
       meta: {
         requiresAuth: true,
         title: 'projecten'
+      }
+    },
+    {
+      path: '/members',
+      name: 'MembersOverview',
+      component: MembersOverview,
+      meta: {
+        requiresAuth: true
       }
     },
     {

@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Viewjs';
 $route['api/dashboard']['GET'] = 'dashboard/index';
 $route['api/users']['GET'] = 'users/index';
+$route['api/members']['GET'] = 'members/index';
 $route['api/users/(:num)']['POST'] = 'users/edit/$1';
 $route['api/users/NewUserAction']['POST'] = 'users/NewUserAction';
 $route['api/users/activateUser/(:any)']['POST'] = 'users/activateUser_post/$1';
