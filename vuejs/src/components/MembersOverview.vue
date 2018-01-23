@@ -27,7 +27,7 @@
               <tr v-for="member in members['members']">
                 <td>{{ member['ovnumber'] }}</td>
                 <td>{{ member['name'] }} {{member['insertion']}} {{member['lastname']}}</td>
-                <td><b-button variant="primary" @click="openModalEditMember(member['name'], member['email'], member['id'])"><icon name="pencil"></icon></b-button></td>
+                <td><b-button variant="primary" @click="openModalEditMember(member['ovnumber'], member['name'], member['insertion'], member['lastname'], member['slug'])"><icon name="pencil"></icon></b-button></td>
                 <td>Delete</td>
                 <td><icon name="check" class="text-success" v-if="member['active'] == '1'"></icon><icon v-else name="times" class="text-danger" ></icon></td>
               </tr>
@@ -41,9 +41,11 @@
     </div>
     <div>
       <b-modal hide-footer=true ref="editMember" id="edit_member" title="Lid bewerken">
-        <label>gebruikersnaam</label><b-form-input  type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
-        <label>email</label><b-form-input  type="text" placeholder="Vul een email in"></b-form-input>
-        <b-button class="mx-auto" variant="success" @click="closeModalEditUser">Opslaan</b-button>
+        <label>Ov-Nummer</label><b-form-input v-model="ovnumber" type="text" placeholder="Vul een Ov-Nummer in"></b-form-input>
+        <label>Voornaam</label><b-form-input v-model="name" type="text" placeholder="Vul een Voornaam in"></b-form-input>
+        <label>Tussenvoegsel</label><b-form-input v-model="insertion" type="text" placeholder="Vul een Tussenvoegsel in"></b-form-input>
+        <label>Achternaam</label><b-form-input v-model="lastname"  type="text" placeholder="Vul een achternaam in"></b-form-input>
+        <b-button class="mx-auto" variant="success" @click="closeModalEditMember">Opslaan</b-button>
       </b-modal>
     </div>
     <div>
@@ -78,14 +80,16 @@ export default {
   },
 
   methods: {
-    openModalEditUser () {
-    //   this.email = email
-    //   this.name = name
-    //   this.id = id
-    //   console.log(this.id)
-    //   this.$refs.editUser.show()
+    openModalEditMember ($ovnumber, $name, $insertion, $lastname, $slug) {
+      this.ovnumber = ovnumber
+      this.name = name
+      this.insertion = insertion
+      this.lastname = lastname
+      this.slug = slug
+      console.log(this.slug)
+      this.$refs.editUser.show()
     },
-    closeModalEditUser () {
+    closeModalEditMember () {
       
     //   editUser(this.id, this.name, this.email)
     //   this.$refs.editUser.hide()
