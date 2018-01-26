@@ -66,27 +66,28 @@ class Members extends CI_Controller {
 		$data['data'] = $this->members_model->getMembers();
 	}
 
-	public function addMemberAction()
+	public function NewMemberAction()
 	{
-		$this->load->library('form_validation');
+		// $this->load->library('form_validation');
+
+		// $this->form_validation->set_rules(self::$_validationRules);
+		$data = get_input_params();
 		$this->load->library('Slug');
 
-		$this->form_validation->set_rules(self::$_validationRules);
-
-		if ($this->form_validation->run()) {
+		// if ($this->form_validation->run()) {
 
 			$saveData = Array(
-				"ovnumber" => $this->input->post('ovnumber'),
-				"name" => $this->input->post('name'),
-				"slug" => $this->slug->slug_exists(url_title($this->input->post('name'), 'dash', TRUE)),
-				"insertion" => $this->input->post('insertion'),
-				"lastname" => $this->input->post('lastname')
+				"ovnumber" => $data['ovnumber'],
+				"name" => $data['name'],
+				"slug" => $this->slug->slug_exists(url_title($data['name'])),
+				"insertion" => $data['insertion'],
+				"lastname" => $data['lastname']
 			);
 			$this->members_model->addMember($saveData);
 			
-		} else {
+		// } else {
 
-		}
+		// }
 		
 	}
 	public function editMember($slug = null)

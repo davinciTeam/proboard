@@ -56,6 +56,7 @@ $route['api/members']['GET'] = 'members/index';
 $route['api/users/(:num)']['POST'] = 'users/edit/$1';
 $route['api/members/editMemberAction']['POST'] = 'members/editMemberAction/';
 $route['api/users/NewUserAction']['POST'] = 'users/NewUserAction';
+$route['api/members/NewMemberAction']['POST'] = 'members/NewMemberAction/';
 $route['api/users/activateUser/(:any)']['POST'] = 'users/activateUser_post/$1';
 $route['api/users/activateUser/(:any)']['GET'] = 'users/activateUser_get/$1';
 $route['api/projects']['GET'] = 'Projects/index';
