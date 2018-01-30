@@ -40,14 +40,14 @@
     <div>
       <b-modal hide-footer=true ref="editProject" id="edit_user" title="Project bewerken">
         <label>Naam</label><b-form-input v-model="projects['projects'][index].name" type="text" placeholder="Vul een naam in"></b-form-input>
-        <label>Klant</label><b-form-input v-model="projects['projects'][index].client" type="text" placeholder="Vul een email in"></b-form-input>
-        <label>Docent</label><b-form-input v-model="projects['projects'][index].teacher" type="text" placeholder="Vul een email in"></b-form-input>
+        <label>Klant</label><b-form-input v-model="projects['projects'][index].client" type="text" placeholder="Vul een client in"></b-form-input>
+        <label>Docent</label><b-form-input v-model="projects['projects'][index].teacher" type="text" placeholder="Vul een leraar in"></b-form-input>
         <label>Actief</label> <b-form-checkbox v-model="projects['projects'][index].active"></b-form-checkbox><br>
-        <label>Bug tracking url</label><b-form-input v-model="projects['projects'][index].bug_url" type="url" placeholder="Vul een email in"></b-form-input>
-        <label>Trello url</label><b-form-input type="url" v-model="projects['projects'][index].trello_url" placeholder="Vul een email in"></b-form-input>
-        <label>Repository url</label><b-form-input v-model="projects['projects'][index].git_url" type="url" placeholder="Vul een email in"></b-form-input>
-        <label>Project url</label><b-form-input v-model="projects['projects'][index].project_url" type="url" placeholder="Vul een email in"></b-form-input>
-        <label>Beschrijving</label><b-form-textarea id="textarea1" v-model="projects['projects'][index].description" placeholder="Enter something" :rows="3" :max-rows="6"></b-form-textarea>
+        <label>Bug tracking url</label><b-form-input v-model="projects['projects'][index].bug_url" type="url" placeholder="Vul een url in"></b-form-input>
+        <label>Trello url</label><b-form-input type="url" v-model="projects['projects'][index].trello_url" placeholder="Vul een url in"></b-form-input>
+        <label>Repository url</label><b-form-input v-model="projects['projects'][index].git_url" type="url" placeholder="Vul een url in"></b-form-input>
+        <label>Project url</label><b-form-input v-model="projects['projects'][index].project_url" type="url" placeholder="Vul een url in"></b-form-input>
+        <label>Beschrijving</label><b-form-textarea v-model="projects['projects'][index].description" placeholder="Vul een beschrijving in" :rows="3" :max-rows="6"></b-form-textarea>
         <b-button class="mx-auto" variant="success" @click="closeModalEditUser()">Opslaan</b-button>
       </b-modal>
     </div>
