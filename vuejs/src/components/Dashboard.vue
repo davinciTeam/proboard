@@ -26,7 +26,7 @@
           </thead>
           <tbody>        
             <tr v-for="project in projects['projects']">
-              <td>{{ project['name'] }}<b-btn variant="light" v-b-popover.hover="project['description']" title="Beschrijving"><icon name="comment" title=""></icon></b-btn></td>
+              <td>{{ project['name'] }}<b-btn variant="light" v-b-popover.hover="project['description']" title="Beschrijving"><icon name="comment"></icon></b-btn></td>
               <td>{{ project['client'] }}</td>
               <td>{{ project['teacher'] }}</td>
               <td><p v-for="member in project['members']"> {{ member['name'] }} {{ member['insertion'] }} {{ member['lastname'] }}</p></td>

@@ -77,6 +77,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['projects'] = $this->projects_model->getProjects();
 		echo_json($data);
 	}
+
+	public function edit($id = null)
+	{
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules(self::$_validationRules);
+
+		$data = get_input_params();
+		$this->form_validation->set_data($data);
+
+		if ($this->form_validation->run()) {
+			if ($this->projects_model->editProject($data, $id)) {
+				echo_json(array('succes' => true));
+			} 
+		} 
+	}
 	
 	public function Members($slug = null)
 	{
@@ -157,33 +173,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function editProject($slug = null)
 	{
 		$query['project'] = $this->projects_model->getProject($slug);
-	}
-
-	public function editProjectAction()
-	{
-		$this->load->library('form_validation');
-
-		$this->form_validation->set_rules(self::$_validationRules);
-		$this->form_validation->set_rules('slug', '', 'required');
-
-		if ($this->form_validation->run()) {
-			$data = Array(
-				"name" => $this->input->post('name'),
-				"slug" => $this->input->post('slug'),
-				"client" => $this->input->post('client'),
-				'teacher' => $this->input->post('teacher'),
-            	'git_url' => $this->input->post('git_url'),
-            	'trello_url' => $this->input->post('trello_url'),
-            	'project_url' => $this->input->post('project_url'),
-            	'bug_url' => $this->input->post('bug_url'),
-            	"active" => $this->input->post('active'),
-				"teacher" => $this->input->post('teacher'),
-				"description" => $this->input->post('description')
-			);
-			$this->projects_model->editProject($data);
-		} else if ($this->input->post('slug')) {
-			
-		}
 	}
 
 	public function addProject()

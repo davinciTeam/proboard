@@ -83,14 +83,12 @@ class Members extends CI_Controller {
 
 		// $this->form_validation->set_rules(self::$_validationRules);
 		$data = get_input_params();
-		$this->load->library('Slug');
 
 		// if ($this->form_validation->run()) {
 
 			$saveData = Array(
 				"ovnumber" => $data['ovnumber'],
 				"name" => $data['name'],
-				"slug" => $this->slug->slug_exists(url_title($data['name'])),
 				"insertion" => $data['insertion'],
 				"lastname" => $data['lastname']
 			);
