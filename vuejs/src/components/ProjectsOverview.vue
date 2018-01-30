@@ -79,7 +79,7 @@
         this.$refs.editProject.show();
       },
       closeModalEditUser () {
-        editProjects(this.projects['projects'][0]).then(response => {
+        editProjects(this.projects['projects'][index]).then(response => {
           this.$refs.editProject.hide()
         }).catch(err => {
           console.log(err);

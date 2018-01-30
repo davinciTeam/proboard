@@ -35,7 +35,7 @@ class Members_model extends CI_Model {
         /*`data` is passed from the members controller(members.php)
         Inside data is ovnumber, name,insertion, lastname, slug*/
         // Add member into database
-        $this->db->insert('members', $data)
+        $this->db->insert('members', $data);
         
     }
 
