@@ -68,6 +68,7 @@ class Members extends CI_Controller {
 	}
 
 	/*NewMemberAction 
+	Get data and place it in an array and pass the array to the members_model addMember function
 	$saveData 
 	OVnumber = ovnumber of the new member
 	name = name of the new member
