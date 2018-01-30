@@ -58,6 +58,7 @@ class Members extends CI_Controller {
 	{
 		//Get data and return it
 		$data['members'] = $this->members_model->getMembers();
+		//echo json
 		echo_json($data);
 	}
 
@@ -66,27 +67,37 @@ class Members extends CI_Controller {
 		$data['data'] = $this->members_model->getMembers();
 	}
 
-	public function addMemberAction()
+	/*NewMemberAction 
+	$saveData 
+	OVnumber = ovnumber of the new member
+	name = name of the new member
+	slug = name of the member to create a link
+	insertion = Insertion of the new member
+	Lastname = lastname of the new member
+	*/
+
+	public function NewMemberAction()
 	{
-		$this->load->library('form_validation');
+		// $this->load->library('form_validation');
+
+		// $this->form_validation->set_rules(self::$_validationRules);
+		$data = get_input_params();
 		$this->load->library('Slug');
 
-		$this->form_validation->set_rules(self::$_validationRules);
-
-		if ($this->form_validation->run()) {
+		// if ($this->form_validation->run()) {
 
 			$saveData = Array(
-				"ovnumber" => $this->input->post('ovnumber'),
-				"name" => $this->input->post('name'),
-				"slug" => $this->slug->slug_exists(url_title($this->input->post('name'), 'dash', TRUE)),
-				"insertion" => $this->input->post('insertion'),
-				"lastname" => $this->input->post('lastname')
+				"ovnumber" => $data['ovnumber'],
+				"name" => $data['name'],
+				"slug" => $this->slug->slug_exists(url_title($data['name'])),
+				"insertion" => $data['insertion'],
+				"lastname" => $data['lastname']
 			);
 			$this->members_model->addMember($saveData);
 			
-		} else {
+		// } else {
 
-		}
+		// }
 		
 	}
 	public function editMember($slug = null)
@@ -94,28 +105,31 @@ class Members extends CI_Controller {
 		$query['member'] = $this->members_model->getMember($slug);
 	}
 
-	public function editMemberAction()
+	public function editMemberAction($slug)
 	{
-		$this->load->library('form_validation');
+		// $this->load->library('form_validation');
 
-		$this->form_validation->set_rules(self::$_validationRules);
-		$this->form_validation->set_rules('slug', '', 'required',
-		array('required' => 'Er is een onbekende fout opgetreden'));
+		// $this->form_validation->set_rules(self::$_validationRules);
+		// $this->form_validation->set_rules('slug', '', 'required',
+		// array('required' => 'Er is een onbekende fout opgetreden'));
+		$this->slug = $slug;
+		$data = get_input_params();
 
-		if ($this->form_validation->run()) {
 
-			$data = Array(
-				"ovnumber" => $this->input->post('ovnumber'),
-				"name" => $this->input->post('name'),
-				"insertion" => $this->input->post('insertion'),
-				"slug" => $this->input->post('slug'),
-				"active" => $this->input->post('active'),
-				"lastname" => $this->input->post('lastname')
+		// if ($this->form_validation->run()) {
+
+			$updateData = Array(
+				"ovnumber" => $data['ovnumber'],
+				"name" => $data['name'],
+				"insertion" => $data['insertion'],
+				"slug" => $data['slug'],
+				"lastname" => $data['lastname']
+				// "active" => $this->input->post('active'),
 			);		
-			$this->members_model->editMember($data);
-		} else if ($this->input->post('slug')) {
+			$this->members_model->editMember($updateData, $slug);
+		// } else if ($this->input->post('slug')) {
 
-		}
+		// }
 	}
 
 	public function import($fileData)

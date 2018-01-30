@@ -7,7 +7,7 @@
       <div class="bar">
         <div class="container">
           <div class="row">
-            <b-button variant="primary" @click="openModalAddUser"><icon name="plus"></icon></b-button>
+            <b-button variant="primary" @click="openModalAddMember"><icon name="plus"></icon></b-button>
           </div>
         </div>
       </div>
@@ -50,10 +50,11 @@
     </div>
     <div>
       <b-modal hide-footer=true ref="addMember" id="add_member" title="Lid Toevoegen">
-        <b-form-input  id="name" name="email" type="text" placeholder="Vul een naam in"></b-form-input>
-        <b-form-input  id="username" name="username" type="text" placeholder="Vul een gebruikersNaam in"></b-form-input>
-        <b-form-input class="form-control" value=""  id="email" name="email" type="text" placeholder="Vul een email in"></b-form-input>
-        <b-button class="mx-auto" variant="success" @click="closeModalAddUser">Toevoegen</b-button>
+        <b-form-input v-model="ovnumber"  id="ovnumber" name="ovnumber" type="text" placeholder="Vul een ovnumber in"></b-form-input>
+        <b-form-input v-model="name" id="name" name="name" type="text" placeholder="Vul een naam in"></b-form-input>
+        <b-form-input v-model="insertion" id="insertion" name="insertion" type="text" placeholder="Vul een Tussenvoegsel in"></b-form-input>
+        <b-form-input v-model="lastname" class="form-control"  id="lastname" name="lastname" type="text" placeholder="Vul een achernaam in"></b-form-input>
+        <b-button class="mx-auto" variant="success" @click="closeModalAddMember">Toevoegen</b-button>
         
       </b-modal>
     </div>
@@ -68,7 +69,12 @@ export default {
   name: 'MembersOverview',
   data () {
     return {
-      members: {}
+      members: '',
+      ovnumber: '',
+      name: '',
+      insertion: '',
+      lastname: '',
+      slug: ''
     }
   },
   created() {
@@ -78,33 +84,43 @@ export default {
       console.log(err);
     })
   },
+  /*OpenModalEditMember
+  Open a popbox with a four input fields where the current data of the selected member is shown
+
+  this.ovnumber = ovnumber of the selected member
+  this.name = name of the selected member
+  this.slug = name of the member to create a link(Already exist)
+  this.insertion = Insertion of the selected member
+  this.lastname = lastname of the selected member
+  */
 
   methods: {
-    openModalEditMember ($ovnumber, $name, $insertion, $lastname, $slug) {
+    openModalEditMember (ovnumber, name, insertion, lastname, slug) {
       this.ovnumber = ovnumber
       this.name = name
       this.insertion = insertion
       this.lastname = lastname
       this.slug = slug
       console.log(this.slug)
-      this.$refs.editUser.show()
+      this.$refs.editMember.show()
     },
     closeModalEditMember () {
       
-    //   editUser(this.id, this.name, this.email)
-    //   this.$refs.editUser.hide()
+      editMember(this.ovnumber, this.name, this.insertion, this.lastname, this.slug)
+      this.$refs.editMember.hide()
     },
 
-    openModalAddUser(){
+    openModalAddMember(){
       
-      // this.$refs.addUser.show()
+      this.$refs.addMember.show()
     },
-    closeModalAddUser(){
-      // NewMemberAction(this.email, this.name, this.username)
-      // this.email = "";
-      // this.name = "";
-      // this.username = "";
-      // this.$refs.addUser.hide()
+    closeModalAddMember(){
+      NewMemberAction(this.ovnumber, this.name, this.insertion, this.lastname)
+      this.ovnumber = "";
+      this.name = "";
+      this.insertion = "";
+      this.lastname = "";
+      this.$refs.addMember.hide()
     }
   }
 }

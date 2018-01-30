@@ -11,6 +11,9 @@
 		  	<router-link class="nav-link" to="users">Gebruikers</router-link>
 		  </li>
 		  <li v-if="LoggedIn" class="nav-item">
+		  	<router-link class="nav-link" to="members">Leden</router-link>
+		  </li>
+		  <li v-if="LoggedIn" class="nav-item">
 		  	<router-link class="nav-link" to="projects">Projecten</router-link>
 		  </li>
 		  <li v-if="LoggedIn" class="nav-item">
