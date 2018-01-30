@@ -32,12 +32,11 @@ class Members_model extends CI_Model {
 
     public function addMember($data)
     {
+        /*`data` is passed from the members controller(members.php)
+        Inside data is ovnumber, name,insertion, lastname, slug*/
         // Add member into database
-        if ($this->db->insert('members', $data)) {
-
-        } else {
-
-        }
+        $this->db->insert('members', $data)
+        
     }
 
     public function editMember($data)

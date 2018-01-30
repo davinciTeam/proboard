@@ -84,6 +84,15 @@ export default {
       console.log(err);
     })
   },
+  /*OpenModalEditMember
+  Open a popbox with a four input fields where the current data of the selected member is shown
+
+  this.ovnumber = ovnumber of the selected member
+  this.name = name of the selected member
+  this.slug = name of the member to create a link(Already exist)
+  this.insertion = Insertion of the selected member
+  this.lastname = lastname of the selected member
+  */
 
   methods: {
     openModalEditMember (ovnumber, name, insertion, lastname, slug) {

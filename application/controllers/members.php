@@ -58,6 +58,7 @@ class Members extends CI_Controller {
 	{
 		//Get data and return it
 		$data['members'] = $this->members_model->getMembers();
+		//echo json
 		echo_json($data);
 	}
 
@@ -65,6 +66,15 @@ class Members extends CI_Controller {
 	{
 		$data['data'] = $this->members_model->getMembers();
 	}
+
+	/*NewMemberAction 
+	$saveData 
+	OVnumber = ovnumber of the new member
+	name = name of the new member
+	slug = name of the member to create a link
+	insertion = Insertion of the new member
+	Lastname = lastname of the new member
+	*/
 
 	public function NewMemberAction()
 	{

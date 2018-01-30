@@ -14,6 +14,16 @@ function GetAllMembers() {
   });
 }
 
+/* Const data 
+Ov number: ov number of the member
+name: name of the member
+insertion: insertion of the member
+slug: slug of the member exist out the `name` 
+ lastname: lastname of the member
+This function edits a member we use the `url` to do a post request.
+We set url by using the base url that is set above an complete the rest of the url by setting it in the function
+  */
+
 function editMember(ovnumber, name, insertion, lastname, slug) {//Edit member
   return new Promise((resolve, reject) => {
   // //Set Data
