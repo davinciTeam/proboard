@@ -225,22 +225,22 @@ class Projects_model extends CI_Model {
     }
 
 
-    public function editProject($data)
+    public function editProject($data, $id)
     {
-        $this->db->where('slug', $data['slug']);
-        if ($this->db->update('projects', array('name' => $data['name'],
+        $this->db->where('id', $id);
+        if ($this->db->update('projects', array(
+            'name' => $data['name'],
             'client' => $data['client'],
             'teacher' => $data['teacher'],
             'git_url' => $data['git_url'],
-            "active" => $data['active'],
+            'active' => $data['active'],
             'bug_url' => $data['bug_url'],
             'project_url' => $data['project_url'],
             'trello_url' => $data['trello_url'],
             'description' => $data['description'])
         )) {
-
-        }  else {
-            
-        }    
+            return true;
+        }
+        return false;    
     }
 }

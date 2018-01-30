@@ -29,7 +29,7 @@
                 <td>{{ user['email'] }}</td>
                 <td><b-button variant="primary" @click="openModalEditUser(user['name'], user['email'], user['id'])"><icon name="pencil"></icon></b-button></td>
                 <td><icon name="trash"></icon></td>
-                <td><icon name="check" class="text-success" v-if="user['active'] == '1'"></icon><icon v-else name="times" class="text-danger" ></icon></td>
+                <td><icon name="check" class="text-success" v-if="user['active'] == '1'"></icon><icon v-else name="times" class="text-danger"></icon></td>
               </tr>   
             </tbody>
           </table>
@@ -96,10 +96,14 @@ export default {
       this.$refs.addUser.show()
     },
     closeModalAddUser(){
-      NewUserAction(this.email, this.name, this.username);
-      this.email = "";
-      this.name = "";
-      this.username = "";
+      NewUserAction(this.email, this.name, this.username).then(response => {
+        this.email = "";
+        this.name = "";
+        this.username = "";
+        this.$refs.editUser.hide()
+      }).catch(err => {
+        console.log(err);
+      })
       this.$refs.addUser.hide()
     },
     startsWith(providedId, name, email) {

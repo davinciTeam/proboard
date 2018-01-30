@@ -57,7 +57,9 @@ $route['api/users/(:num)']['POST'] = 'users/edit/$1';
 $route['api/users/NewUserAction']['POST'] = 'users/NewUserAction';
 $route['api/users/activateUser/(:any)']['POST'] = 'users/activateUser_post/$1';
 $route['api/users/activateUser/(:any)']['GET'] = 'users/activateUser_get/$1';
+
 $route['api/projects']['GET'] = 'Projects/index';
+$route['api/projects/(:num)']['POST'] = 'Projects/edit/$1';
 
 $route['api/login']['POST'] = 'login/index_post';
 $route['verifyJWT'] = 'login/verifyJWT';
